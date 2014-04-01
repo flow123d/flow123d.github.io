@@ -18,12 +18,13 @@
       <div class="inner">
 
         <header>
-          <h1>Flow123d.github.io</h1>
-          <h2>Web page about Flow123d</h2>
+          <h1>Flow123d</h1>
+          <h2>Simulator of Underground Water Flow</h2>
         </header>
 
         <section id="downloads" class="clearfix">
-          <a href="https://github.com/flow123d" id="view-on-github" class="button"><span>View on GitHub</span></a>
+          <a href="https://github.com/flow123d/flow123d" id="view-on-github" class="button"><span>View on GitHub</span></a>
+          <a href="https://github.com/flow123d/flow123d/archive/master.zip" id="download-zip" class="button"><span>Download</span></a>
         </section>
 
         <hr>
@@ -32,28 +33,24 @@
           <h1>
 <a name="flow123d" class="anchor" href="#flow123d"><span class="octicon octicon-link"></span></a>Flow123d</h1>
 
-<p>Flow123d is a simulator of underground water flow and transport in fractured
-porous media. Novelty of this software is support of computations on complex
-meshes consisting of simplicial elements of different dimensions. Therefore
-we can combine continuum models and discrete fracture network models.</p>
+<p>Flow123d is a simulator of underground water flow, solute and heat transport in fractured porous media. Novelty of this software is support of computations on complex meshes consisting of simplicial elements of different dimensions. Therefore, we can combine continuum models and discrete fracture network models.</p>
 
-<p>Current version includes mixed-hybrid solver for steady and unsteady Darcy's
-flow, finite volume model for transport of several substances. Using operator
-splitting we support models for various local processes including dual
-porosity, sorption, decays and reactions.</p>
+<p>Current version includes mixed-hybrid solver for steady and unsteady Darcy flow, finite volume model and discontinuous Galerkin model for solute transport of several substances and heat transfer model. Using operator splitting, we support models for various local processes including dual porosity, sorption, decays and simple reactions.</p>
 
-<p>All computations can be run in parallel using PETSc and MPI. However, the
-mesh data and output operations are still sequential. Program supports output
-into VTK format for visualization and postprocessing in Paraview. </p>
+<p>Computations can be run in parallel using MPI with scalability up to hundreds of processors. The input interface based on JSON file format allows specification of general space-time dependent data for any physical parameter that does not compromise performance. Program supports output into GMSH and VTK formats.</p>
 
-<h2>
-<a name="documentation" class="anchor" href="#documentation"><span class="octicon octicon-link"></span></a>Documentation</h2>
+<!--
+<h2><a name="documentation" class="anchor" href="#documentation"><span class="octicon octicon-link"></span></a>Documentation</h2>
 
+<p>
 <ul>
 <li><a href="http://ci2.nti.tul.cz/job/make_doc/doxygen/">Source documentation</a></li>
 <li><a href="http://ci2.nti.tul.cz/job/make_doc/doclinks/1/">Reference manual</a></li>
-</ul><h2>
-<a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h2>
+</ul>
+</p>
+-->
+
+<h2><a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h2>
 
 <p>The source code of Flow123d is licensed under GPL3 license. For details look
 at files LICENSE and GPL3.</p>
