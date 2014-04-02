@@ -326,6 +326,16 @@ footer a:hover {
   color: #444;
 }
 
+div .picture {
+  text-align: center;
+  margin-right: auto;
+  margin-left: auto;
+  display: block;
+  font-size: 13px;
+  font-style: italic;
+  padding-bottom: 10px;
+}
+
 /* MISC */
 .clearfix:after {
   clear: both;
