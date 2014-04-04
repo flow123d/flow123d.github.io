@@ -152,9 +152,6 @@ a.button span {
   height: 23px;
 }
 
-#download-zip {
-  margin-left: 10px;
-}
 #download-zip span {
   background: transparent url(../images/zip-icon.png) 12px 50% no-repeat;
 }
@@ -164,15 +161,24 @@ a.button span {
 #view-on-github span {
   background: transparent url(../images/octocat-icon.png) 12px 50% no-repeat;
 }
-#view-on-github {
+#github-wiki-doc span {
+  background: transparent url(../images/document.png) 12px 50% no-repeat;
+}         
+#github-wiki-doc {
   margin-right: 0;
-}
+}       
 
 #important_links {
   margin-right: auto;
   margin-left: auto;
   display: block;
   padding-bottom: 10px;
+  width: 100%;
+  text-align: center;
+}
+
+#important_links ul {
+  display: inline-block;
 }
 
 #important_links ul li {
