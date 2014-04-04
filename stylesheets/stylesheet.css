@@ -168,6 +168,33 @@ a.button span {
   margin-right: 0;
 }
 
+#important_links {
+  margin-right: auto;
+  margin-left: auto;
+  display: block;
+  padding-bottom: 10px;
+}
+
+#important_links ul li {
+  list-style-type: none;
+  list-style-image: none;
+  list-style-position: outside;
+  display: inline;
+}
+
+#important_links a {
+  color: rgb(102, 102, 102);
+  text-decoration: none;
+  -moz-text-blink: none;
+  -moz-text-decoration-color: -moz-use-text-color;
+  -moz-text-decoration-line: none;
+  -moz-text-decoration-style: solid;
+}
+
+#important_links a:hover {
+  color: rgb(50, 50, 50);
+}
+
 code, pre {
   font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal;
   color: #222;
