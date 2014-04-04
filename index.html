@@ -41,75 +41,9 @@
 
 <h2><a name="features" class="anchor" href="#features"><span class="octicon octicon-link"></span></a>Features</h2>
 
-<p>
-   Flow123d is a solver for simulation of saturated water flow and transport of dissolved substances in fractured porous media. Principal language C++. Its key features are:
-</p>
-
-   <h3>Complex geometries consisting of elements of different dimensions</h3>
-
-   <ul>
-     <li>Convenient for modeling 2D and 1D fractures</li>
-     <li>Native support of <a href="http://www.geuz.org/gmsh">GMSH</a> meshes</li>
-     <li>Compatible interconnection of geometries</li>
-     <li>Non-compatible interconnections (under development)</li>
-     <li><a href="./features/geometries.html">Read more ...</a></li>
-   </ul>
-
-   <h3>Darcian flow in fractured porous media</h3>
-
-   <ul>
-     <li>Coupling on interfaces between adjacent dimensions</li>
-     <li>Mixed-hybrid formulation providing accurate velocity approximation</li>
-     <li>Efficient implementation using Schur complement</li>
-     <li>Unsteady model for non-zero storativity</li>
-     <li><a href="./">Read more ...</a></li>
-   </ul>
-
-   <h3>Advection-diffusion equation for solute transport</h3>
-
-   <ul>
-     <li>Simple finite volumes with explicit timestepping for pure transport (without diffusion) </li>
-     <li>Robust Discontinuous Galerkin + implicit timestepping for transport with hydrodynamic diffusion </li>
-     <li>Support for arbitrary number of substances </li>
-     <li><a href="./">Read more ...</a></li>
-   </ul>
-
-   <h3>Reactions, adsorption, dual porosity</h3>
-
-   <ul>
-     <li>Adsorption and reaction models are coupled with transport models using the operator splitting method </li>
-     <li>Efficient implementation of linear and non-linear adsorption using interpolation tables </li>
-     <li>Decays</li>
-     <li>Dual porosity model</li>
-   </ul>
-
-  <h3>Parallel computing</h3>
-
-  <ul>
-    <li>Parallel assembly, Schur complements, solver for Darcy flow model</li>
-    <li>Parallel finite volume explicit transport</li>
-    <li>Currently scalable up to 100 processors</li>
-  </ul>
-
-  <h3>Input and Output interface</h3>
-
-  <ul>
-    <li>Structured input using JSON file format</li>
-    <li>Almost all parameters can be arbitrary space-time field</li>
-    <li>Output to VTK and GMSH formats</li>
-    <li><a href="./">Read more ...</a></li>
-  </ul>
-
-  <h3>Active development</h3>
-
-  <ul>
-    <li>XFEM method for modelling wells (1D-3D coupling)</li>
-    <li>Methods for coupling of equations (Darcy flow) on non-compatible 2D-3D and 1D-2D meshes modeling preferential paths. <a href="http://www.iam.fmph.uniba.sk/algoritmy2012/zbornik/21Brezina.pdf">Paper</a>
-    <li><a href="http://www.math.cas.cz/~sistek/software/bddcml.html">Balancing domain decomposition</a> parallel solver <a href="http://bacula.nti.tul.cz/~jan.brezina/flow123d_publications/bddc_hybrid.pdf">Preprint</a></li>
-    <li><a href="./">Read more ...</a></li>
-  </ul>
-
-</p>
+<ul>
+  <li><a href="./features/">Features</a></li>
+</ul>
 
 <!--
 <h2><a name="documentation" class="anchor" href="#documentation"><span class="octicon octicon-link"></span></a>Documentation</h2>
