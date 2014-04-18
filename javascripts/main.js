@@ -10,26 +10,27 @@ $(document).ready(function() {
 
 function changeItems()
 {
+  var duration = 200;
   var version = $("#version_selector").val();
 
-  $("#flow_version").fadeOut(500, function() {
+  $("#flow_version").fadeOut(duration, function() {
     $(this).html(version);
-    $(this).fadeIn(500);
+    $(this).fadeIn(duration);
   });
 
-  $("#il_inner #dynamic_menu #features").fadeOut(10, function() {
+  $("#il_inner #dynamic_menu #features").fadeOut(duration, function() {
     $(this).html('<a href="./' + version + '/features">Features</a>');
-    $(this).fadeIn(500);
+    $(this).fadeIn(duration);
   });
 
-  $("#il_inner #dynamic_menu #documentation").fadeOut(10, function() {
+  $("#il_inner #dynamic_menu #documentation").fadeOut(duration, function() {
     $(this).html('<a href="./' + version + '/documentation.html">Documentation</a>');
-    $(this).fadeIn(500);
+    $(this).fadeIn(duration);
   });
 
-  $("#il_inner #dynamic_menu #download").fadeOut(10, function() {
+  $("#il_inner #dynamic_menu #download").fadeOut(duration, function() {
     $(this).html('<a href="./' + version + '/download.html">Download</a>');
-    $(this).fadeIn(500);
+    $(this).fadeIn(duration);
   });
 }
 /* TODO: add/change following links
