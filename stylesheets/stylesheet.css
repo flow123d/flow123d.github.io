@@ -65,7 +65,7 @@ a:hover {
 
 header {
   padding-top: 35px;
-  padding-bottom: 25px;
+  padding-bottom: 5px;
 }
 
 header h1 {
@@ -74,6 +74,10 @@ header h1 {
   font-size: 48px;
   color: #303030;
   line-height: 1.2;
+}
+
+header h1 #flow_version {
+  color: #aaa;
 }
 
 header h2 {
@@ -169,23 +173,29 @@ a.button span {
 }       
 
 #important_links {
-  margin-right: auto;
-  margin-left: auto;
+  position: relative;
   display: block;
-  padding-bottom: 10px;
-  width: 100%;
-  text-align: center;
+  top: 25px;
+  left: -425px;
+  font-size: 15px;
 }
 
-#important_links ul {
-  display: inline-block;
+#important_links #il_inner {
+  position: absolute;
+  display: block;
+  width: 400px;
+}
+
+#important_links #il_inner select {
+  width: 170px;
+  margin-bottom: 5px;
 }
 
 #important_links ul li {
   list-style-type: none;
   list-style-image: none;
   list-style-position: outside;
-  display: inline;
+  text-align: right;
 }
 
 #important_links a {

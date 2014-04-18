@@ -11,32 +11,51 @@
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
     <title>Flow123d</title>
+    <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+    <script type="text/javascript" src="./javascripts/main.js"></script>
   </head>
 
   <body>
     <div id="container">
       <div class="inner">
 
+
+        <a href="https://github.com/flow123d/flow123d"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"></a>
+
         <header>
-          <h1>Flow123d</h1>
+          <h1>Flow123d <span id="flow_version">1.8</span></h1>
           <h2>Simulator of Underground Water Flow</h2>
         </header>
 
+<!--
         <section id="downloads" class="clearfix">
           <a href="https://github.com/flow123d/flow123d" id="view-on-github" class="button"><span>View on GitHub</span></a>
           <a href="./download.html" id="download-zip" class="button"><span>Download</span></a>
           <a href="./documentation.html" id="github-wiki-doc" class="button"><span>Documentation</span></a>
         </section>
-
+-->
         <hr>
 
         <section id="important_links">
           <div id="il_inner">
             <ul>
-              <li><a href="./features/">Features</a></li>
+              <li><a href="http://flow123d.github.io">Home</a></li>
               <li><a href="./license.html">License</a></li>
               <li><a href="./acknowledgment.html">Acknowledgments</a></li>
               <li><a href="./contact.html">Contact</a></li>
+            </ul>
+            <ul id="dynamic_menu">
+              <li>
+                <script type="text/javascript">
+                </script>
+                <span class="version_switcher_placeholder">
+                  <select id="version_selector" onchange="changeItems()">
+                    <option value="1.8"selected="selected">Latest version - 1.8</option>
+                    <option value="1.7">Old version - 1.7</option>
+                    <option value="1.6">Old version - 1.6</option>
+                  </select>
+                </span>
+              </li>
             </ul>
           </div>
         </section>
@@ -54,13 +73,13 @@
           <p>Computations can be run in parallel using MPI with scalability up to hundreds of processors. The input interface based on JSON file format allows specification of general space-time dependent data for any physical parameter that does not compromise performance. Program supports output into GMSH and VTK formats.</p>
 
           <div class="picture">
-            <video controls width="596" height="548" poster="./videos/test2d-poster.png" >
+            <video controls width="576" height="368" poster="./videos/test2d-poster.png" >
               <source src="./videos/test2d.ogv" type="video/ogg" />
               <source src="./videos/test2d.mp4" type="video/mp4" />
               <img src="./pictures/test2d.gif" alt="Transport animation" title="Transport in fracture medium">
             </video>
             <br/>
-            <i>Figure: Example of transport in fracture medium</i>
+            <i>Animation: Example of transport in fracture medium</i>
           </div>
 
         <footer>
