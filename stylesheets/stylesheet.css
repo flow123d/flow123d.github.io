@@ -78,6 +78,8 @@ header h1 {
 
 header h1 #flow_version {
   color: #aaa;
+  padding-left: 20px;
+  font-size: 46px;
 }
 
 header h2 {
@@ -175,7 +177,7 @@ a.button span {
 #important_links {
   position: relative;
   display: block;
-  top: 25px;
+  top: 0px;
   left: -425px;
   font-size: 15px;
 }
