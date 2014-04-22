@@ -3,8 +3,10 @@
  */
 $(document).ready(function() {
   var version = $("#version_selector").val() || "1.8.0";
-  //var root_url = "http://flow123d.github.io/";
-  var root_url = "file:///home/jiri/Flow/flow123d.github.io/";
+
+  var root_url = "http://flow123d.github.io/";
+  //var root_url = "file:///home/jiri/Flow/flow123d.github.io/";
+
   $("#flow_version").html(version);
 
   /* Generate whole menu including set static part of menu */
@@ -108,8 +110,8 @@ function changeItems()
   var duration = 200;
   var version = $("#version_selector").val();
 
-  //var root_url = "http://flow123d.github.io/";
-  var root_url = "file:///home/jiri/Flow/flow123d.github.io/";
+  var root_url = "http://flow123d.github.io/";
+  //var root_url = "file:///home/jiri/Flow/flow123d.github.io/";
 
   /* TODO: Change content of current page too */
 
