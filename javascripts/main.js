@@ -66,40 +66,48 @@ $(document).ready(function() {
   /* Load main page using AJAX */
   $('#home_link').click(function() {
     $("#main_content").load(root_url + "index.html #main_content > *");
+    /*
     if(window.history && window.history.pushState) {
       var stateObj = { url: "index.html" };
       window.history.pushState(stateObj, "Flow123d", root_url + "index.html");
     }
+    */
     return false;
   });
 
   /* Load license page using AJAX */
   $('#license_link').click(function() {
     $("#main_content").load(root_url + "license.html #main_content > *");
+    /*
     if(window.history && window.history.pushState) {
       var stateObj = { url: "license.html" };
       window.history.pushState(stateObj, "Flow123d - License", root_url + "license.html");
     }
+    */
     return false;
   });
 
   /* Load acknowledgement page using AJAX */
   $('#ack_link').click(function() {
     $("#main_content").load(root_url + "acknowledgment.html #main_content > *");
+    /*
     if(window.history && window.history.pushState) {
       var stateObj = { url: "acknowledgment.html" };
       window.history.pushState(stateObj, "Flow123d - Acknowledgments", root_url + "acknowledgment.html");
     }
+    */
     return false;
   });
 
   /* Load contact page using AJAX */
   $('#contact_link').click(function() {
     $("#main_content").load("contact.html #main_content > *");
+    /*
     if(window.history && window.history.pushState) {
       var stateObj = { url: "contact.html" };
       window.history.pushState(stateObj, "Flow123d - Contact", root_url + "contact.html");
     }
+    */
     return false;
   });
 });
