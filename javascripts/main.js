@@ -54,19 +54,21 @@ $(document).ready(function() {
     <a id="readme_link" href="'+ root_url + version + '/readme.html">ReadMe</a></li>');
 
   /* Callback function called, when user moves back or forward in history */
+/* It doesn't work corectly and it doesn't work in old browsers
   window.onpopstate = function(event) {
     if(event.state) {
       var str = root_url + event.state.url + "#main_content > *";
       $("#main_content").load(str);
     }
   }
+*/
 
   /* Load main page using AJAX */
   $('#home_link').click(function() {
     $("#main_content").load(root_url + "index.html #main_content > *");
     if(window.history && window.history.pushState) {
       var stateObj = { url: "index.html" };
-      window.history.pushState(stateObj, "", root_url + "index.html");
+      window.history.pushState(stateObj, "Flow123d", root_url + "index.html");
     }
     return false;
   });
@@ -76,7 +78,7 @@ $(document).ready(function() {
     $("#main_content").load(root_url + "license.html #main_content > *");
     if(window.history && window.history.pushState) {
       var stateObj = { url: "license.html" };
-      window.history.pushState(stateObj, "", root_url + "license.html");
+      window.history.pushState(stateObj, "Flow123d - License", root_url + "license.html");
     }
     return false;
   });
@@ -86,7 +88,7 @@ $(document).ready(function() {
     $("#main_content").load(root_url + "acknowledgment.html #main_content > *");
     if(window.history && window.history.pushState) {
       var stateObj = { url: "acknowledgment.html" };
-      window.history.pushState(stateObj, "", root_url + "acknowledgment.html");
+      window.history.pushState(stateObj, "Flow123d - Acknowledgments", root_url + "acknowledgment.html");
     }
     return false;
   });
@@ -96,7 +98,7 @@ $(document).ready(function() {
     $("#main_content").load("contact.html #main_content > *");
     if(window.history && window.history.pushState) {
       var stateObj = { url: "contact.html" };
-      window.history.pushState(stateObj, "", root_url + "contact.html");
+      window.history.pushState(stateObj, "Flow123d - Contact", root_url + "contact.html");
     }
     return false;
   });
