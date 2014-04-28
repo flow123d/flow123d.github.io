@@ -3,13 +3,15 @@
   <head>
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='../../stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css' />
     <link rel="stylesheet" type="text/css" href="../../stylesheets/stylesheet.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="../../stylesheets/pygment_trac.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="../../stylesheets/print.css" media="print" />
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
+    <script type="text/javascript" src="../../javascripts/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../../javascripts/main.js"></script>
     <title>Flow123d - Flow</title>
   </head>
 
@@ -19,14 +21,20 @@
 
         <header>
           <a href="http://flow123d.github.io"><h1>Flow123d</h1></a>
+          <h2>Simulator of Underground Water Flow</h2>
         </header>
+
+        <hr/>
+
+        <section id="important_links">
+          <div id="il_inner">
+          </div>
+        </section>
 
         <section id="main_content">
           <h1>
             Darcian Flow in Fractured Porous Media
           </h1>
-
-          <hr>
 
           <p>
             We use mixed-hybrid finite element method for solving Darcy flow problems with 3D-2D and 2D-1D coupling between meshes of different dimensions. For compatible meshes, the pressure can be different on both sides of 2D fracture (or on arbitrary number of 2D manifolds connected to a 1D channel). The advantage of the mixed-hybrid formulation is better approximation of the velocity field. According to theoretical results and practical tests this method provides second order convergence of the L2-error for both the pressure and the velocity field. More over the velocity field is perfectly mass conservative.
@@ -41,7 +49,7 @@
           </p>
 
           <div class="picture">
-            <img src="../pictures/fracture_cube.png" alt="Flow field" title="Flow field"/>
+            <img src="../../pictures/fracture_cube.png" alt="Flow field" title="Flow field"/>
             <br/>
             <i>Figure: Flow field and the pressure distribution on cube with two fractures </i>
           </div>
