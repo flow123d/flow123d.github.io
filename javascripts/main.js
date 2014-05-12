@@ -110,12 +110,12 @@ function changeItems()
   });
 
   $("#il_inner #dynamic_menu #ref_manual").fadeOut(duration, function() {
-    $(this).html('<a id="ref_manual_link" href="' + root_url + version + '/user_manual.html#' + version + '">User Manual</a>');
+    $(this).html('<a id="ref_manual_link" href="http://bacula.nti.tul.cz/~jan.brezina/flow123d_packages/' + version + '/flow123d_' + version + '_doc.pdf">User Manual</a>');
     $(this).fadeIn(duration+400);
   });
 
   $("#il_inner #dynamic_menu #source_doc").fadeOut(duration, function() {
-    $(this).html('<a id="source_doc_link" href="' + root_url + version + '/source_doc.html#' + version + '">Source Documentation</a>');
+    $(this).html('<a id="source_doc_link" href="http://bacula.nti.tul.cz/~jan.brezina/flow123d_packages/' + version + '/doxygen/">Source Documentation</a>');
     $(this).fadeIn(duration+500);
   });
 
