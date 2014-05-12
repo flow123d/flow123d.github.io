@@ -11,7 +11,7 @@ $(document).ready(function() {
   var version = hash || "1.8.0";
 
   var root_url = "http://flow123d.github.io/";
-  var root_url = "file:///home/jiri/Flow/flow123d.github.io/";
+  //var root_url = "file:///home/jiri/Flow/flow123d.github.io/";
 
   $("#flow_version").html(version);
 
@@ -75,8 +75,8 @@ function changeItems()
   var duration = 200;
   var version = $("#version_selector").val();
 
-  //var root_url = "http://flow123d.github.io/";
-  var root_url = "file:///home/jiri/Flow/flow123d.github.io/";
+  var root_url = "http://flow123d.github.io/";
+  //var root_url = "file:///home/jiri/Flow/flow123d.github.io/";
 
   /* TODO: Change content of current page too */
 
