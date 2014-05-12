@@ -59,9 +59,9 @@ $(document).ready(function() {
   $("#il_inner #dynamic_menu").append('<li id="changes">\
     <a id="changes_link" href="'+ root_url + version + '/changes.html#' + version + '">Changes</a></li>');
   $("#il_inner #dynamic_menu").append('<li id="ref_manual">\
-    <a id="ref_manual_link" href="'+ root_url + version + '/user_manual.html#' + version + '">User Manual</a></li>');
+    <a id="ref_manual_link" href="http://bacula.nti.tul.cz/~jan.brezina/flow123d_packages/' + version + '/flow123d_' + version + '_doc.pdf">User Manual</a></li>');
   $("#il_inner #dynamic_menu").append('<li id="source_doc">\
-    <a id="source_doc_link" href="'+ root_url + version + '/source_doc.html#' + version + '">Source Documentation</a></li>');
+    <a id="source_doc_link" href="http://bacula.nti.tul.cz/~jan.brezina/flow123d_packages/' + version + '/doxygen/">Source Documentation</a></li>');
   $("#il_inner #dynamic_menu").append('<li id="readme">\
     <a id="readme_link" href="'+ root_url + version + '/readme.html#' + version + '">ReadMe</a></li>');
 
