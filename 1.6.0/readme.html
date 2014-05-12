@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css' />
+    <link rel="stylesheet" type="text/css" href="../stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="../stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="../stylesheets/print.css" media="print" />
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <script type="text/javascript" src="../javascripts/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../javascripts/main.js"></script>
+    <title>Flow123d - ReadMe</title>
+  </head>
+
+  <body>
+    <div id="container">
+      <div class="inner">
+
+        <header>
+          <a href="http://flow123d.github.io"><h1>Flow123d<span id="flow_version">1.8.0</span></h1></a>
+          <h2>Simulator of Underground Water Flow</h2>
+        </header>
+
+        <hr/>
+
+        <section id="important_links">
+          <div id="il_inner">
+          </div>
+        </section>
+
+        <section id="main_content">
+          <h1>
+            ReadMe
+          </h1>
+
+        <p><a href="http://bacula.nti.tul.cz/%7Ejan.brezina/flow123d_doc/source_doc/">Source documentation</a> generated from development sources</p>
+
+<p><a href="http://bacula.nti.tul.cz/%7Ejan.brezina/flow123d_doc/flow123d_doc.pdf">Reference manual</a> for current development version</p>
+
+<p>Flow123d is a simulator of underground water flow and transport processes in fractured
+porous media. Novelty of this software is support of computations on complex
+meshes consisting of simplicial elements of different dimensions. Therefore
+we can combine continuum models and discrete fracture network models. For details see:
+<a href="https://dev.nti.tul.cz/trac/flow123d/wiki/Features">Features</a> page.</p>
+
+<h2>
+<a name="user-content-license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h2>
+
+<p>The source code of Flow123d is licensed under GPL3 license. For details look
+at files doc/LICENSE and doc/GPL3.</p>
+
+<h2>
+<a name="user-content-build-flow123d" class="anchor" href="#build-flow123d"><span class="octicon octicon-link"></span></a>Build Flow123d</h2>
+
+<h3>
+<a name="user-content-windows-os-prerequisities" class="anchor" href="#windows-os-prerequisities"><span class="octicon octicon-link"></span></a>Windows OS prerequisities</h3>
+
+<p>If you are running Windows, you have to install 'cygwin' for emulation of
+POSIX unix environment. Then all work has to be done in the directories under
+cygwin, e.g "C:\cygwin\home\user\". In addition to the packages mentioned for the Linux you will need:</p>
+
+<ul>
+<li>openssh (for MPICH)</li>
+<li>some editor that can save Unix like text files (eg. notepad+ or sublime) </li>
+</ul><h3>
+<a name="user-content-linux-os-prerequisities" class="anchor" href="#linux-os-prerequisities"><span class="octicon octicon-link"></span></a>Linux OS prerequisities</h3>
+
+<p>Requested packages are: </p>
+
+<ul>
+<li>gcc, g++                        C/C++ compiler in version 4.7 and higher (we use C++11)</li>
+<li>gfortran                        Fortran compiler for compilation of BLAS library for PETSc.</li>
+<li>python, perl                    Scripting languages </li>
+<li>make, cmake (&gt;2.8.8), patch       Building tools</li>
+</ul><p>Recommended packages for development: </p>
+
+<ul>
+<li>libboost                        General purpose C++ library </li>
+</ul><p>Namely you need development version of the Boost sub-libraries: "Program Options", "Serialize", and "Regex".
+In KUbuntu, these are in separate packages:</p>
+
+<ul>
+<li>libboost-program-options-dev </li>
+<li>libboost-serialize-dev</li>
+<li>libboost-regex-dev</li>
+</ul><p>Flow123d downloads and installs Boost during configuration if it is not found in the system, but it may
+take long. Optionally you may use</p>
+
+<ul>
+<li>doxygen, graphviz     source generated documentation and its support tool for diagrams </li>
+<li>tetex                 or other Latex package to build reference manual</li>
+</ul><p>Flow123d depends also on PETSc library. It can be installed automatically during configuration,
+but for good parallel performance it has to be configured manually see appropriate section later on.</p>
+
+<h3>
+<a name="user-content-compile-flow123" class="anchor" href="#compile-flow123"><span class="octicon octicon-link"></span></a>Compile Flow123</h3>
+
+<p>Copy file <code>config.cmake.template</code> to <code>config.cmake</code>:</p>
+
+<pre><code>&gt; cp config.cmake.template config.cmake
+</code></pre>
+
+<p>Edit file <code>config.cmake</code>, set <code>PETSC_DIR</code> and <code>PETSC_ARCH</code> variables if you have your own installation of PETSc.
+For further options see comments in the template file.</p>
+
+<p>Then run the compilation by:</p>
+
+<pre><code>&gt; make all
+</code></pre>
+
+<p>This runs configuration and then the build process. If the configuration
+fails and you need to correct your <code>config.cmake</code> or other system setting
+you have to cleanup all files generated by unsuccessful cmake configuration by:</p>
+
+<pre><code>&gt; make clean-all
+</code></pre>
+
+<p>Try this every time if your build doesn't work and you don't know why.</p>
+
+<p>** Parallel builds ** </p>
+
+<p>Build can take quite long time when running on single processor. Use make's parameter '-j N' to 
+use N parallel processes. Developers can set appropriate alias in '.bashrc', e.g. :</p>
+
+<pre><code>export NUMCPUS=`grep -c '^processor' /proc/cpuinfo`
+alias pmake='time nice make -j$NUMCPUS --load-average=$NUMCPUS'
+</code></pre>
+
+<h3>
+<a name="user-content-manual-petsc-installation-optional" class="anchor" href="#manual-petsc-installation-optional"><span class="octicon octicon-link"></span></a>Manual PETSc installation (optional)</h3>
+
+<p>Flow versions 1.8.x depends on the PETSC library 3.4.x. It is installed automatically 
+if you do not set an existing installation in <code>config.cmake</code> file. However the manual installation 
+is necessary if</p>
+
+<ul>
+<li>you want to switch between more configurations (debugging, release, ...) using <code>PETSC_ARCH</code> variable.</li>
+<li><p>you want to achieve best performance configuring with system-wide MPI and/or BLAS and LAPACK libraries.</p></li>
+</ul><ol>
+<li><p>download PETSc 3.4.x from:
+<a href="http://www.mcs.anl.gov/petsc/petsc-as/documentation/installation.html">http://www.mcs.anl.gov/petsc/petsc-as/documentation/installation.html</a></p></li>
+<li>
+<p>unpack to any working directory 
+and go to it, eg. :</p>
+
+<pre><code>&gt; cd /home/jb/local/petsc
+</code></pre>
+</li>
+<li>
+<p>Set variables:</p>
+
+<pre><code>&gt; export PETSC_DIR=`pwd`
+</code></pre>
+
+<p>For development you will need at least debugging build of the
+library. Set the name of configuration, eg. :</p>
+
+<pre><code>&gt; export PETSC_ARCH=linux-gcc-dbg
+</code></pre>
+</li>
+<li>
+<p>Run the configuration script, for example with following options:</p>
+
+<pre><code>&gt; ./config/configure.py --with-debugging=1 --CFLAGS-O=-g --FFLAGS-O=-g \
+  --download-mpich=yes --download-metis=yes --download-parmetis --download-f-blas-lapack=1
+</code></pre>
+
+<p>This also force cofigurator to install BLAS, Lapack, MPICH, and ParMetis so it takes
+a while (it could take about 15 min). If everything is OK, you obtain table with
+used compilers and libraries. </p>
+</li>
+<li>
+<p>Finally compile PETSC with this configuration:</p>
+
+<pre><code>&gt; make all
+</code></pre>
+
+<p>To test the compilation run:</p>
+
+<pre><code>&gt; make test
+</code></pre>
+
+<p>To obtain PETSC configuration for the production version you can use e.g.</p>
+
+<pre><code>&gt; export PETSC_ARCH=linux-gcc-dbg
+&gt; ./config/configure.py --with-debugging=0 --CFLAGS-O=-O3 --FFLAGS-O=-O3 \
+   --download-mpich=yes --download-metis=yes --download-f-blas-lapack=1
+&gt; make all
+&gt; make test
+</code></pre>
+</li>
+</ol><h3>
+<a name="user-content-notes" class="anchor" href="#notes"><span class="octicon octicon-link"></span></a>Notes:</h3>
+
+<ul>
+<li>You can have several PETSC configuration using different <code>PETSC_ARCH</code> value.</li>
+<li>For some reasons if you let PETSc to download and install its own MPICH it
+overrides your optimization flags for compiler. Workaround is to edit
+file <code>${PETSC_DIR}/${PETSC_ARCH}/conf/petscvariables</code> and modify variables
+<code>&lt;complier&gt;_FLAGS_O</code> back to the values you wish.</li>
+<li>PETSc configuration should use system wide MPI implementation for efficient parallel computations.</li>
+<li>You have to compile PETSc at least with Metis support.</li>
+</ul><h3>
+<a name="user-content-support-for-other-libraries" class="anchor" href="#support-for-other-libraries"><span class="octicon octicon-link"></span></a>Support for other libraries</h3>
+
+<p>PETSc supports lot of other software packages. Use <code>configure.py --help</code> for the full list. Here we
+highlight the packages we are familiar with.</p>
+
+<ul>
+<li><p><strong>MKL</strong> is implementation of BLAS and LAPACK libraries provided by Intel for their processors. 
+Usually gives the best performance. Natively supported by PETSc.</p></li>
+<li>
+<p><strong>ATLAS library</strong> PETSC use BLAS and few LAPACK functions for its local vector and matrix
+operations. The speed of BLAS and LAPACK have dramatic impact on the overall
+performance. There is a sophisticated implementation of BLAS called ATLAS.
+ATLAS performs extensive set of performance tests on your hardware then make
+an optimized implementation of  BLAS code for you. According to our
+measurements the Flow123d is about two times faster with ATLAS compared to
+usual --download-f-blas-lapack (on x86 architecture and usin GCC).</p>
+
+<p>In order to use ATLAS, download it from ... and follow their instructions.
+The key point is that you have to turn off the CPU throttling. To this end
+install 'cpufreq-set' or <code>cpu-freq-selector</code> and use it to set your processor
+to maximal performance:</p>
+
+<p>cpufreq-set -c 0 -g performance
+  cpufreq-set -c 1 -g performance</p>
+
+<p>... this way I have set performance mode for both cores of my Core2Duo.</p>
+
+<p>Then you need not to specify any special options, just run default configuration and make. </p>
+
+<p>Unfortunately, there is one experimental preconditioner in PETSC (PCASA) which use a QR decomposition Lapack function, that is not
+part of ATLAS. Although it is possible to combine ATLAS with full LAPACK from Netlib, we rather provide an empty QR decomposition function
+as a part of Flow123d sources.
+See. HAVE_ATTLAS_ONLY_LAPACK in ./makefile.in</p>
+</li>
+<li>
+<p>PETSC provides interface to many useful packages. You can install them 
+adding further configure options:</p>
+
+<p>--download-superlu=yes         # parallel direct solver
+--download-hypre=yes           # Boomer algebraic multigrid preconditioner, many preconditioners
+--download-spools=yes          # parallel direc solver
+--download-blacs=ifneeded      # needed by MUMPS
+--download-scalapack=ifneeded  # needed by MUMPS
+--download-mumps=yes           # parallel direct solver
+--download-umfpack=yes         # MATLAB solver</p>
+
+<p>For further information about use of these packages see:</p>
+
+<p><a href="http://www.mcs.anl.gov/petsc/petsc-2/documentation/linearsolvertable.html">http://www.mcs.anl.gov/petsc/petsc-2/documentation/linearsolvertable.html</a></p>
+
+<p><a href="http://www.mcs.anl.gov/petsc/petsc-as/snapshots/petsc-current/docs/manualpages/PC/PCFactorSetMatSolverPackage.html#PCFactorSetMatSolverPackage">http://www.mcs.anl.gov/petsc/petsc-as/snapshots/petsc-current/docs/manualpages/PC/PCFactorSetMatSolverPackage.html#PCFactorSetMatSolverPackage</a>
+<a href="http://www.mcs.anl.gov/petsc/petsc-as/snapshots/petsc-current/docs/manualpages/Mat/MAT_SOLVER_SPOOLES.html#MAT_SOLVER_SPOOLES">http://www.mcs.anl.gov/petsc/petsc-as/snapshots/petsc-current/docs/manualpages/Mat/MAT_SOLVER_SPOOLES.html#MAT_SOLVER_SPOOLES</a>
+<a href="http://www.mcs.anl.gov/petsc/petsc-as/snapshots/petsc-current/docs/manualpages/Mat/MAT_SOLVER_MUMPS.html#MAT_SOLVER_MUMPS">http://www.mcs.anl.gov/petsc/petsc-as/snapshots/petsc-current/docs/manualpages/Mat/MAT_SOLVER_MUMPS.html#MAT_SOLVER_MUMPS</a>
+<a href="http://www.mcs.anl.gov/petsc/petsc-as/snapshots/petsc-current/docs/manualpages/Mat/MAT_SOLVER_SUPERLU_DIST.html">http://www.mcs.anl.gov/petsc/petsc-as/snapshots/petsc-current/docs/manualpages/Mat/MAT_SOLVER_SUPERLU_DIST.html</a>
+<a href="http://www.mcs.anl.gov/petsc/petsc-as/snapshots/petsc-current/docs/manualpages/Mat/MAT_SOLVER_UMFPACK.html">http://www.mcs.anl.gov/petsc/petsc-as/snapshots/petsc-current/docs/manualpages/Mat/MAT_SOLVER_UMFPACK.html</a></p>
+
+<p><a href="http://www.mcs.anl.gov/petsc/petsc-as/snapshots/petsc-dev/docs/manualpages/PC/PCHYPRE.html">http://www.mcs.anl.gov/petsc/petsc-as/snapshots/petsc-dev/docs/manualpages/PC/PCHYPRE.html</a></p>
+</li>
+</ul><h2>
+<a name="user-content-build-the-reference-manual" class="anchor" href="#build-the-reference-manual"><span class="octicon octicon-link"></span></a>Build the reference manual</h2>
+
+<p>The reference manual can be built by</p>
+
+<pre><code>&gt; make ref-doc
+</code></pre>
+
+<p>which calls LaTeX commands to make the final pdf file <code>doc/reference_manual/flow123d_doc.pdf</code>.
+The LaTeX source files depends on several packages that are needed for succesful build. In the list below 
+we provide a hint to find these packages (and names of distribution packages if you are using TeXLive under Ubuntu):</p>
+
+<ul>
+<li>hyperref</li>
+<li>colortbl</li>
+<li>amsmath</li>
+<li>natbib</li>
+<li>graphicx</li>
+<li>array (in CTAN package tools)</li>
+<li>tabularx (in CTAN package tools)</li>
+<li>multicol (in CTAN package tools)</li>
+<li>longtable (in CTAN package tools)</li>
+<li>pdflscape (in several distributions include in package bundle 'oberdiek')</li>
+</ul><p>which can be found in Ubuntu in 'texlive-latex-base' package</p>
+
+<ul>
+<li>caption</li>
+<li>subcaption</li>
+<li>fancyvrb</li>
+<li>rotating</li>
+</ul><p>which can be found in Ubuntu in 'texlive-latex-recommended' package</p>
+
+<ul>
+<li>amssymb (in CTAN package amsfonts)</li>
+</ul><p>which can be found in Ubuntu in 'texlive-base' package</p>
+
+<ul>
+<li>etoolbox</li>
+</ul><p>which can be found in Ubuntu in 'texlive-latex-extra' package, but is also enclosed in Flow123d reference manual source directory</p>
+
+<p>All these packages can be also obtained from <a href="http://ctan.org/">CTAN-Comprehensive TeX Archive Network</a>.</p>
+
+<h2>
+<a name="user-content-troubleshooting" class="anchor" href="#troubleshooting"><span class="octicon octicon-link"></span></a>Troubleshooting</h2>
+
+<ul>
+<li>
+<p><strong>Petsc Detection Problem:</strong></p>
+
+<p>CMake try to detect type of your PETSc installation and then test it
+by compiling and running simple program. However, this can fail if the 
+program has to be started under 'mpiexec'. In such a case, please, set:</p>
+
+<blockquote>
+<p>set (PETSC_EXECUTABLE_RUNS YES)</p>
+</blockquote>
+
+<p>in your makefile.in.cmake file, and perform: <code>make clean-all; make all</code></p>
+
+<p>For further information about program usage see reference manual <code>doc/flow_doc</code>.</p>
+</li>
+<li>
+<p>** Shared libraries ** By default PETSC will create dynamically linked libraries, which can be shared be more applications. But on some systems 
+(in particular we have problems under Windows) this doesn't work, so one is forced to turn off dynamic linking by:</p>
+
+<p>--with-shared=0</p>
+</li>
+<li><p>** No MPI ** If you want only serial version of PETSc (and Flow123d)
+add --with-mpi=0 to the configure command line.</p></li>
+<li><p>** Windows line ends**  If you use a shell script for PETSC configuration under cygwin,
+always check if you use UNIX line ends. It can be specified in the notepad
+of Windows 7.</p></li>
+<li><p>** older Windows ** For some older Windows versions it may be necessary to set in configuration of PETSC
+--with-timer=nt </p></li>
+<li>
+<p>** Cygwin remap problem ** You may get strange errors during configuration of PETSc, like </p>
+
+<p>C:\cygwin\bin\python.exe: *** unable to remap C:\cygwin\bin\cygssl.dll to same address as parent(0xDF0000) != 0xE00000</p>
+
+<p>or other errors usually related to DLL conflicts.
+(see <a href="http://www.tishler.net/jason/software/rebase/rebase-2.4.2.README">http://www.tishler.net/jason/software/rebase/rebase-2.4.2.README</a>)
+To fix DLL libraries you should perform:</p>
+
+<p>-# shutdown all Cygwin processes and services
+-# start <code>ash</code> (do not use bash or rxvt)
+-# execute <code>/usr/bin/rebaseall</code> (in the ash window)</p>
+
+<p>Possible problem with 'rebase':
+  /usr/lib/cygicudata.dll: skipped because nonexist
+  .
+  .
+  .
+  FixImage (/usr/x86_64-w64-mingw32/sys-root/mingw/bin/libgcc_s_sjlj-1.dll) failed with last error = 13</p>
+
+<p>Solution (ATTENTION, depends on Cygwin version): 
+add following to line 110 in the rebase script:
+-e '/\/sys-root\/mingw\/bin/d'</p>
+</li>
+</ul>
+
+        </section>
+
+        <footer>
+          This page was generated by <a href="http://pages.github.com">GitHub Pages</a>. Tactile theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.
+        </footer>
+
+        
+      </div>
+    </div>
+  </body>
+</html>
