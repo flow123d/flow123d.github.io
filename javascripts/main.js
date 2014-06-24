@@ -1,3 +1,30 @@
+
+/**
+ * \brief Global variable with array of functions
+ */
+var versions = [
+  {
+    "id": "1.8.0",
+    "name": "Release - 1.8.0",
+    "short_name": "1.8.0"
+  },
+  {
+    "id": "1.7.0",
+    "name": "Release - 1.7.0",
+    "short_name": "1.7.0"
+  },
+  {
+    "id": "1.6.0",
+    "name": "Release - 1.6.0",
+    "short_name": "1.6.0"
+  },
+  {
+    "id": "night_builds",
+    "name": "Night Builds",
+    "short_name": "Night Builds"
+  },
+];
+
 /**
  * \brief Function used for initial setting of menu
  */
@@ -31,15 +58,14 @@ $(document).ready(function() {
 
   $("#il_inner").append('<ul id="dynamic_menu"></ul>');
 
-  var opt_1_8_0 = '<option value="1.8.0">Release - 1.8.0</option>';
-  var opt_1_7_0 = '<option value="1.7.0">Release - 1.7.0</option>';
-  var opt_1_6_0 = '<option value="1.6.0">Release - 1.6.0</option>';
-  var night_builds = '<option value="night_builds">Night Builds</option>';
-
-  if (version == '1.8.0') { opt_1_8_0 = '<option value="1.8.0" selected="selected">Release - 1.8.0</option>'; };
-  if (version == '1.7.0') { opt_1_7_0 = '<option value="1.7.0" selected="selected">Release - 1.7.0</option>'; };
-  if (version == '1.6.0') { opt_1_6_0 = '<option value="1.6.0" selected="selected">Release - 1.6.0</option>'; };
-  if (version == 'night_builds') { night_builds = '<option value="night_builds" selected="selected">Night Builds</option>'; };
+  var options = "";
+  for (var i = 0; i < versions.length; i++) {
+    if(version == versions[i].id) {
+      options += '<option value="' + versions[i].id + '" selected="selected">' + versions[i].name + '</option>';
+    } else {
+      options += '<option value="' + versions[i].id + '">' + versions[i].name + '</option>';
+    }
+  };
 
   $("#il_inner #dynamic_menu").append('\
               <li>\
@@ -47,7 +73,7 @@ $(document).ready(function() {
                 </script>\
                 <span class="version_switcher_placeholder">\
                   <select id="version_selector" onchange="changeItems()">\
-                    '+ opt_1_8_0 + opt_1_7_0 + opt_1_6_0 + night_builds + '\
+                    '+ options + '\
                   </select>\
                 </span>\
               </li>');
@@ -78,12 +104,19 @@ function changeItems()
   var root_url = "http://flow123d.github.io/";
   //var root_url = "file:///home/jiri/Flow/flow123d.github.io/";
 
-  /* TODO: Change content of current page too */
+  /* TODO: Change content of current page too, when page is version specific */
 
   document.location.hash = version;
 
   $("#flow_version").fadeOut(duration, function() {
-    $(this).html(version);
+    var version_short_name = "";
+    for (var i = 0; i < versions.length; i++) {
+      if(version == versions[i].id) {
+        version_short_name = versions[i].short_name;
+        break;
+      }
+    }
+    $(this).html(version_short_name);
     $(this).fadeIn(duration);
   });
 
