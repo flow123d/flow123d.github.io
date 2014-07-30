@@ -4,6 +4,11 @@
  */
 var versions = [
   {
+    "id": "1.8.1",
+    "name": "Release - 1.8.1",
+    "short_name": "1.8.1"
+  },
+  {
     "id": "1.8.0",
     "name": "Release - 1.8.0",
     "short_name": "1.8.0"
