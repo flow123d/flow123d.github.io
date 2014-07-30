@@ -116,9 +116,14 @@ function changeItems()
   var duration = 200;
   var version = $("#version_selector").val();
 
-  var root_url = "http://flow123d.github.io/";
+  //var root_url = "http://flow123d.github.io/";
   //var root_url = "file:///home/jiri/Flow/flow123d.github.io/";
-
+  
+  // try to get root URL automatically and use fixed address if it fails.
+  var root_url = document.URL.replace(/index.html$/,"");
+  if (root_url == document.URL) 
+      root_url = "http://flow123d.github.io/"
+  
   /* TODO: Change content of current page too, when page is version specific */
 
   document.location.hash = version;
