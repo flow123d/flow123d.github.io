@@ -124,6 +124,8 @@ function changeItems()
   if (root_url == document.URL) 
       root_url = "http://flow123d.github.io/"
   
+  var bacula_root_url="http://bacula.nti.tul.cz/~jan.brezina/flow123d_packages/" + version;     
+  
   /* TODO: Change content of current page too, when page is version specific */
 
   document.location.hash = version;
@@ -158,22 +160,22 @@ function changeItems()
   });
 
   $("#il_inner #dynamic_menu #changes").fadeOut(duration, function() {
-    $(this).html('<a id="changes_link" href="' + root_url + version + '/changes.html#' + version + '">Changes</a>');
+    $(this).html('<a id="changes_link" href="' + bacula_root_url + '/CHANGES.html#' + version + '">Changes</a>');
     $(this).fadeIn(duration+300);
   });
 
   $("#il_inner #dynamic_menu #ref_manual").fadeOut(duration, function() {
-    $(this).html('<a id="ref_manual_link" href="http://bacula.nti.tul.cz/~jan.brezina/flow123d_packages/' + version + '/flow123d_' + version + '_doc.pdf">User Manual</a>');
+    $(this).html('<a id="ref_manual_link" href="' + bacula_root_url + '/flow123d_' + version + '_doc.pdf">User Manual</a>');
     $(this).fadeIn(duration+400);
   });
 
   $("#il_inner #dynamic_menu #source_doc").fadeOut(duration, function() {
-    $(this).html('<a id="source_doc_link" href="http://bacula.nti.tul.cz/~jan.brezina/flow123d_packages/' + version + '/doxygen/">Source Documentation</a>');
+    $(this).html('<a id="source_doc_link" href="' + bacula_root_url + '/doxygen/">Source Documentation</a>');
     $(this).fadeIn(duration+500);
   });
 
   $("#il_inner #dynamic_menu #readme").fadeOut(duration, function() {
-    $(this).html('<a id="readme_link" href="' + root_url + version + '/readme.html#' + version + '">ReadMe</a>');
+    $(this).html('<a id="readme_link" href="' + bacula_root_url + '/README.html#' + version + '">ReadMe</a>');
     $(this).fadeIn(duration+600);
   });
 }
