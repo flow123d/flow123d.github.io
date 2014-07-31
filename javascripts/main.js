@@ -37,18 +37,31 @@ $(document).ready(function() {
   ga('create', 'UA-52302083-4', 'auto');
   ga('send', 'pageview');
 
-  hash = document.location.hash
-
-  if (hash != null) {
-    hash = hash.substring(1, hash.length);
-  };
-
-  var version = hash || "1.8.0";
-
   /* This script is evalueted in all pages in all directories, e.g.: 1.8.0, 1.8.0/featueres
    * Thus it is simplier to use absolute paths. */
   var root_url = "http://flow123d.github.io/";
   //var root_url = "file:///home/jiri/Flow/flow123d.github.io/";
+
+  hash = document.location.hash
+
+  console.log(hash);
+
+  if (hash != "") {
+    hash = hash.substring(1, hash.length);
+  } else {
+    var url = window.location.href;
+    var path = url.replace(root_url, "/");
+    var reg = /\/.*\//;
+
+    var values = path.match(reg);
+
+    if(values != null) {
+      var simple_reg = /\//g;
+      var ver = values[0].replace(simple_reg, "");
+    }
+  }
+
+  var version = hash || ver || "1.8.0";
 
   $("#flow_version").html(version);
 
@@ -89,17 +102,17 @@ $(document).ready(function() {
               </li>');
 
   $("#il_inner #dynamic_menu").append('<li id="features">\
-    <a id="features_link" href="'+ root_url + version + '/features#' + version + '">Features</a></li>');
+    <a id="features_link" href="'+ root_url + version + '/features">Features</a></li>');
   $("#il_inner #dynamic_menu").append('<li id="download">\
-    <a id="download_link" href="'+ root_url + version + '/download.html#' + version + '">Download</a></li>');
+    <a id="download_link" href="'+ root_url + version + '/download.html">Download</a></li>');
   $("#il_inner #dynamic_menu").append('<li id="changes">\
-    <a id="changes_link" href="'+ root_url + version + '/changes.html#' + version + '">Changes</a></li>');
+    <a id="changes_link" href="'+ root_url + version + '/changes.html">Changes</a></li>');
   $("#il_inner #dynamic_menu").append('<li id="ref_manual">\
     <a id="ref_manual_link" href="http://bacula.nti.tul.cz/~jan.brezina/flow123d_packages/' + version + '/flow123d_' + version + '_doc.pdf">User Manual</a></li>');
   $("#il_inner #dynamic_menu").append('<li id="source_doc">\
     <a id="source_doc_link" href="http://bacula.nti.tul.cz/~jan.brezina/flow123d_packages/' + version + '/doxygen/">Source Documentation</a></li>');
   $("#il_inner #dynamic_menu").append('<li id="readme">\
-    <a id="readme_link" href="'+ root_url + version + '/readme.html#' + version + '">ReadMe</a></li>');
+    <a id="readme_link" href="'+ root_url + version + '/readme.html">ReadMe</a></li>');
 
 });
 
@@ -114,8 +127,23 @@ function changeItems()
   var root_url = "http://flow123d.github.io/";
   //var root_url = "file:///home/jiri/Flow/flow123d.github.io/";
 
-  /* TODO: Change content of current page too, when page is version specific */
+  // Change content of current page too, when page is version specific
+  var url = window.location.href;
+  var path = url.replace(root_url, "/");
+  var reg = /\/.*\//;
 
+  var res = path.search(reg);
+
+  if(res != -1) {
+    var new_path = path.replace(reg, "/" + version + "/");
+    var new_url = root_url + new_path;
+
+    if (new_url != url) {
+      window.location.href = new_url;
+    }
+  }
+
+  // When page is not version specific, then do fade-in fade-out of version
   document.location.hash = version;
 
   $("#flow_version").fadeOut(duration, function() {
@@ -138,17 +166,17 @@ function changeItems()
 
   /* Change 'dynamic' menu */
   $("#il_inner #dynamic_menu #features").fadeOut(duration, function() {
-    $(this).html('<a id="features_link" href="' + root_url + version + '/features#' + version + '">Features</a>');
+    $(this).html('<a id="features_link" href="' + root_url + version + '/features">Features</a>');
     $(this).fadeIn(duration);
   });
 
   $("#il_inner #dynamic_menu #download").fadeOut(duration, function() {
-    $(this).html('<a id="download_link" href="' + root_url + version + '/download.html#' + version + '">Download</a>');
+    $(this).html('<a id="download_link" href="' + root_url + version + '/download.html">Download</a>');
     $(this).fadeIn(duration+200);
   });
 
   $("#il_inner #dynamic_menu #changes").fadeOut(duration, function() {
-    $(this).html('<a id="changes_link" href="' + root_url + version + '/changes.html#' + version + '">Changes</a>');
+    $(this).html('<a id="changes_link" href="' + root_url + version + '/changes.html">Changes</a>');
     $(this).fadeIn(duration+300);
   });
 
@@ -163,7 +191,7 @@ function changeItems()
   });
 
   $("#il_inner #dynamic_menu #readme").fadeOut(duration, function() {
-    $(this).html('<a id="readme_link" href="' + root_url + version + '/readme.html#' + version + '">ReadMe</a>');
+    $(this).html('<a id="readme_link" href="' + root_url + version + '/readme.html">ReadMe</a>');
     $(this).fadeIn(duration+600);
   });
 }
