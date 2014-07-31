@@ -53,7 +53,6 @@
           </ul>
 
           <h3>Darcian Flow in Fractured Porous Media</h3>
-
           <ul>
             <li>Coupling on interfaces between adjacent dimensions</li>
             <li>Mixed-hybrid formulation providing accurate velocity approximation</li>
@@ -63,7 +62,6 @@
           </ul>
 
           <h3>Advection-Diffusion Equation for Solute Transport</h3>
-
           <ul>
             <li>Simple finite volumes with explicit timestepping for pure transport (without diffusion) </li>
             <li>Robust Discontinuous Galerkin + implicit timestepping for transport with hydrodynamic diffusion </li>
@@ -71,17 +69,21 @@
             <li><a href="./transport.html">Read more ...</a></li>
           </ul>
 
-          <h3>Reactions, Adsorption, Dual Porosity</h3>
-
+          <h3>Reaction processes</h3>
           <ul>
-            <li>Adsorption and reaction models are coupled with transport models using the operator splitting method </li>
-            <li>Efficient implementation of linear and non-linear adsorption using interpolation tables </li>
-            <li>Decays</li>
-            <li>Dual porosity model</li>
+            <li> Reaction processes include: dual porosity model, sorptions, and linear reactions (decays)
+            <li> Coupled with transport models using the operator splitting method </li>
+            <li> Support for general combination of several reaction processes.
+            <li> Efficient computation of non-linear sorption via. interpolation </li>
           </ul>
 
+          <h3>Heat transfer</h3>
+          <ul>
+            <li>Equilibrium heat transfer model including conduction in rock and conduction and convection in liquid phase. </li>
+            <li>Robust Discontinuous Galerkin + implicit timestepping.</li>
+          </ul>
+          
           <h3>Parallel Computing</h3>
-
           <ul>
             <li>Parallel assembly, Schur complements, solver for Darcy flow model</li>
             <li>Parallel finite volume explicit transport</li>
@@ -89,7 +91,6 @@
           </ul>
 
           <h3>Input and Output interface</h3>
-
           <ul>
             <li>Structured input using JSON file format</li>
             <li>Almost all parameters can be arbitrary space-time field</li>
