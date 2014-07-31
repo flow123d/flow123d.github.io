@@ -25,6 +25,11 @@ var versions = [
   },
 ];
 
+/* This script is evalueted in all pages in all directories, e.g.: 1.8.0, 1.8.0/featueres
+ * Thus it is simplier to use absolute paths. */
+var root_url = "http://flow123d.github.io/";
+//var root_url = "file:///home/jiri/Flow/flow123d.github.io/";
+
 /**
  * \brief Function used for initial setting of menu
  */
@@ -37,11 +42,6 @@ $(document).ready(function() {
   ga('create', 'UA-52302083-4', 'auto');
   ga('send', 'pageview');
 
-  /* This script is evalueted in all pages in all directories, e.g.: 1.8.0, 1.8.0/featueres
-   * Thus it is simplier to use absolute paths. */
-  var root_url = "http://flow123d.github.io/";
-  //var root_url = "file:///home/jiri/Flow/flow123d.github.io/";
-
   hash = document.location.hash
 
   if (hash != "") {
@@ -49,11 +49,13 @@ $(document).ready(function() {
   } else {
     var url = window.location.href;
     var path = url.replace(root_url, "/");
-    var reg = /\/.*\//;
+    var reg = /\/[^\/]*\//;
 
     var values = path.match(reg);
 
+
     if(values != null) {
+      console.log(values, values.length, values[0]);
       var simple_reg = /\//g;
       var ver = values[0].replace(simple_reg, "");
     }
@@ -122,74 +124,71 @@ function changeItems()
   var duration = 200;
   var version = $("#version_selector").val();
 
-  var root_url = "http://flow123d.github.io/";
-  //var root_url = "file:///home/jiri/Flow/flow123d.github.io/";
-
   // Change content of current page too, when page is version specific
   var url = window.location.href;
   var path = url.replace(root_url, "/");
-  var reg = /\/.*\//;
+  var reg = /\/[^\/]*\//;
 
   var res = path.search(reg);
 
   if(res != -1) {
-    var new_path = path.replace(reg, "/" + version + "/");
+    var new_path = path.replace(reg, version + "/");
     var new_url = root_url + new_path;
 
     if (new_url != url) {
       window.location.href = new_url;
     }
-  }
+  } else {
+    // When page is not version specific, then do fade-in fade-out of version
+    document.location.hash = version;
 
-  // When page is not version specific, then do fade-in fade-out of version
-  document.location.hash = version;
-
-  $("#flow_version").fadeOut(duration, function() {
-    var version_short_name = "";
-    for (var i = 0; i < versions.length; i++) {
-      if(version == versions[i].id) {
-        version_short_name = versions[i].short_name;
-        break;
+    $("#flow_version").fadeOut(duration, function() {
+      var version_short_name = "";
+      for (var i = 0; i < versions.length; i++) {
+        if(version == versions[i].id) {
+          version_short_name = versions[i].short_name;
+          break;
+        }
       }
-    }
-    $(this).html(version_short_name);
-    $(this).fadeIn(duration);
-  });
+      $(this).html(version_short_name);
+      $(this).fadeIn(duration);
+    });
 
-  /* Change 'constant' menu */
-  $("#il_inner #constant_menu #home").html('<a id="home_link" href="' + root_url + '#' + version + '">Home</a>');
-  $("#il_inner #constant_menu #license").html('<a id="license_link" href="'+ root_url + 'license.html#' + version + '">License</a></li>');
-  $("#il_inner #constant_menu #ack").html('<a id="ack_link" href="'+ root_url + 'acknowledgment.html#' + version + '">Acknowledgments</a></li>');
-  $("#il_inner #constant_menu #contact").html('<a id="contact_link" href="'+ root_url + 'contact.html#' + version + '">Contact</a></li>');
+    /* Change 'constant' menu */
+    $("#il_inner #constant_menu #home").html('<a id="home_link" href="' + root_url + '#' + version + '">Home</a>');
+    $("#il_inner #constant_menu #license").html('<a id="license_link" href="'+ root_url + 'license.html#' + version + '">License</a></li>');
+    $("#il_inner #constant_menu #ack").html('<a id="ack_link" href="'+ root_url + 'acknowledgment.html#' + version + '">Acknowledgments</a></li>');
+    $("#il_inner #constant_menu #contact").html('<a id="contact_link" href="'+ root_url + 'contact.html#' + version + '">Contact</a></li>');
 
-  /* Change 'dynamic' menu */
-  $("#il_inner #dynamic_menu #features").fadeOut(duration, function() {
-    $(this).html('<a id="features_link" href="' + root_url + version + '/features">Features</a>');
-    $(this).fadeIn(duration);
-  });
+    /* Change 'dynamic' menu */
+    $("#il_inner #dynamic_menu #features").fadeOut(duration, function() {
+      $(this).html('<a id="features_link" href="' + root_url + version + '/features">Features</a>');
+      $(this).fadeIn(duration);
+    });
 
-  $("#il_inner #dynamic_menu #download").fadeOut(duration, function() {
-    $(this).html('<a id="download_link" href="' + root_url + version + '/download.html">Download</a>');
-    $(this).fadeIn(duration+200);
-  });
+    $("#il_inner #dynamic_menu #download").fadeOut(duration, function() {
+      $(this).html('<a id="download_link" href="' + root_url + version + '/download.html">Download</a>');
+      $(this).fadeIn(duration+200);
+    });
 
-  $("#il_inner #dynamic_menu #changes").fadeOut(duration, function() {
-    $(this).html('<a id="changes_link" href="' + root_url + version + '/changes.html">Changes</a>');
-    $(this).fadeIn(duration+300);
-  });
+    $("#il_inner #dynamic_menu #changes").fadeOut(duration, function() {
+      $(this).html('<a id="changes_link" href="' + root_url + version + '/changes.html">Changes</a>');
+      $(this).fadeIn(duration+300);
+    });
 
-  $("#il_inner #dynamic_menu #ref_manual").fadeOut(duration, function() {
-    $(this).html('<a id="ref_manual_link" href="http://bacula.nti.tul.cz/~jan.brezina/flow123d_packages/' + version + '/flow123d_' + version + '_doc.pdf">User Manual</a>');
-    $(this).fadeIn(duration+400);
-  });
+    $("#il_inner #dynamic_menu #ref_manual").fadeOut(duration, function() {
+      $(this).html('<a id="ref_manual_link" href="http://bacula.nti.tul.cz/~jan.brezina/flow123d_packages/' + version + '/flow123d_' + version + '_doc.pdf">User Manual</a>');
+      $(this).fadeIn(duration+400);
+    });
 
-  $("#il_inner #dynamic_menu #source_doc").fadeOut(duration, function() {
-    $(this).html('<a id="source_doc_link" href="http://bacula.nti.tul.cz/~jan.brezina/flow123d_packages/' + version + '/doxygen/">Source Documentation</a>');
-    $(this).fadeIn(duration+500);
-  });
+    $("#il_inner #dynamic_menu #source_doc").fadeOut(duration, function() {
+      $(this).html('<a id="source_doc_link" href="http://bacula.nti.tul.cz/~jan.brezina/flow123d_packages/' + version + '/doxygen/">Source Documentation</a>');
+      $(this).fadeIn(duration+500);
+    });
 
-  $("#il_inner #dynamic_menu #readme").fadeOut(duration, function() {
-    $(this).html('<a id="readme_link" href="' + root_url + version + '/readme.html">ReadMe</a>');
-    $(this).fadeIn(duration+600);
-  });
+    $("#il_inner #dynamic_menu #readme").fadeOut(duration, function() {
+      $(this).html('<a id="readme_link" href="' + root_url + version + '/readme.html">ReadMe</a>');
+      $(this).fadeIn(duration+600);
+    });
+  }
 }
