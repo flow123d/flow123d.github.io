@@ -14,7 +14,7 @@ var versions = [
     "short_name": "1.7.0"
   },
   {
-    "id": "1.6.x",
+    "id": "1.6.0",
     "name": "Release - 1.6.x",
     "short_name": "1.6.x"
   },
