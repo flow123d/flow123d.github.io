@@ -7,6 +7,7 @@
     <link rel="stylesheet" type="text/css" href="../../stylesheets/stylesheet.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="../../stylesheets/pygment_trac.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="../../stylesheets/print.css" media="print" />
+    
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
@@ -41,38 +42,44 @@
             Flow123d can simulate the motion of substances dissolved in water through fractured rock massif. The transport mechanism is due to the advection of water, and the hydrodynamic diffusion/dispersion. Concentration of arbitrary number of substances can be predicted starting from given initial state, with options for time-dependent concentration sources and boundary fluxes. Currently Flow123d provides two algorithms for solute transport:
           </p>
 
-          <h3>
-            1. Pure advection is modelled using Finite volume method with explicit timestepping.
-          </h3>
-          <ul>
-            <li>
-              Fast way to obtain time evolution of concentrations
+          <ol>
+            <li> 
+            <h2>Pure advection model</h2>
+            using <em> Finite volume method with explicit timestepping.</em>          
+            
+            <ul>
+              <li>
+                Fast way to obtain time evolution of concentrations
+              </li>
+              <li>
+                Exact satisfaction of discrete maximum principle (no under/overshoots) 
+              </li>
+              <li>
+                Automatic choice of time step to guarantee stability (CFL condition)
+              </li>
+            </ul>
             </li>
-            <li>
-              Exact satisfaction of discrete maximum principle (no under/overshoots) 
-            </li>
-            <li>
-              Automatic choice of time step to guarantee stability 
-            </li>
-          </ul>
 
-          <h3>
-            2. Full model including advection and hydrodynamic diffusion is solved by <strong>Discontinuous Galerkin method and implicit timestepping</strong>, which offers:
-          </h3>
-          <ul>
-            <li>
-              <em>Stability:</em> significantly reduced spurious oscillations (compared to traditional FEM), no limiting CFL conditions
+            <li> 
+            <h2> Advection and hydrodynamic diffusion model </h2>
+            solved by <em>Discontinuous Galerkin method and implicit timestepping.</em>
+            
+            <ul>
+              <li>
+                <em>Stability:</em> significantly reduced spurious oscillations (compared to traditional FEM), no limiting CFL conditions
+              </li>
+              <li>
+                <em>Robustness:</em> accurate results both in advection dominated and diffusion dominated regimes, easy setup (no "magic" parameters) 
+              </li>
+              <li>
+                <em>High order accuracy:</em> currently support for piecewise linear and quadratic base functions 
+              </li>
+              <li>
+                <em>Flexibility:</em> user can enforce inter-element continuity of solution to produce results close to FEM
+              </li>
+            </ul>
+              
             </li>
-            <li>
-              <em>Robustness:</em> accurate results both in advection dominated and diffusion dominated regimes, easy setup (no "magic" parameters) 
-            </li>
-            <li>
-              <em>High order accuracy:</em> currently support for piecewise linear and quadratic base functions 
-            </li>
-            <li>
-              <em>Flexibility:</em> user can enforce inter-element continuity of solution to produce results close to FEM
-            </li>
-          </ul>
 
           <h2>Examples</h2>
 
@@ -111,6 +118,20 @@
             </video>
             <br/>
             <i>Animation: Solute transport in 2D fractured medium</i>
+          </div>
+
+          <h3>Real application</h3>
+
+          <p>
+            A mesh combining 3D and 2D elements was used to describe site of interest about 2km large with several preferential zones - fractures.
+            Pure advection model has been used to model distribution of pollutant from nearly point source in underground. 
+            Figure shows distribution of the pollutant at end time of the simulation.            
+          </p>
+
+          <div class="picture">
+             <img src="../../pictures/test3d.png" alt="3d transport" title="3d transport">
+             <br/>
+             <i> Pollutant propagated from point source.
           </div>
 
         </section>

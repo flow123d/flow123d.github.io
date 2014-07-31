@@ -34,29 +34,29 @@
         <section id="main_content">
           <h1>
             <a name="geometries" class="anchor" href="#geometries"><span class="octicon octicon-link"></span></a>
-            Geometries
+            Complex geometries consisting of elements of different dimensions
           </h1>
 
-          <h2>Complex geometries consisting of elements of different dimensions</h2>
-
           <p>
-            Flow123d can handle meshes consisting of simplicial elements of different dimensions. This allows various combinations of the continuum (3D) models with discrete fracture network (2D and 1D) models. The compatible meshes, i.e. elements of the lower dimension match sides of the elements of the higher dimension, are fully supported.
+            Flow123d can handle meshes consisting of simplicial elements of different dimensions. 
+            This allows various combinations of the continuum (3D) models with discrete fracture 
+            network (2D and 1D) models. The compatible meshes, i.e. elements of the lower dimension
+            match sides of the elements of the higher dimension, are fully supported.
           </p>
-
-          <div class="picture">
+         
+          <div class="picture" style="float: left; margin-bottom: 15px; margin-right: 3px;">
             <img src="../../pictures/mesh_compatible.gif" alt="Compatible mesh" title="Compatible mesh">
             <br/>
             <i>Figure: Compatible 2D-1D mesh</i>
-          </div>
-
-          <div class="picture">
-            <img src="../../pictures/mesh_noncompatible.gif" alt="Non-compatible mesh" title="Non-compatible mesh">
+          </div>  
+          <div class="picture" style="float: left; margin-bottom: 15px; margin-right: 3px;">
+            <img src="../../pictures/mesh_noncompatible.gif" alt="Non-compatible mesh" title="Non-compatible mesh">            
             <br/>
-            <i>Figure: Non-compatible 2D-1D mesh</i>
-          </div>
-
-          <p>
-             Algorithms that search for intersections of incompatible meshes of the same or different dimension are partially supported, but still in developement. Currently, we support only meshes produced by the software GMSH.
+            <i>Figure: Non-compatible 2D-1D mesh</i>            
+          </div>          
+          <p style="clear:both;">
+             Algorithms that search for intersections of incompatible meshes of the same or different dimension are
+             partially supported, but still in development. Currently, we support only meshes produced by the software GMSH.
           </p>
 
         </section>

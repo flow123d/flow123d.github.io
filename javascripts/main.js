@@ -111,7 +111,7 @@ $(document).ready(function() {
               </li>');
 
   $("#il_inner #dynamic_menu").append('<li id="features">\
-    <a id="features_link" href="'+ root_url + version + '/features">Features</a></li>');
+    <a id="features_link" href="'+ root_url + version + '/features/overview.html">Features</a></li>');
   $("#il_inner #dynamic_menu").append('<li id="download">\
     <a id="download_link" href="'+ root_url + version + '/download.html">Download</a></li>');
   $("#il_inner #dynamic_menu").append('<li id="changes">\
