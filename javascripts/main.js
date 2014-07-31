@@ -14,9 +14,9 @@ var versions = [
     "short_name": "1.7.0"
   },
   {
-    "id": "1.6.0",
-    "name": "Release - 1.6.0",
-    "short_name": "1.6.0"
+    "id": "1.6.x",
+    "name": "Release - 1.6.x",
+    "short_name": "1.6.x"
   },
   {
     "id": "night_builds",
@@ -43,8 +43,6 @@ $(document).ready(function() {
   //var root_url = "file:///home/jiri/Flow/flow123d.github.io/";
 
   hash = document.location.hash
-
-  console.log(hash);
 
   if (hash != "") {
     hash = hash.substring(1, hash.length);
