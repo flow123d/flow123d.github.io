@@ -298,6 +298,7 @@ form {
 
 h1 {
   font-size: 32px;
+  color: #303030;
 } 
 
 h2 {
@@ -310,6 +311,7 @@ h2 {
 h3 {
   font-size: 18px;
   font-weight: bold;
+  color: #303030;
   margin-bottom: 8px;
 } 
  
@@ -354,7 +356,17 @@ ul li {
   padding-left: 20px;
 }
 
+ol li ul li {
+  list-style: disc inside;
+  padding-left: 20px;
+}
+
 ol li {
+  list-style: decimal inside;
+  padding-left: 3px;
+}
+
+ul li ol li {
   list-style: decimal inside;
   padding-left: 3px;
 }
