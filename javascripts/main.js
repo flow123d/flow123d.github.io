@@ -27,8 +27,9 @@ var versions = [
 
 /* This script is evalueted in all pages in all directories, e.g.: 1.8.0, 1.8.0/featueres
  * Thus it is simplier to use absolute paths. */
-var root_url = "http://flow123d.github.io/";
+//var root_url = "http://flow123d.github.io/";
 //var root_url = "file:///home/jiri/Flow/flow123d.github.io/";
+var root_url = "http://localhost:4000/";
 
 /**
  * \brief Function used for initial setting of menu
@@ -73,11 +74,11 @@ $(document).ready(function() {
   $("#il_inner #constant_menu").append('<li>\
     <a id="github_link" href="http://github.com/flow123d/flow123d">GitHub Page</a></li>');
   $("#il_inner #constant_menu").append('<li id="license">\
-    <a id="license_link" href="'+ root_url + 'license.html#' + version + '">License</a></li>');
+    <a id="license_link" href="'+ root_url + 'license/#' + version + '">License</a></li>');
   $("#il_inner #constant_menu").append('<li id="ack">\
-    <a id="ack_link" href="'+ root_url + 'acknowledgment.html#' + version + '">Acknowledgments</a></li>');
+    <a id="ack_link" href="'+ root_url + 'acknowledgment/#' + version + '">Acknowledgments</a></li>');
   $("#il_inner #constant_menu").append('<li id="contact">\
-    <a id="contact_link" href="'+ root_url + 'contact.html#' + version + '">Contact</a></li>');
+    <a id="contact_link" href="'+ root_url + 'contact/#' + version + '">Contact</a></li>');
 
   $("#il_inner").append('<ul id="dynamic_menu"></ul>');
 

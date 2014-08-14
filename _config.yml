@@ -1,0 +1,15 @@
+name: "Flow123d"
+description: "Transport Processes in Fractured Media"
+author :
+  name : Jan Brezina
+  email : jan.brezina@tul.cz
+
+url: "http://localhost:4000"
+
+exclude: ['Gemfile', 'Gemfile.lock', 'README.md']
+paginate: 4
+markdown: redcarpet
+redcarpet:
+  extensions: ["no_intra_emphasis", "fenced_code_blocks", "autolink", "strikethrough", "superscript"]
+permalink: pretty
+highlighter: pygments
