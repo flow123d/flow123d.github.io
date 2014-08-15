@@ -32,9 +32,8 @@ var versions = [
 
 /* This script is evalueted in all pages in all directories, e.g.: 1.8.0, 1.8.0/featueres
  * Thus it is simplier to use absolute paths. */
-//var root_url = "http://flow123d.github.io/";
-//var root_url = "file:///home/jiri/Flow/flow123d.github.io/";
-var root_url = "http://localhost:4000/";
+var root_url = "http://flow123d.github.io/";
+//var root_url = "http://localhost:4000/";
 
 /**
  * \brief Function used for initial setting of menu
