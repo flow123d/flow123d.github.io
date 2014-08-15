@@ -1,126 +1,85 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css' />
-    <link rel="stylesheet" type="text/css" href="../../stylesheets/stylesheet.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="../../stylesheets/pygment_trac.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="../../stylesheets/print.css" media="print" />
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <script type="text/javascript" src="../../javascripts/jquery-1.11.0.min.js"></script>
-    <script type="text/javascript" src="../../javascripts/main.js"></script>
-    <title>Flow123d - Transport</title>
-  </head>
+---
+title: Flow123d - Transport
+layout: page
+---
 
-  <body>
-    <div id="container">
-      <div class="inner">
+<h1>
+  <a name="flow123d" class="anchor" href="#flow123d"><span class="octicon octicon-link"></span></a>
+  Advection-Diffusion Equation for Solute Transport
+</h1>
 
-        <header>
-          <a href="http://flow123d.github.io"><h1>Flow123d<span id="flow_version">1.8.0</span></h1></a>
-          <h2>Transport Processes in Fractured Media</h2>
-        </header>
+<p>
+  Flow123d can simulate the motion of substances dissolved in water through fractured rock massif. The transport mechanism is due to the advection of water, and the hydrodynamic diffusion/dispersion. Concentration of arbitrary number of substances can be predicted starting from given initial state, with options for time-dependent concentration sources and boundary fluxes. Currently Flow123d provides two algorithms for solute transport:
+</p>
 
-        <hr/>
+<h3>
+  1. Pure advection is modelled using Finite volume method with explicit timestepping.
+</h3>
+<ul>
+  <li>
+    Fast way to obtain time evolution of concentrations
+  </li>
+  <li>
+    Exact satisfaction of discrete maximum principle (no under/overshoots) 
+  </li>
+  <li>
+    Automatic choice of time step to guarantee stability 
+  </li>
+</ul>
 
-        <section id="important_links">
-          <div id="il_inner">
-          </div>
-        </section>
+<h3>
+  2. Full model including advection and hydrodynamic diffusion is solved by <strong>Discontinuous Galerkin method and implicit timestepping</strong>, which offers:
+</h3>
+<ul>
+  <li>
+    <em>Stability:</em> significantly reduced spurious oscillations (compared to traditional FEM), no limiting CFL conditions
+  </li>
+  <li>
+    <em>Robustness:</em> accurate results both in advection dominated and diffusion dominated regimes, easy setup (no "magic" parameters) 
+  </li>
+  <li>
+    <em>High order accuracy:</em> currently support for piecewise linear and quadratic base functions 
+  </li>
+  <li>
+    <em>Flexibility:</em> user can enforce inter-element continuity of solution to produce results close to FEM
+  </li>
+</ul>
 
-        <section id="main_content">
-          <h1>
-            <a name="flow123d" class="anchor" href="#flow123d"><span class="octicon octicon-link"></span></a>
-            Advection-Diffusion Equation for Solute Transport
-          </h1>
+<h2>Examples</h2>
 
-          <p>
-            Flow123d can simulate the motion of substances dissolved in water through fractured rock massif. The transport mechanism is due to the advection of water, and the hydrodynamic diffusion/dispersion. Concentration of arbitrary number of substances can be predicted starting from given initial state, with options for time-dependent concentration sources and boundary fluxes. Currently Flow123d provides two algorithms for solute transport:
-          </p>
+<h3> Comparison of Numerical Schemes for Solute Transport</h3>
 
-          <h3>
-            1. Pure advection is modelled using Finite volume method with explicit timestepping.
-          </h3>
-          <ul>
-            <li>
-              Fast way to obtain time evolution of concentrations
-            </li>
-            <li>
-              Exact satisfaction of discrete maximum principle (no under/overshoots) 
-            </li>
-            <li>
-              Automatic choice of time step to guarantee stability 
-            </li>
-          </ul>
+<p>
+  Comparison of Finite volume (FV), Finite element (FE) and Discontinuous Galerkin (DG) method for solution of travelling wave problem. The exact solution is piecewice constant in 3 regions.
+</p>
 
-          <h3>
-            2. Full model including advection and hydrodynamic diffusion is solved by <strong>Discontinuous Galerkin method and implicit timestepping</strong>, which offers:
-          </h3>
-          <ul>
-            <li>
-              <em>Stability:</em> significantly reduced spurious oscillations (compared to traditional FEM), no limiting CFL conditions
-            </li>
-            <li>
-              <em>Robustness:</em> accurate results both in advection dominated and diffusion dominated regimes, easy setup (no "magic" parameters) 
-            </li>
-            <li>
-              <em>High order accuracy:</em> currently support for piecewise linear and quadratic base functions 
-            </li>
-            <li>
-              <em>Flexibility:</em> user can enforce inter-element continuity of solution to produce results close to FEM
-            </li>
-          </ul>
-
-          <h2>Examples</h2>
-
-          <h3> Comparison of Numerical Schemes for Solute Transport</h3>
-
-          <p>
-            Comparison of Finite volume (FV), Finite element (FE) and Discontinuous Galerkin (DG) method for solution of travelling wave problem. The exact solution is piecewice constant in 3 regions.
-          </p>
-
-          <p>
-            Despite lower order accuracy and significant dissipation (smoothing effect), FV solution still appears physical and preserves the maximum principle. FE solution (obtained as a limit case of DG with strong enforcement of inter-element continuity) suffers from spurious oscillations spread throughout the computational domain. DG solution (2nd order polynomial approximation), though discontinuous, turns out to be less dissipative than FV and resistant to instabilities. 
-          </p>
+<p>
+  Despite lower order accuracy and significant dissipation (smoothing effect), FV solution still appears physical and preserves the maximum principle. FE solution (obtained as a limit case of DG with strong enforcement of inter-element continuity) suffers from spurious oscillations spread throughout the computational domain. DG solution (2nd order polynomial approximation), though discontinuous, turns out to be less dissipative than FV and resistant to instabilities. 
+</p>
 
 
-          <div class="picture">
-            <video controls width="596" height="548" poster="../../videos/1d-wave-poster.png" >
-              <source src="../../videos/1d-wave.ogv" type="video/ogg" />
-              <source src="../../videos/1d-wave.mov" type="video/mov" />
-              Your device does not support HTML5 video.
-            </video>
-            <br/>
-            <i>Animation: Comparision of numerical schemes for solute transport</i>
-          </div>
+<div class="picture">
+  <video controls width="596" height="548" poster="../../videos/1d-wave-poster.png" >
+    <source src="/videos/1d-wave.ogv" type="video/ogg" />
+    <source src="/videos/1d-wave.mov" type="video/mov" />
+    Your device does not support HTML5 video.
+  </video>
+  <br/>
+  <i>Animation: Comparision of numerical schemes for solute transport</i>
+</div>
 
-          <h3>Solute Transport in 2D Fractured Medium</h3>
+<h3>Solute Transport in 2D Fractured Medium</h3>
 
-          <p>
-            2D example of transport in fractured medium: The substance moves to the left because of pressure gradient. The concentration in some distant zones raises rapidly due to higher conductivity of fractures.
-          </p>
+<p>
+  2D example of transport in fractured medium: The substance moves to the left because of pressure gradient. The concentration in some distant zones raises rapidly due to higher conductivity of fractures.
+</p>
 
-          <div class="picture">
-            <video controls width="576" height="368" poster="../../videos/test2d-poster.png" >
-              <source src="../../videos/test2d.ogv" type="video/ogg" />
-              <source src="../../videos/test2d.mp4" type="video/mp4" />
-              Your device does not support HTML5 video.
-            </video>
-            <br/>
-            <i>Animation: Solute transport in 2D fractured medium</i>
-          </div>
-
-        </section>
-
-        <footer>
-          This page was generated by <a href="http://pages.github.com">GitHub Pages</a>. Tactile theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.
-        </footer>
-
-        
-      </div>
-    </div>
-  </body>
-</html>
+<div class="picture">
+  <video controls width="576" height="368" poster="../../videos/test2d-poster.png" >
+    <source src="/videos/test2d.ogv" type="video/ogg" />
+    <source src="/videos/test2d.mp4" type="video/mp4" />
+    Your device does not support HTML5 video.
+  </video>
+  <br/>
+  <i>Animation: Solute transport in 2D fractured medium</i>
+</div>
