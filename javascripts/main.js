@@ -4,6 +4,11 @@
  */
 var versions = [
   {
+    "id": "1.8.1",
+    "name": "Release - 1.8.1",
+    "short_name": "1.8.1"
+  },
+  {
     "id": "1.8.0",
     "name": "Release - 1.8.0",
     "short_name": "1.8.0"
@@ -103,17 +108,17 @@ $(document).ready(function() {
               </li>');
 
   $("#il_inner #dynamic_menu").append('<li id="features">\
-    <a id="features_link" href="'+ root_url + version + '/features">Features</a></li>');
+    <a id="features_link" href="'+ root_url + version + '/features/">Features</a></li>');
   $("#il_inner #dynamic_menu").append('<li id="download">\
-    <a id="download_link" href="'+ root_url + version + '/download.html">Download</a></li>');
+    <a id="download_link" href="'+ root_url + version + '/download/">Download</a></li>');
   $("#il_inner #dynamic_menu").append('<li id="changes">\
-    <a id="changes_link" href="'+ root_url + version + '/changes.html">Changes</a></li>');
+    <a id="changes_link" href="'+ root_url + version + '/changes/">Changes</a></li>');
   $("#il_inner #dynamic_menu").append('<li id="ref_manual">\
     <a id="ref_manual_link" href="http://bacula.nti.tul.cz/~jan.brezina/flow123d_packages/' + version + '/flow123d_' + version + '_doc.pdf">User Manual</a></li>');
   $("#il_inner #dynamic_menu").append('<li id="source_doc">\
     <a id="source_doc_link" href="http://bacula.nti.tul.cz/~jan.brezina/flow123d_packages/' + version + '/doxygen/">Source Documentation</a></li>');
   $("#il_inner #dynamic_menu").append('<li id="readme">\
-    <a id="readme_link" href="'+ root_url + version + '/readme.html">ReadMe</a></li>');
+    <a id="readme_link" href="'+ root_url + version + '/readme/">ReadMe</a></li>');
 
 });
 
@@ -131,6 +136,9 @@ function changeItems()
   var reg = /\/[^\/]*\//;
 
   var res = path.search(reg);
+  
+  var bacula_root_url="http://bacula.nti.tul.cz/~jan.brezina/flow123d_packages/" + version;     
+  
 
   if(res != -1) {
     var new_path = path.replace(reg, version + "/");
@@ -163,32 +171,32 @@ function changeItems()
 
     /* Change 'dynamic' menu */
     $("#il_inner #dynamic_menu #features").fadeOut(duration, function() {
-      $(this).html('<a id="features_link" href="' + root_url + version + '/features">Features</a>');
+      $(this).html('<a id="features_link" href="' + root_url + version + '/features/">Features</a>');
       $(this).fadeIn(duration);
     });
 
     $("#il_inner #dynamic_menu #download").fadeOut(duration, function() {
-      $(this).html('<a id="download_link" href="' + root_url + version + '/download.html">Download</a>');
+      $(this).html('<a id="download_link" href="' + root_url + version + '/download/">Download</a>');
       $(this).fadeIn(duration+200);
     });
 
     $("#il_inner #dynamic_menu #changes").fadeOut(duration, function() {
-      $(this).html('<a id="changes_link" href="' + root_url + version + '/changes.html">Changes</a>');
+      $(this).html('<a id="changes_link" href="' + root_url + version + '/changes/">Changes</a>');
       $(this).fadeIn(duration+300);
     });
 
     $("#il_inner #dynamic_menu #ref_manual").fadeOut(duration, function() {
-      $(this).html('<a id="ref_manual_link" href="http://bacula.nti.tul.cz/~jan.brezina/flow123d_packages/' + version + '/flow123d_' + version + '_doc.pdf">User Manual</a>');
+    $(this).html('<a id="ref_manual_link" href="' + bacula_root_url + '/flow123d_' + version + '_doc.pdf">User Manual</a>');
       $(this).fadeIn(duration+400);
     });
 
     $("#il_inner #dynamic_menu #source_doc").fadeOut(duration, function() {
-      $(this).html('<a id="source_doc_link" href="http://bacula.nti.tul.cz/~jan.brezina/flow123d_packages/' + version + '/doxygen/">Source Documentation</a>');
+    $(this).html('<a id="source_doc_link" href="' + bacula_root_url + '/doxygen/">Source Documentation</a>');
       $(this).fadeIn(duration+500);
     });
 
     $("#il_inner #dynamic_menu #readme").fadeOut(duration, function() {
-      $(this).html('<a id="readme_link" href="' + root_url + version + '/readme.html">ReadMe</a>');
+      $(this).html('<a id="readme_link" href="' + root_url + version + '/readme/">ReadMe</a>');
       $(this).fadeIn(duration+600);
     });
   }

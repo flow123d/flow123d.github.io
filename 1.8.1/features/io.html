@@ -12,7 +12,7 @@
     <![endif]-->
     <script type="text/javascript" src="../../javascripts/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="../../javascripts/main.js"></script>
-    <title>Flow123d - Geometries</title>
+    <title>Flow123d - Input and Output</title>
   </head>
 
   <body>
@@ -33,30 +33,20 @@
 
         <section id="main_content">
           <h1>
-            <a name="geometries" class="anchor" href="#geometries"><span class="octicon octicon-link"></span></a>
-            Complex geometries consisting of elements of different dimensions
+            <a name="flow123d" class="anchor" href="#flow123d"><span class="octicon octicon-link"></span></a>
+            Input and Output Interface
           </h1>
 
           <p>
-            Flow123d can handle meshes consisting of simplicial elements of different dimensions. 
-            This allows various combinations of the continuum (3D) models with discrete fracture 
-            network (2D and 1D) models. The compatible meshes, i.e. elements of the lower dimension
-            match sides of the elements of the higher dimension, are fully supported.
+            Main input file is in JSON file format with few optional simplifications to make it more convenient for humans. Whole input structure is described by particular classes which provides automatically generated documentation of the whole input structure. This structure more or less follows the structure of main program classes.
           </p>
-         
-          <div class="picture" style="float: left; margin-bottom: 15px; margin-right: 3px;">
-            <img src="../../pictures/mesh_compatible.gif" alt="Compatible mesh" title="Compatible mesh">
-            <br/>
-            <i>Figure: Compatible 2D-1D mesh</i>
-          </div>  
-          <div class="picture" style="float: left; margin-bottom: 15px; margin-right: 3px;">
-            <img src="../../pictures/mesh_noncompatible.gif" alt="Non-compatible mesh" title="Non-compatible mesh">            
-            <br/>
-            <i>Figure: Non-compatible 2D-1D mesh</i>            
-          </div>          
-          <p style="clear:both;">
-             Algorithms that search for intersections of incompatible meshes of the same or different dimension are
-             partially supported, but still in development. Currently, we support only meshes produced by the software GMSH.
+
+          <p>
+            Almost all parameters in equations can be given as arbitrary space-time fields. There are several types of fields that differs in the way how they are represented on the input. Actually we support: constant field, field given by runtime parsed formula, fields given by a Python code, fields piecewise constant per element, fields interpolated from a different 3D mesh.
+          </p>
+
+          <p>
+            Any output field can be written either in VTK file format or in the GMSH file format.
           </p>
 
         </section>

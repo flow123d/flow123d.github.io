@@ -12,7 +12,7 @@
     <![endif]-->
     <script type="text/javascript" src="../../javascripts/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="../../javascripts/main.js"></script>
-    <title>Flow123d - Geometries</title>
+    <title>Flow123d - Flow</title>
   </head>
 
   <body>
@@ -33,31 +33,26 @@
 
         <section id="main_content">
           <h1>
-            <a name="geometries" class="anchor" href="#geometries"><span class="octicon octicon-link"></span></a>
-            Complex geometries consisting of elements of different dimensions
+            Darcian Flow in Fractured Porous Media
           </h1>
 
           <p>
-            Flow123d can handle meshes consisting of simplicial elements of different dimensions. 
-            This allows various combinations of the continuum (3D) models with discrete fracture 
-            network (2D and 1D) models. The compatible meshes, i.e. elements of the lower dimension
-            match sides of the elements of the higher dimension, are fully supported.
+            We use mixed-hybrid finite element method for solving Darcy flow problems with 3D-2D and 2D-1D coupling between meshes of different dimensions. For compatible meshes, the pressure can be different on both sides of 2D fracture (or on arbitrary number of 2D manifolds connected to a 1D channel). The advantage of the mixed-hybrid formulation is better approximation of the velocity field. According to theoretical results and practical tests this method provides second order convergence of the L2-error for both the pressure and the velocity field. More over the velocity field is perfectly mass conservative.
           </p>
-         
-          <div class="picture" style="float: left; margin-bottom: 15px; margin-right: 3px;">
-            <img src="../../pictures/mesh_compatible.gif" alt="Compatible mesh" title="Compatible mesh">
-            <br/>
-            <i>Figure: Compatible 2D-1D mesh</i>
-          </div>  
-          <div class="picture" style="float: left; margin-bottom: 15px; margin-right: 3px;">
-            <img src="../../pictures/mesh_noncompatible.gif" alt="Non-compatible mesh" title="Non-compatible mesh">            
-            <br/>
-            <i>Figure: Non-compatible 2D-1D mesh</i>            
-          </div>          
-          <p style="clear:both;">
-             Algorithms that search for intersections of incompatible meshes of the same or different dimension are
-             partially supported, but still in development. Currently, we support only meshes produced by the software GMSH.
+
+          <p>
+            Hybridization leads to linear systems, where two successive Schur complements can be explicitly formed in efficient way, thus the resulting system is positive definite and well conditioned. 
           </p>
+
+          <p>
+            Flow123d can also calculate unstedy Darcian flow in the case of the non-zero storativity. Particular mass luming technique is used in order to guarantee the discrete maximum principle (no overshoots). 
+          </p>
+
+          <div class="picture">
+            <img src="../../pictures/fracture_cube.png" alt="Flow field" title="Flow field"/>
+            <br/>
+            <i>Figure: Flow field and the pressure distribution on cube with two fractures </i>
+          </div>
 
         </section>
 
