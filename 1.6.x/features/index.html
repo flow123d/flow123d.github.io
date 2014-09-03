@@ -18,7 +18,6 @@ layout: page
   <li>Convenient for modeling 2D and 1D fractures</li>
   <li>Native support of <a href="http://www.geuz.org/gmsh">GMSH</a> meshes</li>
   <li>Compatible interconnection of geometries</li>
-  <li>Non-compatible interconnections (under development)</li>
   <li><a href="./geometries/">Read more ...</a></li>
 </ul>
 
@@ -36,7 +35,6 @@ layout: page
 
 <ul>
   <li>Simple finite volumes with explicit timestepping for pure transport (without diffusion) </li>
-  <li>Robust Discontinuous Galerkin + implicit timestepping for transport with hydrodynamic diffusion </li>
   <li>Support for arbitrary number of substances </li>
   <li><a href="./transport/">Read more ...</a></li>
 </ul>
@@ -45,8 +43,6 @@ layout: page
 
 <ul>
   <li>Adsorption and reaction models are coupled with transport models using the operator splitting method </li>
-  <li>Efficient implementation of linear and non-linear adsorption using interpolation tables </li>
-  <li>Decays</li>
   <li>Dual porosity model</li>
 </ul>
 
@@ -58,20 +54,4 @@ layout: page
   <li>Currently scalable up to 100 processors</li>
 </ul>
 
-<h3>Input and Output interface</h3>
 
-<ul>
-  <li>Structured input using JSON file format</li>
-  <li>Almost all parameters can be arbitrary space-time field</li>
-  <li>Output to VTK and GMSH formats</li>
-  <li><a href="./io/">Read more ...</a></li>
-</ul>
-
-<h3>Active Development</h3>
-
-<ul>
-  <li>XFEM method for modelling wells (1D-3D coupling)</li>
-  <li>Methods for coupling of equations (Darcy flow) on non-compatible 2D-3D and 1D-2D meshes modeling preferential paths. <a href="http://www.iam.fmph.uniba.sk/algoritmy2012/zbornik/21Brezina.pdf">Paper</a>
-  <li><a href="http://www.math.cas.cz/~sistek/software/bddcml.html">Balancing domain decomposition</a> parallel solver <a href="http://bacula.nti.tul.cz/~jan.brezina/flow123d_publications/bddc_hybrid.pdf">Preprint</a></li>
-  <li><a href="./wip/">Read more ...</a></li>
-</ul>
