@@ -1,7 +1,13 @@
 flow123d.github.io
 ==================
 
-Web page about Flow123d using [Jekyll](http://jekyllrb.com/) and [GitHub Pages](https://pages.github.com/).
+This is NOT the [web page of Flow123d project](flow123d.github.com) just its repository.
+
+-------------------------------------------
+
+For page developers:
+
+Web page about Flow123d use [Jekyll](http://jekyllrb.com/) and [GitHub Pages](https://pages.github.com/).
 
 To run pages localy run following code
 
