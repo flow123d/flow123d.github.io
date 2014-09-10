@@ -1,7 +1,7 @@
 flow123d.github.io
 ==================
 
-This is NOT the [web page of Flow123d project](flow123d.github.com) just its repository.
+This is NOT [the web page of Flow123d project](http://flow123d.github.io) just its repository.
 
 -------------------------------------------
 
