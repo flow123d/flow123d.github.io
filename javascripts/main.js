@@ -106,6 +106,8 @@ $(document).ready(function() {
       <a id="license_link" href="/license/">License</a></li>');
     $("#il_inner #constant_menu").append('<li id="ack">\
       <a id="ack_link" href="/acknowledgment/">Acknowledgments</a></li>');
+    $("#il_inner #constant_menu").append('<li id="pub">\
+      <a id="pub_link" href="/publications/">Publications</a></li>');
     $("#il_inner #constant_menu").append('<li id="contact">\
       <a id="contact_link" href="/contact/">Contact</a></li>');
   }
@@ -118,6 +120,8 @@ $(document).ready(function() {
       <a id="license_link" href="/license/#' + version + '">License</a></li>');
     $("#il_inner #constant_menu").append('<li id="ack">\
       <a id="ack_link" href="/acknowledgment/#' + version + '">Acknowledgments</a></li>');
+    $("#il_inner #constant_menu").append('<li id="pub">\
+      <a id="pub_link" href="/publications/#' + version + '">Publications</a></li>');
     $("#il_inner #constant_menu").append('<li id="contact">\
       <a id="contact_link" href="/contact/#' + version + '">Contact</a></li>');
   }
@@ -221,11 +225,13 @@ function changeItems()
     $("#il_inner #constant_menu #home").html('<a id="home_link" href="/">Home</a>');
     $("#il_inner #constant_menu #license").html('<a id="license_link" href="/license/">License</a></li>');
     $("#il_inner #constant_menu #ack").html('<a id="ack_link" href="/acknowledgment/">Acknowledgments</a></li>');
+    $("#il_inner #constant_menu #pub").html('<a id="pub_link" href="/publications/">Publications</a></li>');
     $("#il_inner #constant_menu #contact").html('<a id="contact_link" href="/contact/">Contact</a></li>');
   } else {
     $("#il_inner #constant_menu #home").html('<a id="home_link" href="/#' + version + '">Home</a>');
     $("#il_inner #constant_menu #license").html('<a id="license_link" href="/license/#' + version + '">License</a></li>');
     $("#il_inner #constant_menu #ack").html('<a id="ack_link" href="/acknowledgment/#' + version + '">Acknowledgments</a></li>');
+    $("#il_inner #constant_menu #pub").html('<a id="pub_link" href="/publications/#' + version + '">Publications</a></li>');
     $("#il_inner #constant_menu #contact").html('<a id="contact_link" href="/contact/#' + version + '">Contact</a></li>');
   }
 
