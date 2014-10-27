@@ -1,0 +1,25 @@
+---
+title: Flow123d - Flow
+layout: page
+---
+<h1>
+  Darcian Flow in Fractured Porous Media
+</h1>
+
+<p>
+  We use mixed-hybrid finite element method for solving Darcy flow problems with 3D-2D and 2D-1D coupling between meshes of different dimensions. For compatible meshes, the pressure can be different on both sides of 2D fracture (or on arbitrary number of 2D manifolds connected to a 1D channel). The advantage of the mixed-hybrid formulation is better approximation of the velocity field. According to theoretical results and practical tests this method provides second order convergence of the L2-error for both the pressure and the velocity field. More over the velocity field is perfectly mass conservative.
+</p>
+
+<p>
+  Hybridization leads to linear systems, where two successive Schur complements can be explicitly formed in efficient way, thus the resulting system is positive definite and well conditioned. 
+</p>
+
+<p>
+  Flow123d can also calculate unstedy Darcian flow in the case of the non-zero storativity. Particular mass luming technique is used in order to guarantee the discrete maximum principle (no overshoots). 
+</p>
+
+<div class="picture">
+  <img src="/pictures/fracture_cube.png" alt="Flow field" title="Flow field"/>
+  <br/>
+  <i>Figure: Flow field and the pressure distribution on cube with two fractures </i>
+</div>

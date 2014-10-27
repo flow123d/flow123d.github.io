@@ -14,6 +14,16 @@ var versions = [
     "short_name": "1.8.0"
   },
   {
+    "id": "1.8.0_master", // Confusing ... this should be 1.8.0-rc
+    "name": "Release Candidate - 1.8.0",
+    "short_name": "1.8.0 - RC"
+  },
+  {
+    "id": "1.8.2_rc", // Confusing ... this should be 1.8.0-rc
+    "name": "Release Candidate - 1.8.2",
+    "short_name": "1.8.2 - RC"
+  },
+  {
     "id": "1.7.0",
     "name": "Release - 1.7.0",
     "short_name": "1.7.0"
@@ -22,6 +32,11 @@ var versions = [
     "id": "1.6.x",
     "name": "Release - 1.6.x",
     "short_name": "1.6.x"
+  },
+  {
+    "id": "0.0.master",
+    "name": "Master",
+    "short_name": "Master"
   },
   {
     "id": "night_builds",

@@ -1,0 +1,30 @@
+---
+title: Flow123d - Geometries
+layout: page
+---
+
+<h1>
+  Geometries
+</h1>
+
+<h2>Complex geometries consisting of elements of different dimensions</h2>
+
+<p>
+  Flow123d can handle meshes consisting of simplicial elements of different dimensions. This allows various combinations of the continuum (3D) models with discrete fracture network (2D and 1D) models. The compatible meshes, i.e. elements of the lower dimension match sides of the elements of the higher dimension, are fully supported.
+</p>
+
+<div class="picture">
+  <img src="/pictures/mesh_compatible.gif" alt="Compatible mesh" title="Compatible mesh">
+  <br/>
+  <i>Figure: Compatible 2D-1D mesh</i>
+</div>
+
+<div class="picture">
+  <img src="/pictures/mesh_noncompatible.gif" alt="Non-compatible mesh" title="Non-compatible mesh">
+  <br/>
+  <i>Figure: Non-compatible 2D-1D mesh</i>
+</div>
+
+<p>
+   Algorithms that search for intersections of incompatible meshes of the same or different dimension are partially supported, but still in developement. Currently, we support only meshes produced by the software GMSH.
+</p>
