@@ -161,7 +161,7 @@ function changeItems()
   var duration = 200;
   var version = $("#version_selector").val();
 
-  bacula_root_url = bacula_root_url + version;
+  var bacula_url = bacula_root_url + version;
 
   // Change content of current page too, when page is version specific
   var url = window.location.href;
@@ -242,12 +242,12 @@ function changeItems()
   });
 
   $("#il_inner #dynamic_menu #ref_manual").fadeOut(duration, function() {
-  $(this).html('<a id="ref_manual_link" href="' + bacula_root_url + '/flow123d_' + version + '_doc.pdf">User Manual</a>');
+  $(this).html('<a id="ref_manual_link" href="' + bacula_url + '/flow123d_' + version + '_doc.pdf">User Manual</a>');
     $(this).fadeIn(duration+400);
   });
 
   $("#il_inner #dynamic_menu #source_doc").fadeOut(duration, function() {
-  $(this).html('<a id="source_doc_link" href="' + bacula_root_url + '/doxygen/">Source Documentation</a>');
+  $(this).html('<a id="source_doc_link" href="' + bacula_url + '/doxygen/">Source Documentation</a>');
     $(this).fadeIn(duration+500);
   });
 
