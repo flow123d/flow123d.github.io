@@ -3,32 +3,50 @@
  * \brief Global variable with array of functions
  */
 var versions = [
+/* Description:
+  {
+    "id": <subdirectory on web and on bacula, these two should match>
+    "version": <version identifier used in package names>
+    "name": <name used in menu>
+    "short_name": <name used in title>
+  }*/
+  {
+    "id": "1.8.2_release",
+    "version": "1.8.2",
+    "name": "Stable - 1.8.2",
+    "short_name": "1.8.2"
+  },
   {
     "id": "1.8.1",
+    "version": "1.8.1",
     "name": "Stable - 1.8.1",
     "short_name": "1.8.1"
   },
   {
     "id": "1.8.0",
+    "version": "1.8.0",
     "name": "Stable - 1.8.0",
     "short_name": "1.8.0"
   },
   {
     "id": "1.7.0",
+    "version": "1.7.0",
     "name": "Stable - 1.7.0",
     "short_name": "1.7.0"
   },
   {
     "id": "1.6.x",
+    "version": "1.6.x",
     "name": "Stable - 1.6.x",
     "short_name": "1.6.x"
   },
   {
-    "id": "1.8.0_master", // Confusing ... this should be 1.8.0-rc
+    "id": "1.8.0_master", 
     "name": "RC - 1.8.0",
     "short_name": "1.8.0 - RC"
   },
   {
+    "id": "0.0.master",
     "id": "0.0.master",
     "name": "Master",
     "short_name": "Master"
@@ -145,7 +163,7 @@ $(document).ready(function() {
   $("#il_inner #dynamic_menu").append('<li id="changes">\
     <a id="changes_link" href="/' + version + '/changes/">Changes</a></li>');
   $("#il_inner #dynamic_menu").append('<li id="ref_manual">\
-    <a id="ref_manual_link" href="' + bacula_root_url + version + '/flow123d_' + version + '_doc.pdf">User Manual</a></li>');
+    <a id="ref_manual_link" href="' + bacula_root_url + version + '/flow123d_' + versions[ver_id].version + '_doc.pdf">User Manual</a></li>');
   $("#il_inner #dynamic_menu").append('<li id="source_doc">\
     <a id="source_doc_link" href="' + bacula_root_url + version + '/doxygen/">Source Documentation</a></li>');
   $("#il_inner #dynamic_menu").append('<li id="readme">\
@@ -203,6 +221,7 @@ function changeItems()
     for (var i = 0; i < versions.length; i++) {
       if(version == versions[i].id) {
         version_short_name = versions[i].short_name;
+        i_ver=i;
         break;
       }
     }
@@ -242,7 +261,7 @@ function changeItems()
   });
 
   $("#il_inner #dynamic_menu #ref_manual").fadeOut(duration, function() {
-  $(this).html('<a id="ref_manual_link" href="' + bacula_url + '/flow123d_' + version + '_doc.pdf">User Manual</a>');
+  $(this).html('<a id="ref_manual_link" href="' + bacula_url + '/flow123d_' + versions[i_ver].version + '_doc.pdf">User Manual</a>');
     $(this).fadeIn(duration+400);
   });
 
