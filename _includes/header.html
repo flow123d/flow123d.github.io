@@ -11,6 +11,11 @@
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
     <script type="text/javascript" src="/javascripts/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="/javascripts/underscore.min.js"></script>
+    <script type="text/javascript" src="/javascripts/jquery.gsap.min.js"></script>
+    <script type="text/javascript" src="/javascripts/TweenMax.min.js"></script>
+    <script type="text/javascript" src="/javascripts/CSSPlugin.min.js"></script>
+    <script type="text/javascript" src="/javascripts/moment.js"></script>
     <script type="text/javascript" src="/javascripts/main.js"></script>
     <title>Flow123d</title>
   </head>
@@ -30,7 +35,40 @@
 
         <section id="important_links">
           <div id="il_inner">
-          </div>
+            <ul id="constant_menu">
+              <li id="home"><a id="home_link" href="/">home</a></li>
+              <li><a id="github_link" href="http://github.com/flow123d/flow123d">github page</a></li>
+              <li id="license"><a id="license_link" href="/license/">license</a></li>
+              <li id="ack"><a id="ack_link" href="/acknowledgment/">acknowledgments</a></li>
+              <li id="pub"><a id="pub_link" href="/publications/">publications</a></li>
+              <li id="contact"><a id="contact_link" href="/contact/">contact</a></li>
+            </ul>
+            
+          <ul id="dynamic_menu">
+              <li>
+                  <span class="version_switcher_placeholder">
+                      <select id="version_selector" onchange="changeItems()"></select>
+                  </span>
+              </li>
+              <li id="features" class="link" style="display: list-item;">
+                  <a id="features_link" href="#" data-url="/{package_dir}/features/">Features</a>
+              </li>
+              <li id="download" class="link" style="display: list-item;">
+                  <a id="download_link" href="#" data-url="/{package_dir}/download/">Download</a>
+              </li>
+              <li id="changes" class="link" style="display: list-item;">
+                  <a id="changes_link" href="#" data-url="/{package_dir}/changes/">Changes</a>
+              </li>
+              <li id="ref_manual" class="link" style="display: list-item;">
+                  <a id="ref_manual_link" href="#" data-url="http://bacula.nti.tul.cz/~jan.brezina/flow123d_packages/{package_dir}/flow123d_{version}_doc.pdf">User Manual</a>
+              </li>
+              <li id="source_doc" class="link" style="display: list-item;">
+                  <a id="source_doc_link" href="#" data-url="http://bacula.nti.tul.cz/~jan.brezina/flow123d_packages/{package_dir}/doxygen/">Source Documentation</a>
+              </li>
+              <li id="readme" class="link" style="display: list-item;">
+                  <a id="readme_link" href="#" data-url="/{package_dir}/readme/">ReadMe</a>
+              </li>
+          </ul>
         </section>
 
         <section id="main_content">
