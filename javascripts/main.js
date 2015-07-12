@@ -1,278 +1,248 @@
+// /**
+//  * \brief global variable with array of functions
+//  */
 
-/**
- * \brief Global variable with array of functions
+/** default selected version id */
+var currentVersion = "release-1.8.2";
+/* description:
+ {
+ "id":           <subdirectory on web and on bacula, these two should match>
+ "package_dir":  <bacula location>
+ "web_dir":      <web location>
+ "version":      <version identifier used in package names>
+ "name":         <displayable name for this version, such as 'release 1.8.2'>
+ "show_links":   [<OPTIONAL, list items links, which will be visible, by default, all links are visible>]
+ }
  */
 var versions = [
-/* Description:
-  {
-    "id": <subdirectory on web and on bacula, these two should match>
-    "version": <version identifier used in package names>
-    "name": <name used in menu>
-    "short_name": <name used in title>
-  }*/
-  {
-    "id": "1.8.2_release",
-    "version": "1.8.2",
-    "name": "Stable - 1.8.2",
-    "short_name": "1.8.2"
-  },
-  {
-    "id": "1.8.1",
-    "version": "1.8.1",
-    "name": "Stable - 1.8.1",
-    "short_name": "1.8.1"
-  },
-  {
-    "id": "1.8.0",
-    "version": "1.8.0",
-    "name": "Stable - 1.8.0",
-    "short_name": "1.8.0"
-  },
-  {
-    "id": "1.7.0",
-    "version": "1.7.0",
-    "name": "Stable - 1.7.0",
-    "short_name": "1.7.0"
-  },
-  {
-    "id": "1.6.x",
-    "version": "1.6.x",
-    "name": "Stable - 1.6.x",
-    "short_name": "1.6.x"
-  },
-  {
-    "id": "1.8.0_master", 
-    "name": "RC - 1.8.0",
-    "short_name": "1.8.0 - RC"
-  },
-  {
-    "id": "0.0.master",
-    "id": "0.0.master",
-    "name": "Master",
-    "short_name": "Master"
-  },
+    {
+        "id":          "release-1.8.3",
+        "package_dir": "1.8.3",
+        "web_dir":     "1.8.3",
+        "version":     "1.8.3",
+        "name":        "release 1.8.3",
+        "show_links":  ['manual', 'source']
+    },
+    {
+        "id":          "release-1.8.2",
+        "package_dir": "1.8.2_release",
+        "web_dir":     "1.8.2_release",
+        "version":     "1.8.2",
+        "name":        "release 1.8.2"
+    },
+    {
+        "id":          "release-1.8.1",
+        "package_dir": "1.8.1",
+        "web_dir":     "1.8.1",
+        "version":     "1.8.1",
+        "name":        "release 1.8.1"
+    },
+    {
+        "id":          "release-1.8.0",
+        "package_dir": "1.8.0",
+        "web_dir":     "1.8.0",
+        "version":     "1.8.0",
+        "name":        "release 1.8.0"
+    },
+    {
+        "id":          "release-1.7.0",
+        "package_dir": "1.7.0",
+        "web_dir":     "1.7.0",
+        "version":     "1.7.0",
+        "name":        "release 1.7.0",
+        "show_links":  ['download', 'features', 'manual', 'readme']
+    },
+    {
+        "id":          "release-1.6.x",
+        "package_dir": "1.6.x",
+        "web_dir":     "1.6.x",
+        "version":     "1.6.x",
+        "name":        "release 1.6.x",
+        "show_links":  ['download', 'features', 'manual', 'readme']
+    },
+    {
+        "id":          "dev-master",
+        "package_dir": "0.0.master",
+        "web_dir":     "0.0.master",
+        "version":     "0.0.master",
+        "name":        "dev master"
+    },
 ];
 
-/**
- * \brief Root URL of Flow123d documentation and packages.
- */
-var bacula_root_url="http://bacula.nti.tul.cz/~jan.brezina/flow123d_packages/";
+/** platforms when using placeholders */
+var plarforms = {
+    "linux_64":   "linux_x86_64",
+    "linux_32":   "linux_x86_32",
+    "windows_64": "windows_x86_64",
+    "windows_32": "windows_x86_32",
+    "bacula":     "http://bacula.nti.tul.cz/~jan.brezina/flow123d_packages",
+    "_":          "{bacula}/{package_dir}/flow123d_{version}_",
+    "__":         "{bacula}/{package_dir}/flow123d_{version}_"//"http://hybs.nti.tul.cz/test/flow123d_{version}_"
+};
 
-/**
- * \brief Function used for initial setting of menu
- */
-$(document).ready(function() {
-  /* Google Analytics */
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-  ga('create', 'UA-52302083-4', 'auto');
-  ga('send', 'pageview');
+var missing_map = {
+    '_all':       ['download', 'features', 'changes', 'manual', 'source', 'readme'],
+    'download':   '#download',
+    'features':   '#features',
+    'changes':    '#changes',
+    'ref_manual': '#ref_manual',
+    'manual':     '#ref_manual',
+    'source_doc': '#source_doc',
+    'source':     '#source_doc',
+    'readme':     '#readme'
+}
 
-  var hash = document.location.hash;
-  var ver_id = 0;
+var buildTemplate = "<span class='build-info' title='{build}'>builded {rel}</span>";
+var errorTemplate = "<span class='build-info no-info'>build date unknown</span>";
 
-  if (hash != "") {
-    hash = hash.substring(1, hash.length);
-    for (var i = 0; i < versions.length; i++) {
-      if(hash === versions[i].id) {
-        ver_id = i;
-        break;
-      }
-    }    
-  } else {
-    var url = window.location.href;
-    var reg1 = /http:\/\/[^\/]*\//;
-    var path = url.replace(reg1, "/");
+/** function will return current object based on currentVersion value */
+function getVersion (property, value) {
+    var prop = property || 'id';
+    return $.grep (versions, function (e) {
+        var val = value || currentVersion;
+        return e[prop] == val;
+    })[0];
+};
 
-    for (var i = 0; i < versions.length; i++) {
-      var url_ver = path.match('/' + versions[i].id + '/');
+function getURLVersion () {
+    var parts = window.location.pathname.split ('/');
+    parts = parts.filter (function (n) {
+        return n != ""
+    });
+    if (!parts.length)
+        return null;
 
-      if(url_ver != null) {
-        var simple_reg = /\//g;
-        url_ver = url_ver[0].replace(simple_reg, "");
-        ver_id = i;
-        break;
-      }
+    return getVersion ('web_dir', parts[0]);
+};
+
+/** function will replace placeholders with version currents object value */
+function replacePlaceholders (str) {
+    var objects = _.toArray (arguments).slice (1);
+    if (objects.length == 0)
+        objects.push (getVersion ());
+
+    _.each (objects, function (element, index, list) {
+        str = str.replace (/{(\w+)}/g, function (all, name) {
+            return element[name] || all;
+        });
+    });
+    //var current = getVersion ();
+    //return str.replace (/{(\w+)}/g, function (all, name) {
+    //    return current[name] || all;
+    //});
+    return str;
+}
+
+/** function will set proper href link on all dynamic_menu items */
+function updateLinks () {
+    var delay = 0;
+    $ ('#dynamic_menu a').each (function (index, item) {
+        var newHref = replacePlaceholders ($ (item).data ().url);
+        if ($ (item).attr ('href') != newHref) {
+            $ (item).attr ('href', newHref);
+        } else {
+            //ignore change
+        }
+    });
+}
+
+function populateDropDown () {
+    $ ('#version_selector option').remove ();
+    versions.forEach (function (item, index) {
+        $ ('#version_selector').append ($ ('<option>', {
+            value: item.id,
+            text:  item.name.capitalizeFirstLetter ()
+        }));
+    });
+}
+
+function updateAll () {
+    updateLinks ();
+    // $('#flow_version').html(getVersion().name.toUpperCase());
+    $ ('#version_selector').val (currentVersion);
+
+    // hide some links
+    var show = getVersion ().show_links || missing_map._all;
+    var hide = _.difference (missing_map._all, show);
+    var showSelector = _.map (show, function (item) {
+        return missing_map[item];
+    }).join ();
+    var hideSelector = _.map (hide, function (item) {
+        return missing_map[item];
+    }).join ();
+
+
+    // hide elements
+    var duration = 0.2;
+    TweenMax.to (hideSelector, duration, {'alpha': 0, display: 'none'});
+    TweenMax.to (showSelector, duration, {'alpha': 0, display: 'none'});
+
+    TweenMax.staggerTo (showSelector, duration, {'alpha': 1, display: 'list-item', 'delay': duration}, duration / 4);
+
+    // change version
+    TweenMax.to ($ ('#flow_version'), 0.2, {'opacity': 1, 'delay': 0.2});
+    TweenMax.to ($ ('#flow_version'), 0.2, {
+        'opacity': 0, 'onCompleteParams': [getVersion ().name], 'onComplete': function (version) {
+            $ ('#flow_version').html (version);
+        }
+    });
+}
+
+function changeItems () {
+    currentVersion = $ ('#version_selector').val ();
+    document.location.hash = '#' + currentVersion;
+}
+
+function updateVersionByHash () {
+    var hash = document.location.hash;
+    var version = getVersion ('id', hash.slice (1));
+    if (version != undefined && hash.length > 1) {
+        currentVersion = version.id;
+        updateAll ();
+        return true;
     }
-  }
+    return false;
+}
 
-  var version = hash || url_ver || versions[0].id;
+$ (document).ready (function () {
+    populateDropDown ();
 
-  $("#flow_version").html(versions[ver_id].short_name);
+    if (getURLVersion () !== null) {
+        currentVersion = getURLVersion ().id;
+        updateAll ();
+    }else if (!updateVersionByHash ())
+        updateAll ();
 
-  /* Generate whole menu including set static part of menu */
-  $("#il_inner").append('<ul id="constant_menu"></ul>');
+    $ (window).bind ('hashchange', function (e) {
+        updateVersionByHash ();
+    });
 
-  if (version === versions[0].id) {
-    $("#il_inner #constant_menu").append('<li id="home">\
-      <a id="home_link" href="/">Home</a></li>');
-    $("#il_inner #constant_menu").append('<li>\
-      <a id="github_link" href="http://github.com/flow123d/flow123d">GitHub Page</a></li>');
-    $("#il_inner #constant_menu").append('<li id="license">\
-      <a id="license_link" href="/license/">License</a></li>');
-    $("#il_inner #constant_menu").append('<li id="ack">\
-      <a id="ack_link" href="/acknowledgment/">Acknowledgments</a></li>');
-    $("#il_inner #constant_menu").append('<li id="pub">\
-      <a id="pub_link" href="/publications/">Publications</a></li>');
-    $("#il_inner #constant_menu").append('<li id="contact">\
-      <a id="contact_link" href="/contact/">Contact</a></li>');
-  }
-  else {
-    $("#il_inner #constant_menu").append('<li id="home">\
-      <a id="home_link" href="/#' + version + '">Home</a></li>');
-    $("#il_inner #constant_menu").append('<li>\
-      <a id="github_link" href="http://github.com/flow123d/flow123d">GitHub Page</a></li>');
-    $("#il_inner #constant_menu").append('<li id="license">\
-      <a id="license_link" href="/license/#' + version + '">License</a></li>');
-    $("#il_inner #constant_menu").append('<li id="ack">\
-      <a id="ack_link" href="/acknowledgment/#' + version + '">Acknowledgments</a></li>');
-    $("#il_inner #constant_menu").append('<li id="pub">\
-      <a id="pub_link" href="/publications/#' + version + '">Publications</a></li>');
-    $("#il_inner #constant_menu").append('<li id="contact">\
-      <a id="contact_link" href="/contact/#' + version + '">Contact</a></li>');
-  }
+    $ ('.download-section a').each (function (index, item) {
+        var $item = $ (item);
+        var ulData = $item.parent().parent().data();
 
-  $("#il_inner").append('<ul id="dynamic_menu"></ul>');
+        var href = $item.attr ('href');
+        href = replacePlaceholders (href, ulData, getURLVersion (), plarforms);
+        href = replacePlaceholders ( href, ulData, getURLVersion (), plarforms);
+        $item.attr ('href', href);
 
-  var options = "";
-  for (var i = 0; i < versions.length; i++) {
-    if(version == versions[i].id) {
-      options += '<option value="' + versions[i].id + '" selected="selected">' + versions[i].name + '</option>';
-    } else {
-      options += '<option value="' + versions[i].id + '">' + versions[i].name + '</option>';
-    }
-  };
+        var version = $item.data ('version') || '';
+        version = replacePlaceholders (version, ulData, getURLVersion (), plarforms);
+        version = replacePlaceholders (version, ulData, getURLVersion (), plarforms);
 
-  $("#il_inner #dynamic_menu").append('\
-              <li>\
-                <script type="text/javascript">\
-                </script>\
-                <span class="version_switcher_placeholder">\
-                  <select id="version_selector" onchange="changeItems()">\
-                    '+ options + '\
-                  </select>\
-                </span>\
-              </li>');
-
-  $("#il_inner #dynamic_menu").append('<li id="features">\
-    <a id="features_link" href="/' + version + '/features/">Features</a></li>');
-  $("#il_inner #dynamic_menu").append('<li id="download">\
-    <a id="download_link" href="/' + version + '/download/">Download</a></li>');
-  $("#il_inner #dynamic_menu").append('<li id="changes">\
-    <a id="changes_link" href="/' + version + '/changes/">Changes</a></li>');
-  $("#il_inner #dynamic_menu").append('<li id="ref_manual">\
-    <a id="ref_manual_link" href="' + bacula_root_url + version + '/flow123d_' + versions[ver_id].version + '_doc.pdf">User Manual</a></li>');
-  $("#il_inner #dynamic_menu").append('<li id="source_doc">\
-    <a id="source_doc_link" href="' + bacula_root_url + version + '/doxygen/">Source Documentation</a></li>');
-  $("#il_inner #dynamic_menu").append('<li id="readme">\
-    <a id="readme_link" href="/' + version + '/readme/">ReadMe</a></li>');
-
+        if (version.length) {
+            $item.attr ('data-version', version);
+            $.getJSON (version, function (data) {
+                data['rel'] = moment(data['build'], 'DD-MM-YYYY h:m:s').fromNow();
+                $item.parent ().append (replacePlaceholders(buildTemplate, data));
+            }).error (function () {
+                $item.parent ().append (errorTemplate);
+            });
+        }
+    });
 });
 
-/**
- * \brief Function for changing items in menu
- */
-function changeItems()
-{
-  var duration = 200;
-  var version = $("#version_selector").val();
 
-  var bacula_url = bacula_root_url + version;
-
-  // Change content of current page too, when page is version specific
-  var url = window.location.href;
-  var reg1 = /http:\/\/[^\/]*\//;
-  var path = url.replace(reg1, "/");
-
-  console.log('url: ' + url);
-  console.log('/ -> path: ' + '/' + ' -> ' + path);
-
-  for (var i = 0; i < versions.length; i++) {
-    var url_ver = path.match('/' + versions[i].id + '/');
-
-    if(url_ver != null) {
-      var reg2 = /\/[^\/]*\//;
-      var new_path = path.replace(reg2, version + "/");
-      var new_url = '/' + new_path;
-
-      console.log('new path and url: ' + new_path + ' ' + new_url);
-
-      /* Change current page */
-      if (new_url != url) {
-        window.location.href = new_url;
-      }
-    }
-  }
-
-  /* Change hash of page. When selected version is the default version
-   * then hash is empty. */
-  if (version === versions[0].id) {
-    document.location.hash = "";
-    history.pushState('', document.title, window.location.pathname);
-  } else {
-    document.location.hash = version;
-  };
-
-  // When page is not version specific, then do fade-in fade-out of version
-  $("#flow_version").fadeOut(duration, function() {
-    var version_short_name = "";
-    for (var i = 0; i < versions.length; i++) {
-      if(version == versions[i].id) {
-        version_short_name = versions[i].short_name;
-        i_ver=i;
-        break;
-      }
-    }
-    $(this).html(version_short_name);
-    $(this).fadeIn(duration);
-  });
-
-  /* Change 'constant' menu */
-  if (version === versions[0].id) {
-    $("#il_inner #constant_menu #home").html('<a id="home_link" href="/">Home</a>');
-    $("#il_inner #constant_menu #license").html('<a id="license_link" href="/license/">License</a></li>');
-    $("#il_inner #constant_menu #ack").html('<a id="ack_link" href="/acknowledgment/">Acknowledgments</a></li>');
-    $("#il_inner #constant_menu #pub").html('<a id="pub_link" href="/publications/">Publications</a></li>');
-    $("#il_inner #constant_menu #contact").html('<a id="contact_link" href="/contact/">Contact</a></li>');
-  } else {
-    $("#il_inner #constant_menu #home").html('<a id="home_link" href="/#' + version + '">Home</a>');
-    $("#il_inner #constant_menu #license").html('<a id="license_link" href="/license/#' + version + '">License</a></li>');
-    $("#il_inner #constant_menu #ack").html('<a id="ack_link" href="/acknowledgment/#' + version + '">Acknowledgments</a></li>');
-    $("#il_inner #constant_menu #pub").html('<a id="pub_link" href="/publications/#' + version + '">Publications</a></li>');
-    $("#il_inner #constant_menu #contact").html('<a id="contact_link" href="/contact/#' + version + '">Contact</a></li>');
-  }
-
-  /* Change 'dynamic' menu */
-  $("#il_inner #dynamic_menu #features").fadeOut(duration, function() {
-    $(this).html('<a id="features_link" href="/' + version + '/features/">Features</a>');
-    $(this).fadeIn(duration);
-  });
-
-  $("#il_inner #dynamic_menu #download").fadeOut(duration, function() {
-    $(this).html('<a id="download_link" href="/' + version + '/download/">Download</a>');
-    $(this).fadeIn(duration+200);
-  });
-
-  $("#il_inner #dynamic_menu #changes").fadeOut(duration, function() {
-    $(this).html('<a id="changes_link" href="/' + version + '/changes/">Changes</a>');
-    $(this).fadeIn(duration+300);
-  });
-
-  $("#il_inner #dynamic_menu #ref_manual").fadeOut(duration, function() {
-  $(this).html('<a id="ref_manual_link" href="' + bacula_url + '/flow123d_' + versions[i_ver].version + '_doc.pdf">User Manual</a>');
-    $(this).fadeIn(duration+400);
-  });
-
-  $("#il_inner #dynamic_menu #source_doc").fadeOut(duration, function() {
-  $(this).html('<a id="source_doc_link" href="' + bacula_url + '/doxygen/">Source Documentation</a>');
-    $(this).fadeIn(duration+500);
-  });
-
-  $("#il_inner #dynamic_menu #readme").fadeOut(duration, function() {
-    $(this).html('<a id="readme_link" href="/' + version + '/readme/">ReadMe</a>');
-    $(this).fadeIn(duration+600);
-  });
-
-}
+String.prototype.capitalizeFirstLetter = function () {
+    return this.charAt (0).toUpperCase () + this.slice (1);
+};
