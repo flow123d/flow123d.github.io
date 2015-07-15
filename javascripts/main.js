@@ -104,6 +104,7 @@ function getVersion (property, value) {
     })[0];
 };
 
+/** function will return selecter version based on url */
 function getURLVersion () {
     var parts = window.location.pathname.split ('/');
     parts = parts.filter (function (n) {
@@ -180,12 +181,15 @@ function updateAll () {
     TweenMax.staggerTo (showSelector, duration, {'alpha': 1, display: 'list-item', 'delay': duration}, duration / 4);
 
     // change version
-    TweenMax.to ($ ('#flow_version'), 0.2, {'opacity': 1, 'delay': 0.2});
-    TweenMax.to ($ ('#flow_version'), 0.2, {
-        'opacity': 0, 'onCompleteParams': [getVersion ().name], 'onComplete': function (version) {
-            $ ('#flow_version').html (version);
-        }
-    });
+    var newVersion = (getURLVersion() || getVersion()).name;
+    if ($ ('#flow_version').html() != newVersion) {
+        TweenMax.to ($ ('#flow_version'), 0.2, {'opacity': 1, 'delay': 0.2});
+        TweenMax.to ($ ('#flow_version'), 0.2, {
+            'opacity': 0, 'onCompleteParams': [newVersion], 'onComplete': function (version) {
+                $ ('#flow_version').html (version);
+            }
+        });
+    }
 }
 
 function changeItems () {
