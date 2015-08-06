@@ -2,8 +2,6 @@
 //  * \brief global variable with array of functions
 //  */
 
-/** default selected version id */
-var currentVersion = "release-1.8.2";
 /* description:
  {
  "id":           <subdirectory on web and on bacula, these two should match>
@@ -116,6 +114,11 @@ function getURLVersion () {
     return getVersion ('web_dir', parts[0]);
 };
 
+/** return true is location is homepage */
+function isHomepage () {
+    return window.location.pathname == '/'
+}
+
 /** function will replace placeholders with version currents object value */
 function replacePlaceholders (str) {
     var objects = _.toArray (arguments).slice (1);
@@ -127,10 +130,6 @@ function replacePlaceholders (str) {
             return element[name] || all;
         });
     });
-    //var current = getVersion ();
-    //return str.replace (/{(\w+)}/g, function (all, name) {
-    //    return current[name] || all;
-    //});
     return str;
 }
 
@@ -146,7 +145,7 @@ function updateLinks () {
         }
     });
 }
-
+/** populate select component by json specification */
 function populateDropDown () {
     $ ('#version_selector option').remove ();
     versions.forEach (function (item, index) {
@@ -157,6 +156,7 @@ function populateDropDown () {
     });
 }
 
+/** updates all links */
 function updateAll () {
     updateLinks ();
     // $('#flow_version').html(getVersion().name.toUpperCase());
@@ -175,6 +175,7 @@ function updateAll () {
 
     // hide elements
     var duration = 0.2;
+    TweenMax.killAll ();
     TweenMax.to (hideSelector, duration, {'alpha': 0, display: 'none'});
     TweenMax.to (showSelector, duration, {'alpha': 0, display: 'none'});
 
@@ -192,11 +193,33 @@ function updateAll () {
     }
 }
 
-function changeItems () {
-    currentVersion = $ ('#version_selector').val ();
-    document.location.hash = '#' + currentVersion;
+/** returns true wheter given section contains given section */
+function hasSection (version, section) {
+    return !version.show_links ? true : version.show_links.indexOf (section) != -1;
 }
 
+/** handler when item in dropdown is changed */
+function changeItems () {
+    if (isHomepage()) {
+        currentVersion = $ ('#version_selector').val ();
+        document.location.hash = '#' + currentVersion;
+    } else {
+        var newVersion =  $ ('#version_selector').val ();
+        var version = getVersion ('id', newVersion);
+        var paths = window.location.pathname.split ('/');
+        paths = paths.filter (function(n){ return n != "" });
+        var section = paths[1];
+
+        // move user to selected version
+        if  (hasSection(version, section)) {
+            window.location = '/' + version.package_dir + '/' + section + '/';
+        }else {
+            window.location = '/#' + version.id;
+        }
+    }
+}
+
+/** switches current version to one in url's hash part */
 function updateVersionByHash () {
     var hash = document.location.hash;
     var version = getVersion ('id', hash.slice (1));
@@ -208,13 +231,23 @@ function updateVersionByHash () {
     return false;
 }
 
+/** prototype for capitalizing first letter in string */
+String.prototype.capitalizeFirstLetter = function () {
+    return this.charAt (0).toUpperCase () + this.slice (1);
+};
+
+/** default selected version id, preffered version by url */
+var currentVersion = "release-1.8.2";
+currentVersion = getURLVersion() ? getURLVersion().id : getVersion().id;
+
+/** on document ready do fade-in effect, populate dropdown and replace placeholders */
 $ (document).ready (function () {
     populateDropDown ();
 
     if (getURLVersion () !== null) {
         currentVersion = getURLVersion ().id;
         updateAll ();
-    }else if (!updateVersionByHash ())
+    } else if (!updateVersionByHash ())
         updateAll ();
 
     $ (window).bind ('hashchange', function (e) {
@@ -244,9 +277,7 @@ $ (document).ready (function () {
             });
         }
     });
+
+    // focus select element on start-up
+    setTimeout (document.getElementById('version_selector').focus(), 1000);
 });
-
-
-String.prototype.capitalizeFirstLetter = function () {
-    return this.charAt (0).toUpperCase () + this.slice (1);
-};
