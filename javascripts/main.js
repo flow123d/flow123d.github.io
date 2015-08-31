@@ -73,7 +73,7 @@ var plarforms = {
     "linux_32":   "linux_x86_32",
     "windows_64": "windows_x86_64",
     "windows_32": "windows_x86_32",
-    "bacula":     "http://bacula.nti.tul.cz/~jan.brezina/flow123d_packages",
+    "bacula":     "http://flow.nti.tul.cz/packages",
     "_":          "{bacula}/{package_dir}/flow123d_{version}_",
     "__":         "{bacula}/{package_dir}/flow123d_{version}_"//"http://hybs.nti.tul.cz/test/flow123d_{version}_"
 };
@@ -137,7 +137,9 @@ function replacePlaceholders (str) {
 function updateLinks () {
     var delay = 0;
     $ ('#dynamic_menu a').each (function (index, item) {
-        var newHref = replacePlaceholders ($ (item).data ().url);
+        var newHref = replacePlaceholders ($ (item).data ().url, getVersion(), plarforms);
+        newHref = replacePlaceholders ($ (item).data ().url, getVersion(), plarforms);
+        console.log ($ (item).data ().url);
         if ($ (item).attr ('href') != newHref) {
             $ (item).attr ('href', newHref);
         } else {
