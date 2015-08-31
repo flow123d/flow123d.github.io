@@ -139,7 +139,6 @@ function updateLinks () {
     $ ('#dynamic_menu a').each (function (index, item) {
         var newHref = replacePlaceholders ($ (item).data ().url, getVersion(), plarforms);
         newHref = replacePlaceholders ($ (item).data ().url, getVersion(), plarforms);
-        console.log ($ (item).data ().url);
         if ($ (item).attr ('href') != newHref) {
             $ (item).attr ('href', newHref);
         } else {
