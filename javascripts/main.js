@@ -15,11 +15,11 @@
 var versions = [
     {
         "id":          "release-1.8.3",
-        "package_dir": "1.8.3",
+        "package_dir": "1.8.3_release",
         "web_dir":     "1.8.3",
         "version":     "1.8.3",
-        "name":        "release 1.8.3",
-        "show_links":  ['manual', 'source']
+        "name":        "release 1.8.3"
+        //"show_links":  ['manual', 'source']
     },
     {
         "id":          "release-1.8.2",

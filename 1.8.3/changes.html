@@ -1,0 +1,135 @@
+---
+title: Flow123d - Changes
+layout: page
+---
+
+<h1>
+  Changes
+</h1>
+
+<p>List of all changes in user interface and major internal changes.</p>
+<h1 id="flow123d-version-1.8.3">Flow123d version 1.8.3</h1>
+<p>(2015-06-19)</p>
+<ul>
+<li>Experimental support for linear sorption in DG model.</li>
+<li>Fix in calculation of dispersivity tensor.</li>
+</ul>
+<hr />
+<h1 id="flow123d-version-1.8.2">Flow123d version 1.8.2</h1>
+<p>(2014-03-15)</p>
+<h3 id="user-interface">User interface</h3>
+<ul>
+<li>Key DarcyMHOutput/balance_output replaced by DarcyFlowMH/balance.</li>
+<li>Key TransportOperatorSplitting/mass_balance replaced by TransportOperatorSplitting/balance.</li>
+<li>Key SoluteTransport_DG/mass_balance replaced by SoluteTransport_DG/blance.</li>
+<li>Key HeatTransfer_DG/mass_balance replaced by HeatTransfer_DG/balance.</li>
+<li>Unified record Balance for configuration of balance output.</li>
+<li>New key DarcyFlowMH/gravity to set gravity vector.</li>
+<li>All output selections support fields 'region_id' and 'subdomain'.</li>
+<li>TransportOperatorSplitting/substances and TransportDG/substances. are arrays of Substance records. Substance record contains substance name and its molar mass. Molar mass is then used in the ReactionTerm.</li>
+<li>Key 'molar_mass' removed from Sorption model records.</li>
+<li>Reaction term model LinearReactions is replaced by specialized models FirstOrderReaction and RadioactiveDacay Both new models have records with structure similar to the LinearReactions by specialized to the particular physical context. In particular RadioactiveDecayProduct allows specification of the decay energy with in future will be used as a source in the heat equation.</li>
+<li>Reaction term model PadeAproximant is now variant of 'ode_solver' used by some reaction models.</li>
+<li>Alternative 'ode_solver' is LinearODEAnalytic that was used as default by previous versions.</li>
+<li>TimeGovernor is now autoconstructable from the key 'max_dt'.</li>
+<li>Meaning of TimeGovernor/init_dt has changed. Newly it is suggestion of the very first time step.</li>
+</ul>
+<h3 id="new-features">New features</h3>
+<ul>
+<li>United implementation of balance calculations, fast even for explicit solvers.</li>
+<li>Balance output readable by table processors.</li>
+<li>SoluteTransport_DG: changes in interpretation of boundary conditions (see manual for current meaning).</li>
+<li>Faster BIHTree for search of non-comaptible neighborings.</li>
+<li>Continuous integration of all install packages.</li>
+<li>Windows installer.</li>
+<li>Automatic creation of the output directory.</li>
+<li>Faster dual porosity solver.</li>
+</ul>
+<h3 id="bug-fixes">Bug fixes</h3>
+<ul>
+<li>Memory leak in output classes.</li>
+<li>All models now adjust its time steps to match changes of input fields and output times. Several bugs fixed in all models. Added dedicated tests.</li>
+<li>Wrong profiler times for the linear solver.</li>
+<li>Infinite loop during processing of the --JSON_machine command line argument.</li>
+<li>Wrong treatment of possible failure of nonlinear solver in sorption. Missing check of input values.</li>
+<li>Binary for 32-bit Windows did not run. (CYGWIN bug)</li>
+<li>Resolved instability of inflow/outflow detection in DG solver.</li>
+<li>Wrong line numbers in some error messages produced by JSON parser.</li>
+<li>Missing error messages on Windows system.</li>
+<li>Bugs in non-compatible 2D-1D assembly in DarcyFlowMH.</li>
+<li>Radioactive decay should depend on the molar weight (conserve amount of nuclei not mass).</li>
+<li>PadeAproximant did not work in parallel.</li>
+<li>Wrong mass balance with non-zero reaction term.</li>
+<li>Memory leak in LinSys_PETSC.</li>
+<li>Fails to read mesh with region ID repeating for regions of different dimension.</li>
+</ul>
+<hr />
+<h1 id="flow123d-version-1.8.1">Flow123d version 1.8.1</h1>
+<p>(2014-05-14)</p>
+<h3 id="bug-fixes-1">Bug fixes</h3>
+<ul>
+<li>fix missing error messages under Windows</li>
+<li>fix a memory leak in LinSys_PETSC::gather_solution</li>
+<li>fix weights in BDDC for Darcy flow</li>
+<li>fix wrong behavior when wrong region name is specified</li>
+</ul>
+<h3 id="other-changes">Other changes</h3>
+<ul>
+<li>minor improvements of manual</li>
+<li>add Python support under Windows</li>
+<li>add BDDC support under Windows</li>
+<li>use BDDCML 2.4</li>
+<li>fix and unit tests for BIHTree class</li>
+<li>improved test 23 - dual porosity</li>
+<li>updated petsc_options_help</li>
+</ul>
+<hr />
+<h1 id="flow123d-version-1.8.0">Flow123d version 1.8.0</h1>
+<p>(2014-03-31)</p>
+<h3 id="user-interface-1">User interface:</h3>
+<ul>
+<li>every equation can output any input, computed, or post-processed field, new keys: 'output_stream', 'output_fields'</li>
+<li>input fields given in one list under key 'input_fields' instead of separated 'bulk_data' and 'bc_data' lists<br /></li>
+<li>improved mass balance files (yet not correct with reaction term)</li>
+<li>output of discontinuous linear finite elements</li>
+<li>enhancements in flow123d.sh script; changed syntax, support for MetaCentrum clusters</li>
+<li>support for BDDCML parallel solver in Darcy flow model</li>
+<li>relative references in the input file produce warning reporting used absolute path</li>
+<li>input interface warnings for unknown keys in the input file</li>
+<li>warning for usage of field default values</li>
+<li>Flow123d tries to keep IDs of nodes and elements in output into GMSH format same as in the input mesh; but it is not guaranteed to future and/or for parallel case</li>
+</ul>
+<h3 id="physics">Physics:</h3>
+<ul>
+<li>transition coefficients in coupling of different dimensions are computed from other parameters, 'sigma' parameter is additional scaling coefficient with default value 1.0</li>
+<li>concentration sources in Transport DG</li>
+<li>general reaction term for operator splitting; can combine dual porosity, adsorption and reactions</li>
+<li>limited solubility model in adsorptions</li>
+<li>TransportDG supports second and third order finite elements</li>
+<li>TransportDG supports Dirichlet, Neumman, and Robin boundary conditions</li>
+<li>Darcy flow supports non-compatible 2d-1d meshes</li>
+<li>support for heat transfer simulations (based on TransportDG); can not be combined with solute transport yet</li>
+<li>ConvectionTransport adapt its time step to match change times of the input fields</li>
+</ul>
+<h3 id="internals">Internals:</h3>
+<ul>
+<li>transition to git, github</li>
+<li>transition to ci2 test server; YAML description of tests</li>
+<li>new output subsystem</li>
+<li>Fields can read from input independently and can hold short time history</li>
+<li>optimization of mesh reading</li>
+<li>optimization of Schur complement computation</li>
+<li>optimization of TransportDG assembly</li>
+<li>fast interpolation method for nonlinear adsorptions</li>
+<li>output of the input type tree in machine readable JSON format</li>
+<li>use C++11; g++ 4.7 and newer</li>
+<li>transition to petsc 3.4.3</li>
+<li>run_test.sh script use flow123d.sh consistently, can be used also on parallel systems</li>
+<li>general classes for interpolation tables (not used yet)</li>
+<li>AdHocAbstractRecord - abstract record with different kind of documentation</li>
+<li>automatic installation of BDDCML library</li>
+<li>reimplemented BIHTree, faster and more robust</li>
+<li>transition to gtest 1.7.0</li>
+<li>automatic night packages for both Linux and Windows</li>
+<li>replace EqDataBase by more general class FieldSet</li>
+</ul>
