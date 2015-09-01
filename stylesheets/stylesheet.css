@@ -447,12 +447,55 @@ div .picture {
 /* Mobile Portrait Size to Mobile Landscape Size (devices and browsers) */
 @media only screen and (max-width: 479px) {}
 
-.build-info {
+#main_content .build-info {
   float: right;
   font-size: 0.9em;
 }
 
-.build-info.no-info {
+#main_content .build-info.no-info {
   /*font-style: italic;*/
     color: #BA5756;
+}
+
+#main_content ul {
+    display: table;
+}
+
+#main_content ul > li {
+    display: table-row;
+}
+
+#main_content ul > li::before {
+    content: "•\00a0\00a0";
+    display: table-cell;
+    text-align: right;
+}
+
+#main_content ol {
+    counter-reset: foo;
+    display: table;
+}
+
+#main_content ol > li {
+    counter-increment: foo;
+    display: table-row;
+}
+
+#main_content ol > li::before {
+    content: counter(foo) ".\00a0\00a0";
+    display: table-cell;
+    text-align: right;
+}
+
+
+#main_content .download-section {
+    display: block;
+}
+
+#main_content .download-section > li {
+    display: list-item;
+}
+
+#main_content .download-section > li::before  {
+    content: none;
 }
