@@ -1,0 +1,80 @@
+---
+title: Flow123d - Features
+layout: page
+---
+
+<h1>
+  Features
+</h1>
+
+<p>
+  Flow123d is a solver for simulation of saturated water flow and transport of dissolved substances in fractured porous media. Principal language C++. Its key features are:
+</p>
+
+<h3>Complex Geometries Consisting of Elements of Different Dimensions</h3>
+
+<ul>
+  <li>Convenient for modeling 2D and 1D fractures</li>
+  <li>Native support of <a href="http://www.geuz.org/gmsh">GMSH</a> meshes</li>
+  <li>Compatible interconnection of geometries</li>
+  <li>Non-compatible interconnections (under development)</li>
+  <li><a href="./geometries/">Read more ...</a></li>
+</ul>
+
+<h3>Darcian Flow in Fractured Porous Media</h3>
+
+<ul>
+  <li>Coupling on interfaces between adjacent dimensions</li>
+  <li>Mixed-hybrid formulation providing accurate velocity approximation</li>
+  <li>Efficient implementation using Schur complement</li>
+  <li>Unsteady model for non-zero storativity</li>
+  <li><a href="./flow/">Read more ...</a></li>
+</ul>
+
+<h3>Advection-Diffusion Equation for Solute Transport</h3>
+
+<ul>
+  <li>Simple finite volumes with explicit timestepping for pure transport (without diffusion) </li>
+  <li>Robust Discontinuous Galerkin + implicit timestepping for transport with hydrodynamic diffusion </li>
+  <li>Support for arbitrary number of substances </li>
+  <li><a href="./transport/">Read more ...</a></li>
+</ul>
+
+<h3>Reaction processes</h3>
+
+<ul>
+  <li> Reaction processes include: dual porosity model, sorptions, and linear reactions (decays)
+  <li> Coupled with transport models using the operator splitting method </li>
+  <li> Support for general combination of several reaction processes.
+  <li> Efficient computation of non-linear sorption via. interpolation </li>
+</ul>
+
+<h3>Heat transfer</h3>
+
+<ul>
+  <li>Equilibrium heat transfer model including conduction in rock and conduction and convection in liquid phase. </li>
+  <li>Robust Discontinuous Galerkin + implicit timestepping.</li>
+</ul>
+
+<h3>Software specific</h3>
+
+<ul>
+  <li>Parallel assembly, solvers, calculation of reaction term.</li>
+  <li> <a href="http://www.math.cas.cz/~sistek/software/bddcml.html">BDDC solver</a>, <a href="http://bacula.nti.tul.cz/~jan.brezina/flow123d_publications/bddc_hybrid.pdf">paper</a>.</li> 
+  <li>Unified output about balance of conserved quantities. </li>   
+  <li>Structured input using JSON file format</li>
+  <li>Almost all parameters can be arbitrary space-time field</li>
+  <li>Output to VTK and GMSH formats</li>
+  <li><a href="./io/">Read more ...</a></li>
+</ul>
+
+
+
+<h3>Active Development</h3>
+
+<ul>
+  <li>XFEM method for modelling wells (1D-3D coupling)</li>
+  <li>Methods for coupling of equations (Darcy flow) on non-compatible 2D-3D and 1D-2D meshes modeling preferential paths. <a href="http://www.iam.fmph.uniba.sk/algoritmy2012/zbornik/21Brezina.pdf">Paper</a>
+  
+  <li><a href="./wip/">Read more ...</a></li>
+</ul>
