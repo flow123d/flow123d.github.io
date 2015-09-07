@@ -90,7 +90,7 @@ var missing_map = {
     'readme':     '#readme'
 }
 
-var buildTemplate = "<span class='build-info' title='{build}'>builded {rel}</span>";
+var buildTemplate = "<span class='build-info' title='{rel}'>builded {build} ({rel})</span>";
 var errorTemplate = "<span class='build-info no-info'>build date unknown</span>";
 
 /** function will return current object based on currentVersion value */
