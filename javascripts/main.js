@@ -18,29 +18,32 @@ var versions = [
         "package_dir": "1.8.3_release",
         "web_dir":     "1.8.3",
         "version":     "1.8.3",
-        "name":        "release 1.8.3"
-        //"show_links":  ['manual', 'source']
+        "name":        "release 1.8.3",
+        "show_links":  ['download', 'features', 'changes', 'manual', 'source', 'readme']
     },
     {
         "id":          "release-1.8.2",
         "package_dir": "1.8.2_release",
         "web_dir":     "1.8.2_release",
         "version":     "1.8.2",
-        "name":        "release 1.8.2"
+        "name":        "release 1.8.2",
+        "show_links":  ['download', 'features', 'changes', 'manual', 'source', 'readme']
     },
     {
         "id":          "release-1.8.1",
         "package_dir": "1.8.1",
         "web_dir":     "1.8.1",
         "version":     "1.8.1",
-        "name":        "release 1.8.1"
+        "name":        "release 1.8.1",
+        "show_links":  ['download', 'features', 'changes', 'manual', 'source', 'readme']
     },
     {
         "id":          "release-1.8.0",
         "package_dir": "1.8.0",
         "web_dir":     "1.8.0",
         "version":     "1.8.0",
-        "name":        "release 1.8.0"
+        "name":        "release 1.8.0",
+        "show_links":  ['download', 'features', 'changes', 'manual', 'source', 'readme']
     },
     {
         "id":          "release-1.7.0",
@@ -63,7 +66,8 @@ var versions = [
         "package_dir": "0.0.master",
         "web_dir":     "0.0.master",
         "version":     "0.0.master",
-        "name":        "dev master"
+        "name":        "dev master",
+        "show_links":  ['download', 'features', 'changes', 'manual', 'source', 'readme', 'htmldoc']
     },
 ];
 
@@ -75,11 +79,11 @@ var plarforms = {
     "windows_32": "windows_x86_32",
     "bacula":     "http://flow.nti.tul.cz/packages",
     "_":          "{bacula}/{package_dir}/flow123d_{version}_",
-    "__":         "{bacula}/{package_dir}/flow123d_{version}_"//"http://hybs.nti.tul.cz/test/flow123d_{version}_"
+    "__":         "{bacula}/{package_dir}/flow123d_{version}_"
 };
 
 var missing_map = {
-    '_all':       ['download', 'features', 'changes', 'manual', 'source', 'readme'],
+    '_all':       ['download', 'features', 'changes', 'manual', 'source', 'readme', 'htmldoc'],
     'download':   '#download',
     'features':   '#features',
     'changes':    '#changes',
@@ -87,7 +91,8 @@ var missing_map = {
     'manual':     '#ref_manual',
     'source_doc': '#source_doc',
     'source':     '#source_doc',
-    'readme':     '#readme'
+    'readme':     '#readme',
+    'htmldoc':    '#htmldoc'
 }
 
 var buildTemplate = "<span class='build-info' title='{rel}'>builded {build} ({rel})</span>";
