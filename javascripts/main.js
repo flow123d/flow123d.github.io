@@ -218,7 +218,7 @@ function changeItems () {
 
         // move user to selected version
         if  (hasSection(version, section)) {
-            window.location = '/' + version.package_dir + '/' + section + '/';
+            window.location = '/' + version.web_dir + '/' + section + '/';
         }else {
             window.location = '/#' + version.id;
         }
