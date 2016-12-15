@@ -250,7 +250,7 @@ currentVersion = getURLVersion() ? getURLVersion().id : getVersion().id;
 $ (document).ready (function () {
     populateDropDown ();
 
-    if (getURLVersion () !== null) {
+    if (getURLVersion () != null) {
         currentVersion = getURLVersion ().id;
         updateAll ();
     } else if (!updateVersionByHash ())
