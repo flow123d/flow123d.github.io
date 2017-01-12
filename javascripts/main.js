@@ -14,6 +14,14 @@
  */
 var versions = [
     {
+        "id":          "release-2.1.0",
+        "package_dir": "2.1.0_release",
+        "web_dir":     "2.1.0",
+        "version":     "2.1.0",
+        "name":        "release 2.1.0",
+        "show_links":  ['download', 'features', 'changes', 'manual', 'source', 'readme']
+    },
+    {
         "id":          "release-1.8.3",
         "package_dir": "1.8.3_release",
         "web_dir":     "1.8.3",
@@ -243,7 +251,7 @@ String.prototype.capitalizeFirstLetter = function () {
 };
 
 /** default selected version id, preffered version by url */
-var currentVersion = "release-1.8.2";
+var currentVersion = "release-2.1.0";
 currentVersion = getURLVersion() ? getURLVersion().id : getVersion().id;
 
 /** on document ready do fade-in effect, populate dropdown and replace placeholders */
