@@ -19,7 +19,7 @@ var versions = [
         "web_dir":     "2.1.0",
         "version":     "2.1.0",
         "name":        "release 2.1.0",
-        "show_links":  ['download', 'features', 'changes', 'manual', 'source', 'readme']
+        "show_links":  ['download', 'features', 'changes', 'manual', 'source', 'readme', 'htmldoc']
     },
     {
         "id":          "release-1.8.3",
