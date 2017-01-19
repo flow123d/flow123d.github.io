@@ -81,13 +81,15 @@ var versions = [
 
 /** platforms when using placeholders */
 var plarforms = {
-    "linux_64":   "linux_x86_64",
-    "linux_32":   "linux_x86_32",
-    "windows_64": "windows_x86_64",
-    "windows_32": "windows_x86_32",
-    "bacula":     "http://flow.nti.tul.cz/packages",
-    "_":          "{bacula}/{package_dir}/flow123d_{version}_",
-    "__":         "{bacula}/{package_dir}/flow123d_{version}_"
+    "linux_64":    "linux_x86_64",
+    "linux_32":    "linux_x86_32",
+    "windows_64":  "windows_x86_64",
+    "windows_32":  "windows_x86_32",
+    "bacula":      "http://flow.nti.tul.cz/packages",
+    "docker_repo": "http://flow.nti.tul.cz/docker-images",
+    "_docker_":    "{docker_repo}/{package_dir}/flow123d_{version}_",
+    "_":           "{bacula}/{package_dir}/flow123d_{version}_",
+    "__":          "{bacula}/{package_dir}/flow123d_{version}_"
 };
 
 var missing_map = {
@@ -132,7 +134,15 @@ function isHomepage () {
     return window.location.pathname == '/'
 }
 
-/** function will replace placeholders with version currents object value */
+/**
+ * function will replace placeholders with version currents object value
+ * first argument is string containing placeholders such as:
+ *    "Images can be downloaded from {docker_repo} URL"
+ * Following arguments are objects, where their keys are searched and if 
+ * they match, placeholder value is replaced by value. 
+ *  resulting value is:
+ *    "Images can be downloaded from http://flow.nti.tul.cz/docker-images/ URL"
+ */
 function replacePlaceholders (str) {
     var objects = _.toArray (arguments).slice (1);
     if (objects.length == 0)
@@ -150,6 +160,7 @@ function replacePlaceholders (str) {
 function updateLinks () {
     var delay = 0;
     $ ('#dynamic_menu a').each (function (index, item) {
+        // we call replacePlaceholders twice to allow nested replacements
         var newHref = replacePlaceholders ($ (item).data ().url, getVersion(), plarforms);
         newHref = replacePlaceholders ($ (item).data ().url, getVersion(), plarforms);
         if ($ (item).attr ('href') != newHref) {
