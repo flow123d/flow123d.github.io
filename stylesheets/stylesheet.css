@@ -86,7 +86,7 @@ header a h1 {
 
 header h1 #flow_version {
   color: #aaa;
-  padding-left: 20px;
+  padding-left: 10px;
   font-size: 46px;
 }
 
@@ -498,4 +498,29 @@ div .picture {
 
 #main_content .download-section > li::before  {
     content: none;
+}
+
+
+#logo {
+	background: url(/images/black.svg) 0 0 no-repeat;
+	background-size: cover;
+	width: 300px;
+	height: 75px;
+	padding-top: 20px;
+	display: inline-block;
+}
+
+#logo:hover {
+	background: url(/images/color.svg) 0 -4px no-repeat;
+	background-size: cover;
+	width: 296px;
+	height: 65px;
+	padding-top: 20px;
+	padding-bottom: 10px;
+	padding-right: 4px;
+	display: inline-block;
+}
+
+#flow_version {
+	display: inline-block;
 }
