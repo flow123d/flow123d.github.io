@@ -1,0 +1,151 @@
+---
+title: Flow123d - Readme
+layout: page
+---
+
+<h1 id="flow123d">Flow123d</h1>
+<p>Flow123d is a simulator of underground water flow and transport processes in fractured porous media. Novelty of this software is support of computations on complex meshes consisting of simplicial elements of different dimensions. Therefore we can combine continuum models and discrete fracture network models. For more information see the project pages: <a href="http://flow123d.github.com">flow123d.github.com</a>.</p>
+<p>Release <a href="http://ciflow.nti.tul.cz:8080/view/multijob-list/job/Flow123d-ci2runner-release-multijob/"><img src="http://ciflow.nti.tul.cz:8080/buildStatus/icon?job=Flow123d-ci2runner-release-multijob" alt="Build Status" /></a> | Debug <a href="http://ciflow.nti.tul.cz:8080/view/multijob-list/job/Flow123d-ci2runner-debug-multijob/"><img src="http://ciflow.nti.tul.cz:8080/view/multijob-list/job/Flow123d-ci2runner-debug-multijob/badge/icon" alt="Build Status" /></a></p>
+<h2 id="license">License</h2>
+<p>The source code of Flow123d is licensed under GPL3 license. For details look at files doc/LICENSE and doc/GPL3.</p>
+<h2 id="build-flow123d">Build Flow123d</h2>
+<p>The sources of released versions can be downloaded from the project <a href="http://flow123d.github.com">web page</a>. The sources of development branches can be obtained by</p>
+<pre><code>&gt; git clone https://github.com/flow123d/flow123d.git</code></pre>
+<p>Flow123d now uses <a href="https://www.docker.com/">Docker</a> tool. Docker containers wrap a piece of software in a complete filesystem that contains everything needed to run: code, runtime, system tools, system libraries – anything that can be installed on a server.</p>
+<h3 id="windows-os-prerequisities">Windows OS prerequisities</h3>
+<p>If you are running Windows, you have to install <a href="https://www.docker.com/products/docker-toolbox">Docker Toolbox</a>. If Docker Toolbox is not installed it can be automatically installed by Windows Flow123d installator.</p>
+<p>On Windows system, you have to:</p>
+<ul>
+<li>install Docker Toolbox</li>
+<li>make sure powershell is in the system path</li>
+</ul>
+<h3 id="linux-os-prerequisities">Linux OS prerequisities</h3>
+<p>On Linux system, you have to install:</p>
+<ul>
+<li>docker</li>
+<li>make, cmake</li>
+</ul>
+<h2 id="linux-os-prerequisities-without-docker">Linux OS prerequisities without docker</h2>
+<p><strong>This approach is not recommended but it is still possible</strong></p>
+<p>It is also possible to use Flow123d without docker. This however requires much greater effort and complex prerequisities:</p>
+<p>Requested packages are:</p>
+<ul>
+<li>gcc, g++ C/C++ compiler in version 4.7 and higher (we use C++11)</li>
+<li>gfortran Fortran compiler for compilation of BLAS library for PETSc.</li>
+<li>python, perl Scripting languages</li>
+<li>make, cmake (&gt;2.8.8), patch Building tools</li>
+<li>libboost General purpose C++ library</li>
+<li>libboost-program-options-dev</li>
+<li>libboost-serialize-dev</li>
+<li>libboost-regex-dev</li>
+<li>libboost-filesystem-dev</li>
+</ul>
+<p>Requested libraries are: * Yamlcpp library * Armadillo * PETSc * BDDCML and Blopex</p>
+<p>these libraries can be installed using cmake projects in our other <a href="https://github.com/flow123d/docker-config/tree/master/cmakefiles">repository</a> but you must edit config.cmake properly so the libraries are found</p>
+<p>Optionally you may need:</p>
+<ul>
+<li>doxygen, graphviz for source generated documentation and its dependency diagrams</li>
+<li>texlive-latex or other Latex package to build reference manual, we use also some extra packages: on RedHat type distributions you may need texlive-cooltooltips, on Debian/Ubuntu texlive-latex-extra</li>
+<li>imagemagick tool is used to generate some graphics for the reference manual</li>
+<li>Python 2.7 and python libraries - markdown, json for HTML manual</li>
+</ul>
+<h3 id="compile-flow123d">Compile Flow123d</h3>
+<p>To compile Flow123d use docker image <code>flow-libs-dev-rel</code> for <em>release</em> or <code>flow-libs-dev-dbg</code> for <em>debug</em> version. Images can be found <a href="https://github.com/flow123d/docker-config/tree/master/dockerfiles">here</a>.</p>
+<p>In order ro compile Flow123d:</p>
+<ol style="list-style-type: decimal">
+<li><p>Clone <a href="https://github.com/flow123d/docker-config">docker-config</a> repository:</p>
+<pre class="sh"><code> $ git clone https://github.com/flow123d/docker-config.git</code></pre></li>
+<li><p>Install Docker images (this may take a while):</p>
+<pre class="sh"><code>$ cd docker-config/bin
+$ ./configure</code></pre></li>
+<li><p>Enter docker image:</p>
+<pre class="sh"><code>$ docker run -ti --rm -u $(id -u):$(id -g) flow-libs-dev-rel:user</code></pre></li>
+<li><p>Clone Flow123d repository and copy config file</p>
+<pre class="sh"><code>$ git clone https://github.com/flow123d/flow123d.git
+$ cd flow123d
+$ cp config/config-jenkins-docker-release.cmake config.cmake</code></pre></li>
+<li><p>Run compilation:</p>
+<pre class="sh"><code>$ make -j 2 all</code></pre></li>
+</ol>
+<p>This runs configuration and then the build process. If the configuration fails and you need to correct your <code>config.cmake</code> or other system setting you have to cleanup all files generated by unsuccessful cmake configuration by:</p>
+<pre class="sh"><code>$ make clean-all</code></pre>
+<p>Try this every time if your build doesn't work and you don't know why.</p>
+<p>** Parallel builds **</p>
+<p>Build can take quite long time when running on single processor. Use make's parameter '-j N' to use N parallel processes. Developers can set appropriate alias in '.bashrc', e.g. :</p>
+<pre class="sh"><code>export NUMCPUS=`grep -c &#39;^processor&#39; /proc/cpuinfo`
+alias pmake=&#39;time nice make -j$NUMCPUS --load-average=$NUMCPUS&#39;</code></pre>
+<h3 id="manual-petsc-installation-optional">Manual PETSc installation (optional)</h3>
+<p>Flow versions 1.8.x depends on the PETSC library 3.4.x. It is installed automatically if you do not set an existing installation in <code>config.cmake</code> file. However the manual installation is necessary if - you want to switch between more configurations (debugging, release, ...) using <code>PETSC_ARCH</code> variable. - you want to achieve best performance configuring with system-wide MPI and/or BLAS and LAPACK libraries.</p>
+<ol style="list-style-type: decimal">
+<li><p>download PETSc 3.4.x from: http://www.mcs.anl.gov/petsc/petsc-as/documentation/installation.html</p></li>
+<li><p>unpack to any working directory and go to it, eg. :</p>
+<pre><code>&gt; cd /home/jb/local/petsc</code></pre></li>
+<li><p>Set variables:</p>
+<pre><code>&gt; export PETSC_DIR=`pwd`</code></pre>
+<p>For development you will need at least debugging build of the library. Set the name of configuration, eg. :</p>
+<pre><code>&gt; export PETSC_ARCH=linux-gcc-dbg</code></pre></li>
+<li><p>Run the configuration script, for example with following options:</p>
+<pre><code>&gt; ./config/configure.py --with-debugging=1 --CFLAGS-O=-g --FFLAGS-O=-g \
+  --download-mpich=yes --download-metis=yes --download-parmetis --download-f-blas-lapack=1</code></pre>
+<p>This also force cofigurator to install BLAS, Lapack, MPICH, and ParMetis so it takes a while (it could take about 15 min). If everything is OK, you obtain table with used compilers and libraries.</p></li>
+<li><p>Finally compile PETSC with this configuration:</p>
+<pre><code>&gt; make all</code></pre>
+<p>To test the compilation run:</p>
+<pre><code>&gt; make test</code></pre>
+<p>To obtain PETSC configuration for the production version you can use e.g.</p>
+<pre><code>&gt; export PETSC_ARCH=linux-gcc-dbg
+&gt; ./config/configure.py --with-debugging=0 --CFLAGS-O=-O3 --FFLAGS-O=-O3 \
+   --download-mpich=yes --download-metis=yes --download-f-blas-lapack=1
+&gt; make all
+&gt; make test</code></pre></li>
+</ol>
+<h3 id="notes">Notes:</h3>
+<ul>
+<li>You can have several PETSC configuration using different <code>PETSC_ARCH</code> value.</li>
+<li>For some reasons if you let PETSc to download and install its own MPICH it overrides your optimization flags for compiler. Workaround is to edit file <code>${PETSC_DIR}/${PETSC_ARCH}/conf/petscvariables</code> and modify variables <code>&lt;complier&gt;_FLAGS_O</code> back to the values you wish.</li>
+<li>PETSc configuration should use system wide MPI implementation for efficient parallel computations.</li>
+<li>You have to compile PETSc at least with Metis support.</li>
+</ul>
+<h3 id="support-for-other-libraries">Support for other libraries</h3>
+<p>PETSc supports lot of other software packages. Use <code>configure.py --help</code> for the full list. Here we highlight the packages we are familiar with.</p>
+<ul>
+<li><p><strong>MKL</strong> is implementation of BLAS and LAPACK libraries provided by Intel for their processors. Usually gives the best performance. Natively supported by PETSc.</p></li>
+<li><p><strong>ATLAS library</strong> PETSC use BLAS and few LAPACK functions for its local vector and matrix operations. The speed of BLAS and LAPACK have dramatic impact on the overall performance. There is a sophisticated implementation of BLAS called ATLAS. ATLAS performs extensive set of performance tests on your hardware then make an optimized implementation of BLAS code for you. According to our measurements the Flow123d is about two times faster with ATLAS compared to usual --download-f-blas-lapack (on x86 architecture and usin GCC).</p></li>
+</ul>
+<p>In order to use ATLAS, download it from ... and follow their instructions. The key point is that you have to turn off the CPU throttling. To this end install 'cpufreq-set' or <code>cpu-freq-selector</code> and use it to set your processor to maximal performance:</p>
+<pre><code>cpufreq-set -c 0 -g performance
+cpufreq-set -c 1 -g performance</code></pre>
+<p>... this way I have set performance mode for both cores of my Core2Duo.</p>
+<p>Then you need not to specify any special options, just run default configuration and make.</p>
+<p>Unfortunately, there is one experimental preconditioner in PETSC (PCASA) which use a QR decomposition Lapack function, that is not part of ATLAS. Although it is possible to combine ATLAS with full LAPACK from Netlib, we rather provide an empty QR decomposition function as a part of Flow123d sources. See. HAVE_ATTLAS_ONLY_LAPACK in ./makefile.in</p>
+<ul>
+<li>PETSC provides interface to many useful packages. You can install them adding further configure options:</li>
+</ul>
+<p>--download-superlu=yes # parallel direct solver --download-hypre=yes # Boomer algebraic multigrid preconditioner, many preconditioners --download-spools=yes # parallel direc solver --download-blacs=ifneeded # needed by MUMPS --download-scalapack=ifneeded # needed by MUMPS --download-mumps=yes # parallel direct solver --download-umfpack=yes # MATLAB solver</p>
+<p>For further information about use of these packages see:</p>
+<p>http://www.mcs.anl.gov/petsc/petsc-2/documentation/linearsolvertable.html</p>
+<p>http://www.mcs.anl.gov/petsc/petsc-as/snapshots/petsc-current/docs/manualpages/PC/PCFactorSetMatSolverPackage.html#PCFactorSetMatSolverPackage http://www.mcs.anl.gov/petsc/petsc-as/snapshots/petsc-current/docs/manualpages/Mat/MAT_SOLVER_SPOOLES.html#MAT_SOLVER_SPOOLES http://www.mcs.anl.gov/petsc/petsc-as/snapshots/petsc-current/docs/manualpages/Mat/MAT_SOLVER_MUMPS.html#MAT_SOLVER_MUMPS http://www.mcs.anl.gov/petsc/petsc-as/snapshots/petsc-current/docs/manualpages/Mat/MAT_SOLVER_SUPERLU_DIST.html http://www.mcs.anl.gov/petsc/petsc-as/snapshots/petsc-current/docs/manualpages/Mat/MAT_SOLVER_UMFPACK.html</p>
+<p>http://www.mcs.anl.gov/petsc/petsc-as/snapshots/petsc-dev/docs/manualpages/PC/PCHYPRE.html</p>
+<h2 id="build-the-reference-manual">Build the reference manual</h2>
+<p>The reference manual can be built by while in docker container</p>
+<pre class="sh"><code>$ make ref-doc</code></pre>
+<p>To copy out reference manual from docker use command <code>docker cp</code>.</p>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<ul>
+<li><strong>Petsc Detection Problem:</strong></li>
+</ul>
+<p>CMake try to detect type of your PETSc installation and then test it by compiling and running simple program. However, this can fail if the program has to be started under 'mpiexec'. In such a case, please, set:</p>
+<pre><code>&gt; set (PETSC_EXECUTABLE_RUNS YES)</code></pre>
+<p>in your makefile.in.cmake file, and perform: <code>make clean-all; make all</code></p>
+<p>For further information about program usage see reference manual <code>doc/flow_doc</code>.</p>
+<ul>
+<li><p>** Shared libraries ** By default PETSC will create dynamically linked libraries, which can be shared be more applications. But on some systems (in particular we have problems under Windows) this doesn't work, so one is forced to turn off dynamic linking by:</p>
+<p>--with-shared=0</p></li>
+<li><p>** No MPI ** If you want only serial version of PETSc (and Flow123d) add --with-mpi=0 to the configure command line.</p></li>
+<li><p>** Windows line ends** If you use a shell script for PETSC configuration under cygwin, always check if you use UNIX line ends. It can be specified in the notepad of Windows 7.</p></li>
+</ul>
+<p>or other errors usually related to DLL conflicts. (see http://www.tishler.net/jason/software/rebase/rebase-2.4.2.README) To fix DLL libraries you should perform:</p>
+<p>-# shutdown all Cygwin processes and services -# start <code>ash</code> (do not use bash or rxvt) -# execute <code>/usr/bin/rebaseall</code> (in the ash window)</p>
+<p>Possible problem with 'rebase': /usr/lib/cygicudata.dll: skipped because nonexist . . . FixImage (/usr/x86_64-w64-mingw32/sys-root/mingw/bin/libgcc_s_sjlj-1.dll) failed with last error = 13</p>
+<p>Solution (ATTENTION, depends on Cygwin version): add following to line 110 in the rebase script: -e '//sys-root/mingw/bin/d'</p>
+

@@ -1,0 +1,296 @@
+---
+title: Flow123d - Changes
+layout: page
+---
+
+<p>List of all changes in user interface and major internal changes.</p>
+<hr />
+<h1 id="flow123d-version-2.2.0">Flow123d version 2.2.0</h1>
+<p>(2017-11-17)</p>
+<h2 id="user-interface">User interface</h2>
+<ul>
+<li>Input YAML file supports including of other YAML files and including of tables in CSV files.</li>
+<li>Support for binary and compressed VTK output.</li>
+<li>FieldElementwise support for reading VTK files.</li>
+<li>Summary table for uninitialized fields instead of plenty separate warnings.</li>
+</ul>
+<h3 id="new-features">New features</h3>
+<ul>
+<li>Solute_AdvectionDiffusion_DG model supports tensor of diffusion.</li>
+<li>Anisotropic automatic choice of DG penalty. Helps for pure diffusion into matrix around fractures with high advection.</li>
+</ul>
+<h2 id="bug-fixes">Bug fixes</h2>
+<ul>
+<li>Fix wrong communication between dimensions when porosities differ in heat and solute transport.</li>
+<li>Fix in batch wrappers for Windows. Return to caller after simulation is done.</li>
+<li>Fix of minor error in balance file for DG transport model with sorption.</li>
+<li>Improved options for the linear solver for DG heat and transport.</li>
+</ul>
+<h3 id="internals">Internals:</h3>
+<ul>
+<li>Simplification of output classes.</li>
+<li>Simplification in Balance</li>
+</ul>
+<h1 id="flow123d-version-2.1.2">Flow123d version 2.1.2</h1>
+<p>(2017-02-21)</p>
+<h2 id="user-interface-1">User interface</h2>
+<ul>
+<li>Improved installer script and extended install documentation.</li>
+</ul>
+<h3 id="new-features-1">New features</h3>
+<ul>
+<li>Add support for compressed VTK output.</li>
+<li>Better test for initialization of fields.</li>
+</ul>
+<h3 id="bug-fixes-1">Bug fixes</h3>
+<ul>
+<li>Fix that runtest hangs when ndiff produced a binary stdout.</li>
+<li>Fix noncompatible P0 algorithm.</li>
+</ul>
+<h3 id="internals-1">Internals:</h3>
+<ul>
+<li>Use python 3 only.</li>
+<li>Own build of mpich preventing error on valgrind use.</li>
+<li>Cleanup of input headers.</li>
+</ul>
+<hr />
+<h1 id="flow123d-version-2.1.0">Flow123d version 2.1.0</h1>
+<p>(2016-12-16)</p>
+<h2 id="user-interface-2">User interface</h2>
+<ul>
+<li>introduction of tutorials (tests/05_tutorials)</li>
+<li>Docker is used for running Flow123d in platform independent environment.</li>
+<li>Change meaning (and names) of parameters of Sorptions. Closer to common usage.</li>
+<li>Updated documentation.</li>
+<li>Improved format of generated input reference fro both Latex and HTML.</li>
+</ul>
+<h3 id="new-features-2">New features</h3>
+<ul>
+<li>FieldTimeFunction - field constant in space and interpolated in time from a table of values.</li>
+<li>Unit conversion for fields.</li>
+<li>Support for binary VTK output.</li>
+<li>Checks for field limits.</li>
+</ul>
+<h3 id="bug-fixes-2">Bug fixes</h3>
+<ul>
+<li>Fix unsteady water flow without prescribed timestep.</li>
+<li>Fix configuration of the linear solver as part of the nonlinear solver.</li>
+<li>Fix problem with YAML tag in autoconversion of Abstract.</li>
+<li>Fix search of observe points.</li>
+<li>Fix curious bug in selection of output times specific to individual equations.</li>
+<li>Fix unsteady MH solver.</li>
+<li>Fix observe output for no observation fields.</li>
+<li>Fix some destructors.</li>
+<li>Fix solute balance in zero time.</li>
+<li>Fix init_piezo_head</li>
+</ul>
+<h3 id="internals-2">Internals:</h3>
+<ul>
+<li>reorganization of the integration tests</li>
+<li>use Docker to build and test Flow123d</li>
+<li>replace boost::shared_ptr by std::shared_ptr</li>
+<li>Simplified finishing of input types.</li>
+</ul>
+<hr />
+<h1 id="flow123d-version-2.0.0">Flow123d version 2.0.0</h1>
+<p>(2016-08-31)</p>
+<h3 id="user-interface-3">User interface</h3>
+<ul>
+<li><p>Adopt YAML (http://www.yaml.org/start.html) as the format for the principal input file. The CON format (derivate of JSON) is still accepted, but obsolete. Only pure JSON format will be supported in the future.</p></li>
+<li><p>A tool is provided for conversion from the CON with the structure of the 1.8.2 version to the YAML format with the new structure. The tool can also convert YAML files of the version 2.0.0_rc.</p></li>
+</ul>
+<p>Usage: <code>bin/input_convert.sh path/to/old_file.con</code> <code>bin/input_convert.sh path/to/old_file.yaml</code></p>
+<ul>
+<li><p>Vector valued fields are replaced by &quot;multifields&quot;. This allows independent setting for individual components. E.g. <code>init_conc = [ 0, 1, {TYPE=FieldFormula, value=&quot;x*y&quot;} ]</code></p></li>
+<li><p>Automatic conversion from Record to Array is implemented as a transpose, e.g. <code>{ a: [1,2], b: [3,4] }</code></p></li>
+</ul>
+<p>may be converted to</p>
+<p><code>[ {a:1, b:3}, {a:2, b:4} ].</code></p>
+<p>Useful for multifields.</p>
+<ul>
+<li><p>Field descriptors in the 'input_fields' list need not to form increasing time series, this is required only for the sequence of field descriptors of the single field. E.g. this is valid:</p>
+<pre><code>input_fields : [
+   { time:0.0, region:&quot;ALL&quot;, conductivity:1 },
+   { time:1.0, region:&quot;ALL&quot;, conductivity:2 },
+   { time:0.0, region:&quot;ALL&quot;, init_pressure: 0.5}        
+]</code></pre></li>
+<li><p>Removed support for old BCD files.</p></li>
+<li><p>Introduction of observation points.</p></li>
+<li><p>Independent output times for the balance output and the field output. Support for more complex scheme of output times.</p></li>
+<li><p>Changes in the structure of the input file:</p>
+<ul>
+<li><p>Add obligatory key: <code>/flow123d_version</code> with a string marking the version of the file format</p></li>
+<li><p>All boundary fluxes on input are treated as positive if they are increasing the mass balance. This is contradictory to the convention used in PDE, but is consistent with treatment of the volume sources. Same convention is used in balance output files. The conversion script takes care of sign change for constant and formula input fields, but produce an invalid input in the case of <code>FieldElementwise</code> or <code>FieldPython</code> in order to mark these fields that must be fixed manually by the user.</p></li>
+<li><p>Combined Neumann + Robin boundary condition. The separate BC types 'neumann' and 'robin' for the Darcy flow and the DG transport are replaced by the single BC type 'total_flux'. Moreover, DG transport supports BC type 'diffusive_flux' which applies only to the diffusion-dispersion boundary flux.</p></li>
+<li><p>Rename couplings to: 'Coupling_OperatorSplitting', 'Coupling_Sequential'</p></li>
+<li><p>'Coupling_Sequantial' have keys 'flow_equation', 'solute_equation', 'heat_equation' instead of 'primary_equation' and 'secondary_equation'.</p></li>
+<li><p>Rename equations to: 'Flow_Darcy_MH', 'Flow_Richards_LMH', Solute_AdvectionDiffusion_DG', 'Solute_Advection_FV', 'Heat_AdvectionDiffusion_DG',</p></li>
+<li><p>Move setting of the Solute_Advection_FV and Solute_AdvectionDiffusion_DG under the key 'transport' of the Coupling_OperatorSplitting. This is necessary to allow coupling of reactions with the diffusive transport.</p></li>
+<li><p>Modification of the mesh setting. Regions and region sets are now treated equally, the term &quot;region&quot; now means the set of elementary regions, i.e. what was the region set up to now. Regions are imported from the mesh (named physical group in GMSH), further regions may be created by operations in the list: /problem/mesh/regions; which now support operations from both previous lists: /problem/mesh/regions and /problem/mesh/sets</p></li>
+<li><p>Remove the key 'r_set' from the field descriptors. Use the key 'region' instead. Moreover, list of region labels may be used.</p></li>
+<li><p>Flow_Darcy_MH dynamicaly switch between steady and unsteady behavior according to the value of the 'storativity' field. Zero value (default) force the steady model. Similarly for the Flow_Richards_LMH however both fields 'storativity' and 'water_content_saturated' must be zero (default).</p></li>
+<li><p>Rename the key 'solver' of the flow equations to 'linear_solver' and move it under the new key 'nonlinear_solver'.</p></li>
+<li><p>Separation of output_stream (only for main equations) with specification of resulting format and setting common to equation outputs usign the stream. The equation outputs specify &quot;what to output&quot;, namely 'output_fields' and 'observe_fields'.</p></li>
+<li><p>Rename 'BOUNDARY' and 'IMPLICIT BOUNDARY' region sets to '.BOUNDARY' and '.IMPLICIT_BOUNDARY' respectively.</p></li>
+<li><p>Add HTML format of the generated documentation to the structure of the input file.</p></li>
+</ul></li>
+</ul>
+<h3 id="new-features-3">New features</h3>
+<ul>
+<li>Experimental support of Richards equation (model 'Flow_Richards_LMH'). Can not be used with transport processes yet.</li>
+<li>DG - Reactions operator splitting.</li>
+<li>'total_flux' combined Neumann and Robin BC for the flow equations.</li>
+<li>'seepage_face' and 'river' boundary conditions for the flow equations</li>
+<li>'total_flux' combined Neumann and Robin BC and 'diffusive_flux' the Solute_AdvectionDiffusion_DG equation.</li>
+<li>Coupling of the Solute_AdvectionDiffusion_DG model with the general reaction term via operator splitting.</li>
+<li>Using stable Pade aproximant for Decays and FirstOrderReaction.</li>
+<li>Make whole reaction term models unconditionaly stable (no additional time step constraints).</li>
+<li>Use conservative formulation in Solute_Advection_FV, allow time dependent 'porosity' and 'cross_section' fields.</li>
+<li>Unified messaging and logging.</li>
+<li>Use PETSc 3.6</li>
+</ul>
+<h3 id="bug-fixes-3">Bug fixes</h3>
+<ul>
+<li>Fix bug in treatment of the paths given by -i and -o command line arguments.</li>
+<li>Fix calculation of the dispersivity for small velocities in Solute_AdvectionDiffusion_DG.</li>
+<li>Allow arbitrary sources in Solute_Advection_FV, set CFL condition appropriately.</li>
+<li>Fix bug in release 2.0.0_rc in Richards_LMH when using 3D elements.</li>
+</ul>
+<h3 id="internals-3">Internals:</h3>
+<ul>
+<li>Introduce generic input types, allow simplification of the documentation.</li>
+<li>Introduce attributes for input types and record keys, allow passing additional information to exteranal applications, e.g. GeoMop.</li>
+<li>Introduce input type Tuple.</li>
+<li>YAML input reader.</li>
+<li>Treat Input::Abstract as an interface. Allow Record derived from more abstracts (interfaces). Input::Abstract have no keys and is not derived from the Record anymore.</li>
+<li>Adopt the linear algebra classes from the deal.ii project.</li>
+<li>Memory profiler.</li>
+<li>Consistent usage of the ReferenceElement class, to get numbering and orientation of various geometry entities.</li>
+<li>Display code coverage of unit tests on Jenkins build server interface.</li>
+<li>Input::Factory mechanism is used for constructing objects according to the input. Reduce dependencies of sources.</li>
+<li>Executable wrappers dealing with compatibility of the shared libraries.</li>
+<li>General default values (JSON format).</li>
+<li>Stream based messaging and logging.</li>
+<li>ASSERTS with simple output of involved variables.</li>
+</ul>
+<hr />
+<h1 id="flow123d-version-1.8.2">Flow123d version 1.8.2</h1>
+<p>(2015-03-15)</p>
+<h3 id="user-interface-4">User interface</h3>
+<ul>
+<li>Key DarcyMHOutput/balance_output replaced by DarcyFlowMH/balance.</li>
+<li>Key TransportOperatorSplitting/mass_balance replaced by TransportOperatorSplitting/balance.</li>
+<li>Key SoluteTransport_DG/mass_balance replaced by SoluteTransport_DG/blance.</li>
+<li>Key HeatTransfer_DG/mass_balance replaced by HeatTransfer_DG/balance.</li>
+<li>Unified record Balance for configuration of balance output.</li>
+<li>New key DarcyFlowMH/gravity to set gravity vector.</li>
+<li>All output selections support fields 'region_id' and 'subdomain'.</li>
+<li>TransportOperatorSplitting/substances and TransportDG/substances. are arrays of Substance records. Substance record contains substance name and its molar mass. Molar mass is then used in the ReactionTerm.</li>
+<li>Key 'molar_mass' removed from Sorption model records.</li>
+<li>Reaction term model LinearReactions is replaced by specialized models FirstOrderReaction and RadioactiveDacay Both new models have records with structure similar to the LinearReactions by specialized to the particular physical context. In particular RadioactiveDecayProduct allows specification of the decay energy with in future will be used as a source in the heat equation.</li>
+<li>Reaction term model PadeAproximant is now variant of 'ode_solver' used by some reaction models.</li>
+<li>Alternative 'ode_solver' is LinearODEAnalytic that was used as default by previous versions.</li>
+<li>TimeGovernor is now autoconstructable from the key 'max_dt'.</li>
+<li>Meaning of TimeGovernor/init_dt has changed. Newly it is suggestion of the very first time step.</li>
+</ul>
+<h3 id="new-features-4">New features</h3>
+<ul>
+<li>United implementation of balance calculations, fast even for explicit solvers.</li>
+<li>Balance output readable by table processors.</li>
+<li>SoluteTransport_DG: changes in interpretation of boundary conditions (see manual for current meaning).</li>
+<li>Faster BIHTree for search of non-comaptible neighborings.</li>
+<li>Continuous integration of all install packages.</li>
+<li>Windows installer.</li>
+<li>Automatic creation of the output directory.</li>
+<li>Faster dual porosity solver.</li>
+</ul>
+<h3 id="bug-fixes-4">Bug fixes</h3>
+<ul>
+<li>Memory leak in output classes.</li>
+<li>All models now adjust its time steps to match changes of input fields and output times. Several bugs fixed in all models. Added dedicated tests.</li>
+<li>Wrong profiler times for the linear solver.</li>
+<li>Infinite loop during processing of the --JSON_machine command line argument.</li>
+<li>Wrong treatment of possible failure of nonlinear solver in sorption. Missing check of input values.</li>
+<li>Binary for 32-bit Windows did not run. (CYGWIN bug)</li>
+<li>Resolved instability of inflow/outflow detection in DG solver.</li>
+<li>Wrong line numbers in some error messages produced by JSON parser.</li>
+<li>Missing error messages on Windows system.</li>
+<li>Bugs in non-compatible 2D-1D assembly in DarcyFlowMH.</li>
+<li>Radioactive decay should depend on the molar weight (conserve amount of nuclei not mass).</li>
+<li>PadeAproximant did not work in parallel.</li>
+<li>Wrong mass balance with non-zero reaction term.</li>
+<li>Memory leak in LinSys_PETSC.</li>
+<li>Fails to read mesh with region ID repeating for regions of different dimension.</li>
+</ul>
+<hr />
+<h1 id="flow123d-version-1.8.1">Flow123d version 1.8.1</h1>
+<p>(2014-05-14)</p>
+<h3 id="bug-fixes-5">Bug fixes</h3>
+<ul>
+<li>fix missing error messages under Windows</li>
+<li>fix a memory leak in LinSys_PETSC::gather_solution</li>
+<li>fix weights in BDDC for Darcy flow</li>
+<li>fix wrong behavior when wrong region name is specified</li>
+</ul>
+<h3 id="other-changes">Other changes</h3>
+<ul>
+<li>minor improvements of manual</li>
+<li>add Python support under Windows</li>
+<li>add BDDC support under Windows</li>
+<li>use BDDCML 2.4</li>
+<li>fix and unit tests for BIHTree class</li>
+<li>improved test 23 - dual porosity</li>
+<li>updated petsc_options_help</li>
+</ul>
+<hr />
+<h1 id="flow123d-version-1.8.0">Flow123d version 1.8.0</h1>
+<p>(2014-03-31)</p>
+<h3 id="user-interface-5">User interface:</h3>
+<ul>
+<li>every equation can output any input, computed, or post-processed field, new keys: 'output_stream', 'output_fields'</li>
+<li>input fields given in one list under key 'input_fields' instead of separated 'bulk_data' and 'bc_data' lists<br />
+</li>
+<li>improved mass balance files (yet not correct with reaction term)</li>
+<li>output of discontinuous linear finite elements</li>
+<li>enhancements in flow123d.sh script; changed syntax, support for MetaCentrum clusters</li>
+<li>support for BDDCML parallel solver in Darcy flow model</li>
+<li>relative references in the input file produce warning reporting used absolute path</li>
+<li>input interface warnings for unknown keys in the input file</li>
+<li>warning for usage of field default values</li>
+<li>Flow123d tries to keep IDs of nodes and elements in output into GMSH format same as in the input mesh; but it is not guaranteed to future and/or for parallel case</li>
+</ul>
+<h3 id="physics">Physics:</h3>
+<ul>
+<li>transition coefficients in coupling of different dimensions are computed from other parameters, 'sigma' parameter is additional scaling coefficient with default value 1.0</li>
+<li>concentration sources in Transport DG</li>
+<li>general reaction term for operator splitting; can combine dual porosity, adsorption and reactions</li>
+<li>limited solubility model in adsorptions</li>
+<li>TransportDG supports second and third order finite elements</li>
+<li>TransportDG supports Dirichlet, Neumman, and Robin boundary conditions</li>
+<li>Darcy flow supports non-compatible 2d-1d meshes</li>
+<li>support for heat transfer simulations (based on TransportDG); can not be combined with solute transport yet</li>
+<li>ConvectionTransport adapt its time step to match change times of the input fields</li>
+</ul>
+<h3 id="internals-4">Internals:</h3>
+<ul>
+<li>transition to git, github</li>
+<li>transition to ci2 test server; YAML description of tests</li>
+<li>new output subsystem</li>
+<li>Fields can read from input independently and can hold short time history</li>
+<li>optimization of mesh reading</li>
+<li>optimization of Schur complement computation</li>
+<li>optimization of TransportDG assembly</li>
+<li>fast interpolation method for nonlinear adsorptions</li>
+<li>output of the input type tree in machine readable JSON format</li>
+<li>use C++11; g++ 4.7 and newer</li>
+<li>transition to petsc 3.4.3</li>
+<li>run_test.sh script use flow123d.sh consistently, can be used also on parallel systems</li>
+<li>general classes for interpolation tables (not used yet)</li>
+<li>AdHocAbstractRecord - abstract record with different kind of documentation</li>
+<li>automatic installation of BDDCML library</li>
+<li>reimplemented BIHTree, faster and more robust</li>
+<li>transition to gtest 1.7.0</li>
+<li>automatic night packages for both Linux and Windows</li>
+<li>replace EqDataBase by more general class FieldSet</li>
+</ul>
+

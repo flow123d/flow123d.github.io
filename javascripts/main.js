@@ -14,6 +14,22 @@
  */
 var versions = [
     {
+        "id":          "release-2.2.0",
+        "package_dir": "2.2.0_release",
+        "web_dir":     "2.2.0",
+        "version":     "2.2.0",
+        "name":        "release 2.2.0",
+        "show_links":  ['download', 'features', 'changes', 'manual', 'source', 'readme', 'htmldoc']
+    },
+    {
+        "id":          "release-2.1.2",
+        "package_dir": "2.1.2_release",
+        "web_dir":     "2.1.2",
+        "version":     "2.1.2",
+        "name":        "release 2.1.2",
+        "show_links":  ['download', 'features', 'changes', 'manual', 'source', 'readme', 'htmldoc']
+    },
+    {
         "id":          "release-2.1.0",
         "package_dir": "2.1.0_release",
         "web_dir":     "2.1.0",
@@ -104,6 +120,10 @@ var missing_map = {
     'readme':     '#readme',
     'htmldoc':    '#htmldoc'
 }
+
+/** default selected version id, preffered version by url */
+var currentVersion = "release-2.2.0";
+currentVersion = getURLVersion() ? getURLVersion().id : getVersion().id;
 
 var buildTemplate = "<span class='build-info' title='{rel}'>builded {build} ({rel})</span>";
 var errorTemplate = "<span class='build-info no-info'>build date unknown</span>";
@@ -261,9 +281,6 @@ String.prototype.capitalizeFirstLetter = function () {
     return this.charAt (0).toUpperCase () + this.slice (1);
 };
 
-/** default selected version id, preffered version by url */
-var currentVersion = "release-2.1.0";
-currentVersion = getURLVersion() ? getURLVersion().id : getVersion().id;
 
 /** on document ready do fade-in effect, populate dropdown and replace placeholders */
 $ (document).ready (function () {

@@ -1,0 +1,32 @@
+---
+title: Flow123d - Download
+layout: page
+---
+
+<h1>
+  Download
+</h1>
+
+<h2>Version 2.1.0</h2>
+
+<ul class="download-section">
+  <li>
+<<<<<<< HEAD
+    <a href="{_}windows_install.zip" data-version="{_}windows_install.json">Windows install package.</a>
+  </li>
+  <li>
+    <a href="{_}linux_install.tar.gz" data-version="{_}linux_install.json">Linux install package.</a>
+  </li>
+  <li>
+    <a href="{_}docker_image.tar.gz" data-version="{_}docker_image.json">Portable Docker image.</a>
+=======
+    <a href="{_}windows_install.zip" data-version="{__}windows_install.json">Windows install package.</a>
+  </li>
+  <li>
+    <a href="{_}linux_install.tar.gz" data-version="{__}linux_install.json">Linux install package.</a>
+  </li>
+  <li>
+    <a href="{_}docker_image.tar.gz" data-version="{__}docker_image.json">Portable Docker image.</a>
+>>>>>>> 3cca3fa2670134129c8f045cdb6cfdc776b8f3c6
+  </li>
+</ul>
