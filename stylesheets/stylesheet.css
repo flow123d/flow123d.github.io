@@ -502,15 +502,6 @@ div .picture {
 
 
 #logo {
-	background: url(/images/black.svg) 0 0 no-repeat;
-	background-size: cover;
-	width: 300px;
-	height: 75px;
-	padding-top: 20px;
-	display: inline-block;
-}
-
-#logo:hover {
 	background: url(/images/color.svg) 0 -4px no-repeat;
 	background-size: cover;
 	width: 296px;
