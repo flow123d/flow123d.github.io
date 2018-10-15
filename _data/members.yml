@@ -1,0 +1,55 @@
+# -------------------------
+# ACTIVE DEVELOPERS SECTION
+# -------------------------
+- section: Active developers
+  users:
+  - name: Jan Brezina
+    github: jbrezmorf
+    email: jan.brezina
+
+  - name: Jan Stebel
+    github: jstebel
+    email: jan.stebel
+
+  - name: David Flanderka
+    github: dflanderka
+    # email: david.flanderka
+    
+  - name:   Jan Hybs
+    github: janhybs
+    email:  jan.hybs
+
+
+# -------------------------
+# FORMER DEVELOPERS SECTION
+# -------------------------
+- section: Former developers
+  users:
+  - name: Pavel Richter
+    github: richtertul
+
+# -------------------------
+# MAINTANERS SECTION
+# -------------------------
+- section: Maintainers
+  users:
+  - name:   Jan Hybs
+    email:  jan.hybs
+    github: janhybs
+
+# -------------------------
+# HONORABLE MENTIONS SECTION
+# -------------------------
+- section: Mentions
+  users:
+  - Aleš Balvín
+  - Milan Hokr
+  - Jiří Hnídek
+  - Jakub Šístek
+  - Lukáš Zedek
+  - Vojtěch Wrnata
+  - Jiří Kopal
+  - Otto Severýn
+  - Dalibor Frydrych
+  - Jan Šembera
+  - Jiří Jeníček

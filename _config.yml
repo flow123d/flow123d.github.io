@@ -1,18 +1,18 @@
-name: "Flow123d"
-description: "Transport Processes in Fractured Media"
+name: "GeoMop"
+description: "Geosphere model preparation"
 author :
   name : Jan Brezina
   email : jan.brezina@tul.cz
 
 url: "http://localhost:4000"
-
-exclude: ['Gemfile', 'Gemfile.lock', 'README.md']
+sass:
+  sass_dir: assets/sass
+  style:    expanded
+    
+exclude: ['Gemfile', 'Gemfile.lock', 'README.md', 'config.rb']
 paginate: 4
 markdown: redcarpet
 redcarpet:
   extensions: ["no_intra_emphasis", "fenced_code_blocks", "autolink", "strikethrough", "superscript"]
 permalink: pretty
-
-# 'pygments' is unsupported by GitHub, only 'rouge' is supported
-#highlighter: pygments
 highlighter: rouge

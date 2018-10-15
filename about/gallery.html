@@ -1,0 +1,22 @@
+---
+title: Gallery
+layout: page
+---
+
+
+{% for gallery in site.data.gallery %}
+  <div class="gallery">
+    <h1>{{ gallery.section }}</h1>
+    {% for item in gallery.items %}
+      {% if item.cover %}
+        <a rel="example_group" title="Custom title" data-fancybox="gallery" href="{{ item.link }}">
+          <img alt="" src="{{ item.cover }}">
+        </a>
+      {% else %}
+      <a rel="example_group" title="Custom title" data-fancybox="gallery" href="{{ item }}">
+        <img alt="" src="{{ item }}">
+      </a>
+      {% endif %}
+    {% endfor %}
+  </div>
+{% endfor %}

@@ -1,0 +1,95 @@
+defaultVersion:  2.2.1
+packageRoot:     http://flow.nti.tul.cz/packages
+
+
+# version: <value:string> 
+#   the value corresponds to a folder in this repository
+#   /releases/<version>/
+
+# display: <value:string>
+#   the value is for humans only
+
+# name:   <value:string>
+#   the value corresponds to a folder on bacula server:
+#      <packageRoot>/<name>/flow123d_<version>_windows_install.zip
+#      <packageRoot>/<name>/flow123d_<version>_linux_install.tag.gz
+#      <packageRoot>/<name>/flow123d_<version>_docker_image.tag.gz
+
+# tags: string[]
+#   [experimental] tags, which can alter page look&feel.
+#   possible values are [for now]:
+#     - recent-release:   tells user, that this release is new
+#     - legacy-release:   tells user, that this release is fairly old
+
+# links: string[]
+#   list of links enabled for this release. 
+#     - features: enables Features page
+#     - changes:  enables Changes page
+#     - readme:   enables ReadMe page
+#     - manual:   enables link to PDF manual
+#     - htmldoc:  enables link to HTML manual
+#     - source:   enables link Source doxygen doc
+# 
+#     - download:       enables download dropdown component with
+#                       Linux/Windows/Docker download links
+#     - legacyDownload: enables legagy download page
+#                       where links can also be hard-wired into the page
+
+releaseList:
+  - version:  2.2.1
+    display:  release 2.2.1
+    name:     2.2.1_release
+    tags:     [recent-release]
+    links:    [download, features, changes, manual, source, readme, htmldoc]
+    
+  - version:  2.2.0
+    display:  release 2.2.0
+    name:     2.2.0_release
+    links:    [download, features, changes, manual, source, readme, htmldoc]
+    
+  - version:  2.1.2
+    display:  release 2.1.2
+    name:     2.1.2_release
+    links:    [download, features, changes, manual, source, readme, htmldoc]
+    
+  - version:  2.1.0
+    display:  release 2.1.0
+    name:     2.1.0_release
+    links:    [download, features, changes, manual, source, readme, htmldoc]
+    
+  - version:  1.8.3
+    display:  release 1.8.3
+    name:     1.8.3_release
+    links:    [download, features, changes, manual, source, readme]
+    
+    # legacy releases
+    
+  - version:  1.8.2
+    display:  release 1.8.2
+    name:     1.8.2_release
+    tags:     [legacy-release]
+    links:    [legacyDownload, features, changes, manual, source, readme]
+    
+  - version:  1.8.1
+    display:  release 1.8.1
+    name:     1.8.1_release
+    tags:     [legacy-release]
+    links:    [legacyDownload, features, changes, manual, source, readme]
+    
+  - version:  1.8.0
+    display:  release 1.8.0
+    name:     1.8.0_release
+    tags:     [legacy-release]
+    links:    [legacyDownload, features, changes, manual, source, readme]
+    
+  - version:  1.7.0
+    display:  release 1.7.0
+    name:     1.7.0_release
+    tags:     [legacy-release]
+    links:    [legacyDownload, features, manual, readme]
+    
+  - version:  1.6.x
+    display:  legacy releases
+    name:     1.6.x
+    tags:     [legacy-release]
+    links:    [legacyDownload, features, manual, readme]

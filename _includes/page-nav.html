@@ -1,0 +1,75 @@
+<nav>
+  <div class="ng--binding" ng-cloak>
+
+    <select id="version-select" class="version browser-default" name='version' ng-model="version" ng-change="versionChanged()" ng-cloak>
+    	<option ng-repeat="option in options" value="{$ option.version $}" data-tags="{$ option.tags | join:' ' $}">{$ option.display $}</option>
+    </select>
+
+    <ul class="version-menu ng--change">
+      <li ng-show="item.visible.legacyDownload">
+        <a href="/releases/{$ version $}/download" title="Features overview">
+          Download
+          <!-- <i class="fa fa-download" aria-hidden="true"></i> -->
+        </a>
+      </li>
+      <li ng-show="item.visible.features">
+        <a href="/releases/{$ version $}/features" title="Features overview">
+          Features
+        </a>
+      </li>
+      <li ng-show="item.visible.changes">
+        <a href="/releases/{$ version $}/changes" title="Change log">
+          Changes
+        </a>
+      </li>
+      <li ng-show="item.visible.readme">
+        <a href="/releases/{$ version $}/readme" title="User manual in PDF format">
+          ReadMe
+        </a>
+      </li>
+      <li ng-show="item.visible.source">
+        <a href="{$ versionRoot $}/doxygen" target="_blank" title="Source code documentation">
+          Source documentation
+        </a>
+      </li>
+      <li ng-show="item.visible.manual">
+        <a href="{$ versionRoot $}/flow123d_{$ version $}_doc.pdf" target="_blank" title="User manual in PDF format">
+          User manual PDF
+          <i class="fa fa-file-pdf-o" alt="PDF format" aria-hidden="true"></i>
+        </a>
+      </li>
+      <li ng-show="item.visible.htmldoc">
+        <a href="{$ versionRoot $}/htmldoc" target="_blank" title="User manual in HTML format">
+          User manual HTML
+          <!-- <i class="fa fa-external-link" aria-hidden="true"></i> -->
+          <!-- <i class="fa fa-link" aria-hidden="true"></i> -->
+          <i class="fa fa-html5" aria-hidden="true"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+  <hr />
+
+  <ul class="main-menu">
+    <li><a href="/about/license/">
+      License
+      <i class="fa fa-copyright" aria-hidden="true"></i>
+    </a></li>
+    <li><a href="/about/acknowledgments/">
+      Acknowledgments
+      <i class="fa fa-group" aria-hidden="true"></i>
+    </a></li>
+    <li><a href="/about/publications/">
+      Publications
+      <i class="fa fa-book" aria-hidden="true"></i>
+    </a></li>
+    <li><a href="https://flow123d.slack.com">
+      Slack Channel
+      <i class="fa fa-slack" aria-hidden="true"></i>
+    </a></li>
+    <li><a href="/about/gallery/">
+      Gallery
+      <i class="fa fa-image" aria-hidden="true"></i>
+    </a></li>
+  </ul>
+</nav>

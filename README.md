@@ -1,21 +1,35 @@
-flow123d.github.io
-==================
+# GitHub pages for project Flow123d <img src="http://geomop.github.io/assets/favicon.ico" height="40" />
+Project Flow123d website, available at [flow123d.github.io](http://flow123d.github.io/).
 
-This is NOT [the web page of Flow123d project](http://flow123d.github.io) just its repository.
+Running using [Jekyll](https://jekyllrb.com/) with js libraries [Angular.io](https://angular.io/)
 
--------------------------------------------
-
-For page developers:
-
-Web page about Flow123d use [Jekyll](http://jekyllrb.com/) and [GitHub Pages](https://pages.github.com/).
-
-To run pages localy run following code
-
+## Running locally
+First, clone the repository and then execute follwing:
 ```bash
-git clone git@github.com:flow123d/flow123d.github.io.git
-cd flow123d.github.io.
 bundle install
 jekyll server --watch
 ```
+or if your Gemfile requires different version than your jekyll use:
+```bash
+bundle install
+bundle exec jekyll server --watch
+```
 
-Then open following link in your browser: http://localhost:4000
+### Notes on wesite structure
+
+- To add a new release version, edit `javascript` file
+  [`_data/releases.yml`](/assets/javascripts/releases.js)
+  and add new folder in a [`releases`](/releases) directory containing
+  required pages  in either `md` or `html` format. The required pages are:
+    - readme.md
+    - changes.md
+    - features.md (or folder named features with more complex structure)
+  
+
+- To add a new picture/video to a gallery edit `yaml` file
+  [`_data/gallery.yml`](/_data/gallery.yml)
+
+- List of members is managed by `yaml` file
+  [`_data/members.yml`](/_data/members.yml)
+
+
