@@ -111,7 +111,7 @@ figcaption {
           right: 1rem;
           top: 1rem;
         }
-        &:hover, &.active {
+        &:hover, &.active, &.show {
           &::after {
             border-bottom: .3em solid;
             border-right: .3em solid transparent;
@@ -175,7 +175,7 @@ figcaption {
   .content {
     box-shadow: 0 1px 3px rgba(0,0,0,0.12);
     border-radius: 0.25rem;
-    background: #fbfbfbcc;
+    background: #fbfbfb;
     border: 1px solid #cbcbcb;
   }
 }

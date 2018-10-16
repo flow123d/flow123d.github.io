@@ -46,6 +46,10 @@ const matches = version_regex.exec(document.location.pathname);
 if (matches) {
   window.flow123d.version = matches[1];
   window.flow123d.subpage = matches[2];
+  let item = window.flow123d.releaseList.filter(o => {return o.version == window.flow123d.version})[0];
+  if (!item) {
+    window.flow123d.version = window.flow123d.defaultVersion;
+  }
 } else {
   window.flow123d.version = window.flow123d.defaultVersion;
   window.flow123d.subpage = null;
@@ -127,10 +131,6 @@ app.controller('flow123dCtrl', function($scope) {
 
 $(document).ready(function() {
   $('#version-select').focus().select();
-  $('.dropdown-toggle').click(function() {
-    $("[aria-labelledby='" + this.id + "']").toggleClass('show');
-    $(this).toggleClass('active');
-  });
   
   $().fancybox({
     selector: '.gallery a',
