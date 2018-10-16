@@ -86,10 +86,6 @@ app.controller('flow123dCtrl', function ($scope) {
 });
 $(document).ready(function () {
     $('#version-select').focus().select();
-    $('.dropdown-toggle').click(function () {
-        $("[aria-labelledby='" + this.id + "']").toggleClass('show');
-        $(this).toggleClass('active');
-    });
     $().fancybox({
         selector: '.gallery a',
         caption: function (instance, item) {
