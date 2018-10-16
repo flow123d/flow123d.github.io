@@ -9,8 +9,8 @@
 # Note that there can be multiple custom sections
 - section: Images
   items:
-    - /gallery/pictures/test3d.png            # simple format
-    - /gallery/pictures/test2-transport.jpg   # simple format
+    # simple format
+    # - /gallery/pictures/test2-transport.jpg
     
     # complex format with *partial* markdown support
     #- link:     /gallery/pictures/XFEM_multi_wells.png
