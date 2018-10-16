@@ -17,6 +17,10 @@ var matches = version_regex.exec(document.location.pathname);
 if (matches) {
     window.flow123d.version = matches[1];
     window.flow123d.subpage = matches[2];
+    var item = window.flow123d.releaseList.filter(function (o) { return o.version == window.flow123d.version; })[0];
+    if (!item) {
+        window.flow123d.version = window.flow123d.defaultVersion;
+    }
 }
 else {
     window.flow123d.version = window.flow123d.defaultVersion;
