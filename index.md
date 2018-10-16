@@ -21,8 +21,8 @@ of processors. The input interface based on JSON file format allows specificatio
 of general space-time dependent data for any physical parameter that does not
 compromise performance. Program supports output into GMSH and VTK formats.
 
-<video controls="" poster="https://flow123d.github.io/videos/test2d-poster.png">
-    <source src="https://flow123d.github.io/videos/test2d.ogv" type="video/ogg">
-    <source src="https://flow123d.github.io/videos/test2d.mp4" type="video/mp4">
+<video controls="" poster="/gallery/videos/test2d-poster.png">
+    <source src="/gallery/videos/test2d.ogv" type="video/ogg">
+    <source src="/gallery/videos/test2d.mp4" type="video/mp4">
     Your device does not support HTML5 video.
 </video>
