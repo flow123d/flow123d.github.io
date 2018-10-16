@@ -27,7 +27,7 @@ fill: #FFFFFF;
 L0,909
 L909,909
 L909,0 Z " 
-fill="#FFFFFF" stroke="none" />
+fill="none" stroke="none" />
 <path fill-rule="evenodd" d="M133.6,698.2L643.2,597.8L443.4,146.5Z" class="g0_1" />
 <path fill-rule="evenodd" d="M455.7,145.4L653.7,595Z" class="g0_1" />
 <path fill-rule="evenodd" d="M661.3,606.8l40.3,92.7L745.7,589.1Z" class="g1_1" />
