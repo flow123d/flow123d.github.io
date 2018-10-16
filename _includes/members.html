@@ -1,0 +1,21 @@
+{% for group in site.data.members %}
+<h2>{{ group.section }}</h2>
+<div class="member-list">
+  {% for member in group.users %}
+    <div>
+      {% if member.name %}
+      <a class="gravatar" data-gravatar="{{ member.email }}" title="Go to GitHub profile" href="https://github.com/{{ member.github }}" target="_blank">
+          <span class="name">{{ member.name }}</span>
+      </a>
+      {% if member.description %}
+        <span class="desc">{{ member.description }}</span>
+      {% endif %}
+      {% else %}
+      <span class="gravatar-mention">
+          {{ member }}
+      </span>
+      {% endif %}
+    </div>
+  {% endfor %}
+</div>
+{% endfor %}

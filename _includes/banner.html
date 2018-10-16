@@ -1,0 +1,40 @@
+<div class="banner">
+  <nav class="navbar">
+    
+    <a class="mr-auto button fork nav-link" href="https://github.com/Flow123d/Flow123d" target="_blank">
+      <span class="fa fa-github"></span>
+      Fork us on GitHub
+    </a>
+    
+    <ul class="navbar-nav">
+      <li class="nav-item dropdown" ng-show="item.visible.download">
+        <a class="nav-link dropdown-toggle button download" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+          aria-expanded="false">
+          <i class="fa fa-download" aria-hidden="true"></i>
+          Download
+        </a>
+        
+        <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="{$ versionRoot $}/flow123d_{$ version $}_windows_install.zip" target="_blank">
+            <i class="fa fa-windows" aria-hidden="true"></i>
+            Windows installer {$ version $}
+            <span class="json-datetime" data-url="{$ versionRoot $}/flow123d_{$ version $}_windows_install.json">foo</span>
+          </a>
+          
+          <a class="dropdown-item" href="{$ versionRoot $}/flow123d_{$ version $}_linux_install.tar.gz" target="_blank">
+            <i class="fa fa-linux" aria-hidden="true"></i>
+            Linux installer {$ version $}
+            <span class="json-datetime" data-url="{$ versionRoot $}/flow123d_{$ version $}_linux_install.json">foo</span>
+          </a>
+          
+          <a class="dropdown-item" href="https://hub.docker.com/r/flow123d/{$ version $}" target="_blank">
+            <img src="/assets/img/docker-logo.svg" />
+            Docker image
+            <span class="json-datetime" data-url="{$ versionRoot $}/flow123d_{$ version $}_linux_install.json">foo</span>
+          </a>
+        </div>
+      </li>
+    </ul>
+    <span class="icon-end fa fa-github"></span>
+  </nav>
+</div>
