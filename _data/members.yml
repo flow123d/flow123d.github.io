@@ -6,54 +6,57 @@
   - name: Jan Brezina
     github: jbrezmorf
     email: jan.brezina
-
+    description: Coordination, Darcy flow, Richards' eq., Non-conforming fractures, Input subsystem, Fields
+    
   - name: Jan Stebel
     github: jstebel
     email: jan.stebel
+    description: DG transport, Poroelasticity, Dof Handler, FEM spaces
 
   - name: David Flanderka
     github: dflanderka
-    # email: david.flanderka
-    
-  - name:   Jan Hybs
-    github: janhybs
-    email:  jan.hybs
+    email: david.flanderka
+    description: Output, Parlelization, Input subsystem, Fields
 
   - name: Pavel Exner
     github: Paulie14
     email: pavel.exner
-
+    description: Fracture intersections, eXtended and Partition of Unity Methods
+    
+  - name:   Jan Hybs
+    github: janhybs
+    email:  jan.hybs
+    description: Maintainer, CI, Web, Benchmarinkg, Performance monitoring
+    
+ 
 
 # -------------------------
 # FORMER DEVELOPERS SECTION
 # -------------------------
-- section: Former developers
+- section: Contributors
   users:
-  - name: Pavel Richter
-    github: richtertul
+  - name: Aleš Balvín
+    description: Testing.
+  - name: Milan Hokr
+    description: Testing.
+  - name: Jiří Hnídek
+    description: GMSH and VTK output.
+  - name: Jakub Šístek
+    description: Scalable BDDC solver for Darcy Flow.
+  - name: Lukáš Zedek
+    description: Sorptions, Fast projection method for nonlinear isotherms.
+  - name: Jiří Kopal
+    description: FV Transport, preconditioning.
+  - name: Otto Severýn
+    description: Author of the original Darcy flow simulator on mixed meshes.
+  - name: Jiří Jeníček
+    description: First version of the input subsystem.
 
-# -------------------------
-# MAINTANERS SECTION
-# -------------------------
-- section: Maintainers
+- section: Testers and early users
   users:
-  - name:   Jan Hybs
-    email:  jan.hybs
-    github: janhybs
-
-# -------------------------
-# HONORABLE MENTIONS SECTION
-# -------------------------
-- section: Mentions
-  users:
-  - Aleš Balvín
-  - Milan Hokr
-  - Jiří Hnídek
-  - Jakub Šístek
-  - Lukáš Zedek
-  - Vojtěch Wrnata
-  - Jiří Kopal
-  - Otto Severýn
-  - Dalibor Frydrych
-  - Jan Šembera
-  - Jiří Jeníček
+  - name: Aleš Balvín
+  - name: Milan Hokr
+  - name: Jiřina Královcová
+  - name: Jakub Říha
+  - name: Jiří Landa
+  - name: Josef Chudoba
