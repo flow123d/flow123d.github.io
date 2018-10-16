@@ -13,12 +13,63 @@
     - /gallery/pictures/test2-transport.jpg   # simple format
     
     # complex format with *partial* markdown support
-    - link:     /gallery/pictures/XFEM_multi_wells.png
-      thumb:    /gallery/pictures/thumb/XFEM_multi_wells.png
+    #- link:     /gallery/pictures/XFEM_multi_wells.png
+      #thumb:    /gallery/pictures/thumb/XFEM_multi_wells.png
+      #caption:  |
+        #**XFEM** - an illustration of a XFEM enrichment<br>
+          #- Adaptive `FEM` with 28462 elements (left side)
+          #- `XFEM` with 1024 element (right side)
+    
+    - link:     /gallery/pictures/2_aquifers-5_wells_mesh_whitebg_crop.png
+      thumb:    /gallery/pictures/thumb/2_aquifers-5_wells_mesh_whitebg_crop.png
       caption:  |
-        **XFEM** - an illustration of a XFEM enrichment<br>
-          - Adaptive `FEM` with 28462 elements (left side)
-          - `XFEM` with 1024 element (right side)
+        **XFEM** - an illustration of a XFEM enrichment in 2d<br>
+          - 2 aquifer system communicating through 5 wells
+          - 2d singular enrichment of pressure
+          - the underlying coarse mesh is at the bottom
+          
+    - link:     /gallery/pictures/pic10w.png
+      thumb:    /gallery/pictures/thumb/pic10w.png
+      caption:  |
+        **XFEM** - an illustration of a XFEM enrichment in 3d<br>
+          - 3d bulk rock is cut by 10 wells
+          - 1d-3d singular enrichment of velocity
+    
+    - link:     /gallery/pictures/visual_final.png
+      thumb:    /gallery/pictures/thumb/visual_final.png
+      caption:  |
+        **DGR_1** - Deep geological repository model<br>
+          - model of DGR for future spent nuclear fuel
+          - fractured granit massive of approximately 500m scale
+          - piezometric head is displayed, including the subsurface view
+
+    - link:     /gallery/pictures/dgr.png
+      thumb:    /gallery/pictures/thumb/dgr.png
+      caption:  |
+        **DGR_2** - Deep geological repository 3d model<br>
+          - model of DGR for future spent nuclear fuel
+          - fractured granit massive of approximately 200 km2 
+          - left - computational mesh, including main faults
+          - right - piezometric head is displayed at the level of DGR (-500m)
+          
+    - link:     /gallery/pictures/real_appl.png
+      thumb:    /gallery/pictures/thumb/real_appl.png
+      caption:  |
+        **Bedřichov** - model of granit massive in the Jizera mountains<br>
+          - transport of natural tracers is modeled and compared extensive data collection measured on site
+          - extensive measurements are collected online in the underground tunnel
+          - piezometric head and velocity are displayed
+          - detail of the tunnel cut by fractures is presented at the bottom
+
+    - link:     /gallery/pictures/fractures_comparison.png
+      thumb:    /gallery/pictures/thumb/fractures_comparison.png
+      caption:  |
+        **DFN** - Discrete fracture network 2d demonstration<br>
+          - comparison of rock properties with different fracture network around tunnel excavation
+          - left - homogenous rock
+          - middle - stochastic DFN generated
+          - right - stochastic DFN and some major deterministic faults
+          - pressure is displayed, zero Dirichlet BC considered for simplification
         
     - link:     /gallery/pictures/fracture_cube.png
       thumb:    /gallery/pictures/thumb/fracture_cube.png
@@ -28,21 +79,21 @@
       thumb:    /gallery/pictures/thumb/melachov_strong_scaling.png
       caption:  null
       
-    - link:     /gallery/pictures/mesh_compatible.gif
-      thumb:    /gallery/pictures/thumb/mesh_compatible.gif
-      caption:  null
+    #- link:     /gallery/pictures/mesh_compatible.gif
+      #thumb:    /gallery/pictures/thumb/mesh_compatible.gif
+      #caption:  null
       
-    - link:     /gallery/pictures/mesh_noncompatible.gif
-      thumb:    /gallery/pictures/thumb/mesh_noncompatible.gif
-      caption:  null
+    #- link:     /gallery/pictures/mesh_noncompatible.gif
+      #thumb:    /gallery/pictures/thumb/mesh_noncompatible.gif
+      #caption:  null
       
     - link:     /gallery/pictures/mortar_both.png
       thumb:    /gallery/pictures/thumb/mortar_both.png
       caption:  null
       
-    - link:     /gallery/pictures/mortar_graph_comparison.png
-      thumb:    /gallery/pictures/thumb/mortar_graph_comparison.png
-      caption:  null
+    #- link:     /gallery/pictures/mortar_graph_comparison.png
+      #thumb:    /gallery/pictures/thumb/mortar_graph_comparison.png
+      #caption:  null
       
     - link:     /gallery/pictures/pipes.png
       thumb:    /gallery/pictures/thumb/pipes.png
@@ -57,7 +108,18 @@
   items:
     - link:     /gallery/videos/test2d.ogv
       thumb:    /gallery/videos/test2d-poster.png
+      caption:  |
+        **Transport** - an illustration of concentration propagation through fractured rock<br>
+          - 2d model of fractured porous media
+          - advection-diffusion equation solved on 1d-2d compatible mesh
+          - concentration propagates through the fractures faster than through the bulk rock
       
     - link:     /gallery/videos/1d-wave.ogv
       thumb:    /gallery/videos/1d-wave-poster.png
+      caption:  |
+        **Transport solver** - comparison of different methods<br>
+          - 1d problem with moving concentration peak
+          - Finite volumes - piecewise constant solution, large numerical diffusion can be observed
+          - Finite elements - piecewise linear solution,  some oscillations are present
+          - Discontinuous Galerkin - piecewise linear solution,  no oscillations and minimal diffusion
 
