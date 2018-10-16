@@ -2,29 +2,62 @@
 # 1) simple format is a string path to the image/video (relative or absolute)
 # 2) complex format is a dictionary where
 #   link:           is a link to a full sizes image/video
-#   cover:          is small sized preview of the final link
-#   TODO: caption:  is a caption of the image/video
+#   thumb:          is small sized preview of the final link
+#   caption:        is a caption of the image/video
 
-- section: Pictures
+
+# Note that there can be multiple custom sections
+- section: Images
   items:
-    - /gallery/pictures/fracture_cube.png
-    - /gallery/pictures/melachov_strong_scaling.png
-    - /gallery/pictures/mesh_compatible.gif
-    - /gallery/pictures/mesh_noncompatible.gif
-    - /gallery/pictures/mortar_both.png
-    - link:  /gallery/pictures/XFEM_multi_wells.png
-      cover: /gallery/pictures/XFEM_multi_wells.png
-    - /gallery/pictures/mortar_graph_comparison.png
-    - /gallery/pictures/pipes.png
-    - /gallery/pictures/T-bend.png
-    - /gallery/pictures/test2-transport.jpg
-    - /gallery/pictures/test3d.png
+    - /gallery/pictures/test3d.png            # simple format
+    - /gallery/pictures/test2-transport.jpg   # simple format
+    
+    # complex format with *partial* markdown support
+    - link:     /gallery/pictures/XFEM_multi_wells.png
+      thumb:    /gallery/pictures/thumb/XFEM_multi_wells.png
+      caption:  |
+        **XFEM** - an illustration of a XFEM enrichment<br>
+          - Adaptive `FEM` with 28462 elements (left side)
+          - `XFEM` with 1024 element (right side)
+        
+    - link:     /gallery/pictures/fracture_cube.png
+      thumb:    /gallery/pictures/thumb/fracture_cube.png
+      caption:  null
+      
+    - link:     /gallery/pictures/melachov_strong_scaling.png
+      thumb:    /gallery/pictures/thumb/melachov_strong_scaling.png
+      caption:  null
+      
+    - link:     /gallery/pictures/mesh_compatible.gif
+      thumb:    /gallery/pictures/thumb/mesh_compatible.gif
+      caption:  null
+      
+    - link:     /gallery/pictures/mesh_noncompatible.gif
+      thumb:    /gallery/pictures/thumb/mesh_noncompatible.gif
+      caption:  null
+      
+    - link:     /gallery/pictures/mortar_both.png
+      thumb:    /gallery/pictures/thumb/mortar_both.png
+      caption:  null
+      
+    - link:     /gallery/pictures/mortar_graph_comparison.png
+      thumb:    /gallery/pictures/thumb/mortar_graph_comparison.png
+      caption:  null
+      
+    - link:     /gallery/pictures/pipes.png
+      thumb:    /gallery/pictures/thumb/pipes.png
+      caption:  null
+      
+    - link:     /gallery/pictures/T-bend.png
+      thumb:    /gallery/pictures/thumb/T-bend.png
+      caption:  null
+      
 
 - section: Videos
   items:
     - link:     /gallery/videos/test2d.ogv
-      cover:    /gallery/videos/test2d-poster.png
+      thumb:    /gallery/videos/test2d-poster.png
       
     - link:     /gallery/videos/1d-wave.ogv
-      cover:    /gallery/videos/1d-wave-poster.png
+      thumb:    /gallery/videos/1d-wave-poster.png
 

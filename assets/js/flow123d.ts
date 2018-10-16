@@ -3,6 +3,7 @@ interface ReleaseItem {
   display: string;
   links?:  string[];
   visible: any;
+  hasPage(page:string);
 }
 
 
@@ -29,12 +30,19 @@ for (let item of window.flow123d.releaseList) {
     for (let link of item.links) {
         item.visible[link] = true;
     }
+    item.hasPage = function(page:string) {
+      if(page == 'download')
+        page = 'legacyDownload';
+        
+      return this.visible[page];
+    }
 }
 
 
 const default_hash = window.location.hash;
-const version_regex = /\/releases\/(.+)\/(.+)\//gm;
+const version_regex = /\/releases\/(.+)\/([^\/#]+)/gm;
 const matches = version_regex.exec(document.location.pathname);
+
 if (matches) {
   window.flow123d.version = matches[1];
   window.flow123d.subpage = matches[2];
@@ -101,24 +109,17 @@ app.controller('flow123dCtrl', function($scope) {
 
   $scope.versionChanged = function(e) {
     $scope = updateScope($scope);
-    window.location.hash = $scope.version;
-    
     $('.ng--change').css('transition', 'none').finish().hide().fadeIn('slow');
     
-    // the block below basically loads subpage of a selected version if there is any
-    // special case is 'download' which we first check that the version is 'legacy'
+    window.location.hash = '';
     if (window.flow123d.subpage) {
-      if (window.flow123d.subpage == 'download'){
-        if (!$scope.item.visible.legacyDownload) {
-          window.location.pathname = '/releases/' + $scope.version + '/' + window.flow123d.subpage;
-         } else {
-          window.location.pathname = '/';
-        }
-      } else {
+      console.log('change page ' + $scope.version + ', ' + window.flow123d.subpage);
+      if ($scope.item.hasPage(window.flow123d.subpage)) {
         window.location.pathname = '/releases/' + $scope.version + '/' + window.flow123d.subpage;
+      } else {
+        window.location.hash = $scope.version;
+        window.location.pathname = '/';
       }
-    } else {
-      $('.downloads .button').finish().hide().fadeIn('slow');
     }
   };
 });
@@ -131,11 +132,13 @@ $(document).ready(function() {
     $(this).toggleClass('active');
   });
   
-  // $('[data-fancybox]' ).fancybox({
-  //   caption : function( instance, item ) {
-  //     return $(this).find('figcaption').html();
-  //   }
-  // });
+  $().fancybox({
+    selector: '.gallery a',
+    caption : function( instance, item ) {
+      console.log($(this).find('figcaption').html());
+      return $(this).find('figcaption').html();
+    }
+  });
   
   $('.gravatar').each(function(index, item) {
     var $this = $(this);

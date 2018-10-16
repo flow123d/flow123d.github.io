@@ -5,9 +5,14 @@ for (var _i = 0, _a = window.flow123d.releaseList; _i < _a.length; _i++) {
         var link = _c[_b];
         item.visible[link] = true;
     }
+    item.hasPage = function (page) {
+        if (page == 'download')
+            page = 'legacyDownload';
+        return this.visible[page];
+    };
 }
 var default_hash = window.location.hash;
-var version_regex = /\/releases\/(.+)\/(.+)\//gm;
+var version_regex = /\/releases\/(.+)\/([^\/#]+)/gm;
 var matches = version_regex.exec(document.location.pathname);
 if (matches) {
     window.flow123d.version = matches[1];
@@ -65,23 +70,17 @@ app.controller('flow123dCtrl', function ($scope) {
     $scope.edited = false;
     $scope.versionChanged = function (e) {
         $scope = updateScope($scope);
-        window.location.hash = $scope.version;
         $('.ng--change').css('transition', 'none').finish().hide().fadeIn('slow');
+        window.location.hash = '';
         if (window.flow123d.subpage) {
-            if (window.flow123d.subpage == 'download') {
-                if (!$scope.item.visible.legacyDownload) {
-                    window.location.pathname = '/releases/' + $scope.version + '/' + window.flow123d.subpage;
-                }
-                else {
-                    window.location.pathname = '/';
-                }
-            }
-            else {
+            console.log('change page ' + $scope.version + ', ' + window.flow123d.subpage);
+            if ($scope.item.hasPage(window.flow123d.subpage)) {
                 window.location.pathname = '/releases/' + $scope.version + '/' + window.flow123d.subpage;
             }
-        }
-        else {
-            $('.downloads .button').finish().hide().fadeIn('slow');
+            else {
+                window.location.hash = $scope.version;
+                window.location.pathname = '/';
+            }
         }
     };
 });
@@ -90,6 +89,13 @@ $(document).ready(function () {
     $('.dropdown-toggle').click(function () {
         $("[aria-labelledby='" + this.id + "']").toggleClass('show');
         $(this).toggleClass('active');
+    });
+    $().fancybox({
+        selector: '.gallery a',
+        caption: function (instance, item) {
+            console.log($(this).find('figcaption').html());
+            return $(this).find('figcaption').html();
+        }
     });
     $('.gravatar').each(function (index, item) {
         var $this = $(this);
