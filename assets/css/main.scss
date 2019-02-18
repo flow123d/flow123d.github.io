@@ -11,7 +11,7 @@ body {
 
 body.legacy-release {
   filter: grayscale(55%) sepia(10%);
-  
+
   .main::before {
     content: "This is a legacy release";
     font-weight: bold;
@@ -24,14 +24,50 @@ body.legacy-release {
   }
 }
 
+body {
+  .header {
+    .header-content {
+      h1 .version::before {
+        font-size: 1rem;
+        padding: .25em .4em;
+        margin: .125rem;
+        border-radius: .125rem;
+        font-weight: 700;
+        color: #FFF;
+        background-color: $primary-color;
+      }
+    }
+  }
+}
+
 body.recent-release {
   .header {
     .header-content {
-      h1 {
-        .new {
-          font-size: 1rem;
-          background-color: $secondary-color;
-        }
+      h1 .version::before {
+        content: "NEW";
+        background-color: $primary-color;
+      }
+    }
+  }
+}
+
+body.stable {
+  .header {
+    .header-content {
+      h1 .version::before {
+        content: "STABLE";
+        background-color: $secondary-color;
+      }
+    }
+  }
+}
+
+body.dev {
+  .header {
+    .header-content {
+      h1 .version::before {
+        content: "DEV";
+        background-color: $primary-color;
       }
     }
   }
@@ -39,7 +75,7 @@ body.recent-release {
 
 .gallery {
   margin-bottom: 2rem;
-  
+
   img {
     transition: all 0.15s ease-in-out;
     border: 0.25rem solid lighten($secondary-color, 100%);
@@ -49,7 +85,7 @@ body.recent-release {
     width: 200px;
     object-fit: cover;
     box-shadow: 0 0 10px fade_out(#000, 0.8);
-    
+
     &:hover {
       filter: opacity(0.85);
       padding: 0.50rem;
@@ -79,21 +115,21 @@ figcaption {
 
 .stripe {
   background: $secondary-color;
-  
+
   .banner {
     color: white;
   }
   .navbar {
     box-shadow: none;
     padding: 0;
-    
+
     .dropdown-menu {
       box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.22);
       border-radius: 0.25rem;
       border: 1px solid #cbcbcb;
       width: 200px;
     }
-    
+
     .dropdown-item {
       &:hover {
         background: lighten($secondary-color, 25%);
@@ -103,7 +139,7 @@ figcaption {
       color: fade_out(#FFF, 0.1);
       background: lighten($secondary-color, 5%);
       border: 1px solid lighten($secondary-color, 15%);
-      
+
       &.download {
         width: 200px;
         &::after {
@@ -120,9 +156,9 @@ figcaption {
           }
         }
       }
-      
-      
-      
+
+
+
       &:hover, &.active {
         color: #FFF;
         background: darken($secondary-color, 10%);
@@ -138,14 +174,14 @@ figcaption {
   &.error-404 {
     display: flex;
     flex-direction: column;
-    
+
     .content {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      
-      
+
+
       h1 {
         font-size: 10rem;
         letter-spacing: 1.5rem;
@@ -177,6 +213,9 @@ figcaption {
     border-radius: 0.25rem;
     background: #fbfbfb;
     border: 1px solid #cbcbcb;
+    & * {
+      max-width: 100%;
+    }
   }
 }
 

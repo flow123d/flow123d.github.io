@@ -1,5 +1,5 @@
-name: "GeoMop"
-description: "Geosphere model preparation"
+name: "Flow123d"
+description: "Transport Processes in Fractured Media"
 author :
   name : Jan Brezina
   email : jan.brezina@tul.cz
@@ -8,7 +8,7 @@ url: "http://localhost:4000"
 sass:
   sass_dir: assets/sass
   style:    expanded
-    
+
 exclude: ['Gemfile', 'Gemfile.lock', 'README.md', 'config.rb']
 paginate: 4
 markdown: kramdown

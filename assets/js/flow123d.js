@@ -12,7 +12,10 @@ for (var _i = 0, _a = window.flow123d.releaseList; _i < _a.length; _i++) {
     };
 }
 var default_hash = window.location.hash;
-var version_regex = /\/releases\/(.+)\/([^\/#]+)/gm;
+var version_regex = new RegExp('\\/releases' +
+    '\\/([\\d\\.]+)' +
+    '\\/([a-zA-Z0-9-_]+)' +
+    '(\\/.+)?', 'gm');
 var matches = version_regex.exec(document.location.pathname);
 if (matches) {
     window.flow123d.version = matches[1];
@@ -24,12 +27,13 @@ if (matches) {
 }
 else {
     window.flow123d.version = window.flow123d.defaultVersion;
-    window.flow123d.subpage = null;
+    window.flow123d.subpage = window.flow123d.defaultSubpage;
 }
 var updateScope = function ($scope) {
     $scope.item = window.flow123d.releaseList.filter(function (o) { return o.version == $scope.version; })[0];
     $scope.versionRoot = window.flow123d.packageRoot + '/' + $scope.item.name;
     $scope.tags = $scope.item.tags ? $scope.item.tags.join(' ') : '';
+    $scope.windows = $scope.item.tags && $scope.item.tags.includes('exe-installer') ? 'exe' : 'zip';
     setTimeout(function () {
         if ($scope.item.visible.download) {
             $('.json-datetime').each(function (index, item) {
@@ -42,6 +46,23 @@ var updateScope = function ($scope) {
         }
     }, 1);
     return $scope;
+};
+var selectText = function (node) {
+    if (document.body.createTextRange) {
+        var range = document.body.createTextRange();
+        range.moveToElementText(node);
+        range.select();
+    }
+    else if (window.getSelection) {
+        var selection = window.getSelection();
+        var range = document.createRange();
+        range.selectNodeContents(node);
+        selection.removeAllRanges();
+        selection.addRange(range);
+    }
+    else {
+        console.warn("Could not select text in node: Unsupported browser.");
+    }
 };
 var app = angular.module('flow123d', []);
 app.config(function ($locationProvider, $interpolateProvider) {
@@ -64,6 +85,10 @@ app.filter('join', function () {
 app.controller('flow123dCtrl', function ($scope) {
     if (default_hash) {
         $scope.version = default_hash.substring(1);
+        var item = window.flow123d.releaseList.filter(function (o) { return o.version == $scope.version; })[0];
+        if (!item) {
+            $scope.version = window.flow123d.version;
+        }
     }
     else {
         $scope.version = window.flow123d.version;
@@ -90,6 +115,9 @@ app.controller('flow123dCtrl', function ($scope) {
 });
 $(document).ready(function () {
     $('#version-select').focus().select();
+    $('.content pre').click(function () {
+        selectText(this);
+    });
     $().fancybox({
         selector: '.gallery a',
         caption: function (instance, item) {
