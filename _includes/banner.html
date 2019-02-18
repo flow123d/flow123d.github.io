@@ -2,7 +2,7 @@
   <nav class="navbar">
 
     <a class="mr-auto button fork nav-link" href="https://github.com/Flow123d/Flow123d" target="_blank">
-      <i class="fas fa-code-branch"></i>
+      <i class="fas fa-code-branch" aria-hidden="true"></i>
       Fork us on GitHub
     </a>
 
@@ -10,37 +10,36 @@
       <li class="nav-item dropdown" ng-show="item.visible.download">
         <a class="nav-link dropdown-toggle button download" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
           aria-expanded="false">
-          <i class="fa fa-download" aria-hidden="true"></i>
+          <i class="fas fa-download" aria-hidden="true"></i>
           Download
         </a>
 
         <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
           <a class="dropdown-item" href="{$ versionRoot $}/flow123d_{$ version $}_windows_install.{$ windows $}" target="_blank">
-            <i class="fa fa-windows" aria-hidden="true"></i>
+            <i class="fab fa-windows" aria-hidden="true"></i>
             Windows installer {$ version $}
-            <span class="json-datetime" data-url="{$ versionRoot $}/flow123d_{$ version $}_windows_install.json">foo</span>
+            <span class="json-datetime" data-url="{$ versionRoot $}/flow123d_{$ version $}_windows_install.json">loading...</span>
           </a>
 
           <a class="dropdown-item" href="{$ versionRoot $}/flow123d_{$ version $}_linux_install.tar.gz" target="_blank">
-            <i class="fa fa-linux" aria-hidden="true"></i>
+            <i class="fab fa-linux" aria-hidden="true"></i>
             Linux installer {$ version $}
-            <span class="json-datetime" data-url="{$ versionRoot $}/flow123d_{$ version $}_linux_install.json">foo</span>
+            <span class="json-datetime" data-url="{$ versionRoot $}/flow123d_{$ version $}_linux_install.json">loading...</span>
           </a>
 
           <a class="dropdown-item" href="https://hub.docker.com/r/flow123d/{$ version $}" target="_blank">
-            <img src="/assets/img/docker-logo.svg" />
+            <i class="fab fa-docker" aria-hidden="true"></i>
             Docker image
-            <span class="json-datetime" data-url="{$ versionRoot $}/flow123d_{$ version $}_linux_install.json">foo</span>
+            <span class="json-datetime" data-url="{$ versionRoot $}/flow123d_{$ version $}_linux_install.json">loading...</span>
           </a>
 
-          <a class="dropdown-item" href="https://hub.docker.com/r/flow123d/{$ version $}" target="_blank">
-            <i class="fas fa-external-link-alt"></i>
-            See all pages
-            <span class="json-datetime" data-url="{$ versionRoot $}/flow123d_{$ version $}_linux_install.json">foo</span>
+          <a class="dropdown-item" href="{$ versionRoot $}/" target="_blank">
+            <i class="fas fa-external-link-alt" aria-hidden="true"></i>
+            Browse all files
           </a>
         </div>
       </li>
     </ul>
-    <span class="icon-end fab fa-github"></span>
+    <span class="icon-end fab fa-github" aria-hidden="true"></span>
   </nav>
 </div>

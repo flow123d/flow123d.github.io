@@ -7,7 +7,7 @@
   .build-info {
     float: right;
     font-size: 0.9em;
-  }  
+  }
 }
 
 
@@ -17,11 +17,11 @@
   padding: 1.5rem;
   position: sticky;
   text-align: center;
-  
+
   .header-content {
     width: 750px;
-    margin: 0 calc(50% - 250px) auto;
-    
+    margin: 0 calc(50% - 260px) auto;
+
     h1 {
       display: inline-block;
       font-size: 1.5rem;
@@ -56,15 +56,15 @@
   position: relative;
   z-index: 100;
   padding: 0.5rem;
-  margin: -24px calc(50% - 250px) 1rem;
+  margin: -24px calc(50% - 240px) 1rem;
   border-radius: 0.25rem;
   box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.10);
-  
+
   .icon-end {
     font-size: 2.0rem;
     padding-left: 15px;
   }
-  
+
   .button {
     padding: 0.25rem 0.50rem;
     display: inline-block;
@@ -88,20 +88,20 @@
   max-width: 1000px;
   width: 100%;
   margin: 0 auto;
-  
+
   .row {
     margin: 0;
     padding: 0;
     display: flex;
   }
-  
+
   .menu {
     padding: 0 1rem;
-    flex: 0 0 250px;
+    flex: 0 0 260px;
     width: 100%;
     position: relative;
     text-align: right;
-    
+
     nav {
       li {
         list-style: none;
@@ -112,13 +112,13 @@
       }
     }
   }
-  
+
   .content {
     padding: 2rem;
     min-height: 300px;
-    width: calc(100% - 250px);
+    width: calc(100% - 260px);
     position: relative;
-    
+
     blockquote {
       margin: 0 0 0 1.5rem;
       border-left: 5px solid #999;
@@ -127,7 +127,7 @@
         padding: 0.5rem;
       }
     }
-    
+
     pre {
       color: #333;
       background: #DDD;
@@ -136,21 +136,21 @@
       font-size: 0.75rem;
       transition: all 0.2s ease-in-out;
       border: 1px solid #DDD;
-      
+
       &:hover {
         color: #000;
         background: #EEE;
       }
-      
+
       code {
         overflow: scroll;
       }
-    } 
-    
+    }
+
     video {
       width: 100%;
     }
-    
+
     h1 {
       font-weight: 400;
       padding-bottom: 10px;
@@ -167,20 +167,20 @@
     }
     .member-list {
       margin-bottom: 20px;
-      
+
       span.desc {
         font-size: 0.85rem;
         font-style: italic;
         color: #333;
       }
-      
+
       .gravatar {
         display: inline-block;
         padding: 0 10px 0 0;
         margin: 0.5rem 0 0.5rem 0.5rem;
         border-radius: 16px 0.25rem 0.25rem 16px;
         transition: all 0.1s ease-in-out;
-        
+
         &:hover {
           color: $secondary-color;
           background-color: lighten($secondary-color, 50%);
@@ -216,7 +216,7 @@
 .footer {
   width: 100%;
   text-align: center;
-  padding: 1rem 0 1rem 250px;
+  padding: 1rem 0 1rem 260px;
   min-height: 2rem;
   line-height: 2rem;
 }
@@ -242,7 +242,7 @@
        display: block;
      }
      .content {
-       
+
      }
      .menu {
        text-align: center;
