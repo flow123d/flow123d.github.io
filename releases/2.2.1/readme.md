@@ -3,7 +3,7 @@ title: ReadMe
 layout: page
 ---
 
-# Flow123d &middot; [![Jenkins release](https://img.shields.io/jenkins/s/http/ciflow.nti.tul.cz:8080/Flow123d-ci2runner-release-multijob.svg?style=flat-square&label=release)](http://ciflow.nti.tul.cz:8080/view/multijob-list/job/Flow123d-ci2runner-release-multijob/) [![Jenkins debug](https://img.shields.io/jenkins/s/http/ciflow.nti.tul.cz:8080/Flow123d-ci2runner-debug-multijob.svg?style=flat-square&label=debug)](http://ciflow.nti.tul.cz:8080/view/multijob-list/job/Flow123d-ci2runner-debug-multijob/) [![Coveralls master](https://img.shields.io/coveralls/github/flow123d/flow123d.svg?style=flat-square&label=coverage)](https://coveralls.io/github/flow123d/flow123d) [![Docker hub](https://img.shields.io/badge/docker-hub-blue.svg?colorA=2271b8&colorB=dc750d&logo=docker&style=flat-square)](https://hub.docker.com/u/flow123d/)
+# Flow123d &middot; [![Jenkins release](http://ciflow.nti.tul.cz/status/release/Flow123d-ci2runner-release-multijob/3)](http://ciflow.nti.tul.cz:8080/view/multijob-list/job/Flow123d-ci2runner-release-multijob/) [![Jenkins debug](http://ciflow.nti.tul.cz/status/debug/Flow123d-ci2runner-debug-multijob/3)](http://ciflow.nti.tul.cz:8080/view/multijob-list/job/Flow123d-ci2runner-debug-multijob/) [![Coveralls master](https://img.shields.io/coveralls/github/flow123d/flow123d.svg?style=flat-square&label=coverage)](https://coveralls.io/github/flow123d/flow123d) [![Docker hub](https://img.shields.io/badge/docker-hub-blue.svg?colorA=2271b8&colorB=dc750d&logo=docker&style=flat-square)](https://hub.docker.com/u/flow123d/)
 
 *Transport Processes in Fractured Media*
 
@@ -28,7 +28,7 @@ This guide summarises how to install Flow123d. Basically, they are two ways to u
   2) [**From source**](#from-source):
    - *This option is only available to Linux users.
    It requires a moderate to high understanding of a Linux operating system.*
-     
+
 
 **For installation in high performance computing clusters we recommend always building from source**.
 
@@ -163,13 +163,13 @@ and more. Below you can see a result from the tutorial problem.
   To clean all the build folders manually run <code>rm -rf ../build-*</code> while in a repository root.  
   **Running `rm -rf` can quite easily cause a lot of damage, double check that you're
   in a correct folder.**
-  
+
   * During an installation under Windows, some scenarios can cause problems. Please refer to
   [an installation guide](https://docs.docker.com/toolbox/toolbox_install_windows/) for a
   Docker Toolbox. You can also check out
   [Troubleshooting page](https://docs.docker.com/toolbox/faqs/troubleshoot/) where the most
   common error are described and solved.
-  
+
 
 ### Building the reference manual
 
