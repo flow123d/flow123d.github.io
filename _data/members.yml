@@ -16,17 +16,17 @@
   - name: David Flanderka
     github: dflanderka
     email: david.flanderka
-    description: Output, Parlelization, Input subsystem, Fields
+    description: Output, Parallelization, Input subsystem, Fields
 
   - name: Pavel Exner
     github: Paulie14
     email: pavel.exner
-    description: Fracture intersections, eXtended and Partition of Unity Methods
+    description: XFEM, Mesh intersections, Darcy flow, Transport reaction term
     
   - name:   Jan Hybs
     github: janhybs
     email:  jan.hybs
-    description: Maintainer, CI, Web, Benchmarinkg, Performance monitoring
+    description: Maintainer, CI, Web, Benchmarking, Performance monitoring
     
  
 
