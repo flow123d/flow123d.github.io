@@ -43,6 +43,12 @@ packageRoot:     http://flow.nti.tul.cz/packages
 #                       where links can also be hard-wired into the page
 
 releaseList:
+  - version:  3.0.4
+    display:  dev 3.0.4
+    name:     3.0.4_dev
+    tags:     [dev, exe-installer]
+    links:    [download, features, changes, manual, source, readme, htmldoc]
+    
   - version:  3.0.3
     display:  dev 3.0.3
     name:     3.0.3_dev
