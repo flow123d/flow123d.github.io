@@ -23,6 +23,10 @@ the Czech Republic under the project no. FR-TI3/579.
 This work was supported by the Technology Agency of the Czech
 Republic under the project no. TA01021331.
 
+This work was supported by SURAO within the project Decovalex 2015, SO2013-077
+and by the TAČR project no. TA04020506: ”Softwarové nástroje pro simulaci a analýzu
+procesů v geosféře”.
+
 Computational resources were provided by the MetaCentrum under
 the program LM2010005 and the CERIT-SC under the program Centre
 CERIT Scientific Cloud, part of the Operational Program Research
