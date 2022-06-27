@@ -34,7 +34,7 @@ For detailed instructions, see the [installation guide](doc/INSTALL.md).
 
 ## Developers
 
-## Build
+### Build
 Two step build:
 ```
      host> bin/fterm     # start the Docker developing container
@@ -52,7 +52,7 @@ make all
 For details see [installation guide](doc/INSTALL.md) or the manual.
 
 
-### Troubleshooting
+#### Troubleshooting
 
   * When problem occurs during the compilation process it may be due to a leftover files in a build folder.
   Cleaning this directory can solve this issue. You can either remove `build-<branch>` folder
@@ -75,7 +75,7 @@ To copy out reference manual from Docker use command
 [`docker cp`](https://docs.docker.com/engine/reference/commandline/cp/).
 
 
-## Singularity
+### Singularity
 
 [Singularity](https://singularity.hpcng.org/) is a container system targeting HPC applications. Singularity containers can be created from the Docker images and in contrast to Docker they are not allowed to modify system of running containers. 
 
@@ -84,18 +84,18 @@ It might be necessary to set a temp directory for large images.
 export SINGULARITY_TMPDIR="/some_absolute_path/tmp"
 ```
 
-### Run simulator in singularity container
+#### Run simulator in singularity container
 ```sh
 singularity exec docker://flow123d/3.1.0 flow123d simulation.yaml
 ```
 
-### Parallel run, mpiexec out of the image
+#### Parallel run, mpiexec out of the image
 ```sh
 module add mpich-3.0.2-gcc
 mpiexec -host host1,host2 -np 4 singularity exec docker://flow123d/3.1.0 flow123d simulation.yaml
 ```
 
-### Build
+#### Build
 ```sh
      host> git clone https://github.com/flow123d/flow123d.git # clone flow123d repository
      host> singularity shell -B flow123d/:/flow123d docker://flow123d/flow-dev-gnu-rel:3.1.0 # starts developing container
