@@ -1,4 +1,4 @@
-defaultVersion:  2.2.1
+defaultVersion:  3.9.0
 defaultSubpage:  readme
 packageRoot:     http://flow.nti.tul.cz/packages
 
@@ -19,7 +19,7 @@ packageRoot:     http://flow.nti.tul.cz/packages
 # tags: string[]
 #   tags, which can alter page look&feel and other page functionality
 #   possible values are [for now]:
-#     - recent-release:   if present, will change the extension of windows archive
+#     - exe-installer:    if present, will change the extension of windows archive
 #                         from .zip to .exe
 
 #     - recent-release:   tells user, that this release is new
@@ -45,7 +45,7 @@ packageRoot:     http://flow.nti.tul.cz/packages
 releaseList:
   - version:  3.9.0
     display:  release 3.9.0
-    name:     3.9.0
+    name:     3.9.0_release
     tags:     [stable, exe-installer]
     links:    [download, features, changes, manual, source, readme, htmldoc]
 
