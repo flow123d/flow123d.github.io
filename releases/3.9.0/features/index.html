@@ -1,0 +1,95 @@
+---
+title: Flow123d - Features
+layout: page
+---
+
+<h1>
+  Features
+</h1>
+
+<p>
+  Flow123d is a simulator of mechanical and transport processes in fractured porous media.
+  The simulator consistently use the continuum-fracture approach combining classical continuum equations with 
+  similar equations on the discrete fractures represented as 2d manifolds. The physically based equations on the fractures
+  and coupling with the continuum are derived by the integration accross 
+  the fracture apperture and suitable semi-approximation. The resulting method allows continuous transition between continuum and Discrete Fracture Network
+  description of the fractured rock.  
+</p>
+
+<h3>Support for complex geometries</h3>
+
+<ul>
+  <li>Convenient for modeling 2d fractures and 1d channels in 3d ambient media</li>
+  <li>The <a href="https://github.com/GeoMop/bgem">BGEM</a> tool is suited for prepartion of the
+      meshes including the stochastic fracture networks. It essentialy use <a href="http://www.geuz.org/gmsh">GMSH</a> 
+      meshing software.</li>
+  <li><a href="./geometries/">Read more ...</a></li>
+</ul>
+
+<h3>Darcian Flow in Fractured Media</h3>
+
+<ul>
+  <li>Saturated and variably saturated (Richards) model.
+  <li>Coupling on interfaces between adjacent dimensions</li>
+  <li>Mixed-hybrid formulation providing accurate velocity approximation</li>
+  <li>Efficient implementation using Schur complement</li>
+  <li><a href="./flow/">Read more ...</a></li>
+</ul>
+
+<h3>Advection-Diffusion Equation for Solute Transport</h3>
+
+<ul>
+  <li>Finite Volumes model for pure advection. Explicit scheme. </li>
+  <li>Robust Discontinuous Galerkin + implicit scheme for transport with hydrodynamic diffusion </li>
+  <li>Support for arbitrary number of substances </li>
+  <li><a href="./transport/">Read more ...</a></li>
+</ul>
+
+<h3>Reaction term</h3>
+
+<ul>
+  <li> Reaction term includes: dual porosity model, sorptions, and linear reactions (decays)
+  <li> Coupled with transport models using the operator splitting method </li>
+  <li> Support for general combination of several reaction processes.
+  <li> Efficient computation of non-linear sorption via. interpolation </li>
+    <li><a href="./reactions/">Read more ...</a></li>
+</ul>
+
+<h3>Heat transfer</h3>
+
+<ul>
+  <li>Equilibrium heat transfer model including conduction in rock and conduction and convection in liquid phase. </li>
+  <li>Robust Discontinuous Galerkin + implicit scheme.</li>
+</ul>
+
+<h3>Mechanics</h3>
+
+<ul>
+  <li>Linear elasticity. 
+  <li>Coupled with Darcy flow. Biot Poroelasticity. 
+  <li>Contacts on fractures, non-linear dependency of permeability.
+<li><a href="./mechanics/">Read more ...</a></li>
+  </ul>
+
+<h3>Software specific</h3>
+
+<ul>
+  <li>C++, MPI, PETSc, PERMON, Python
+  <li>Parallel assembly, solvers, serial computational mesh.</li>
+  <li> <a href="http://www.math.cas.cz/~sistek/software/bddcml.html">BDDC solver</a>, <a href="http://bacula.nti.tul.cz/~jan.brezina/flow123d_publications/bddc_hybrid.pdf">paper</a>.</li> 
+  <li>Structured input using YAML file format</li>
+  <li>All parameters can be arbitrary space-time field</li>
+  <li>Output to VTK and GMSH format, detailed output of in observation points and for conserved quantities.</li>
+  <li><a href="./io/">Read more ...</a></li>
+</ul>
+
+
+
+<h3>Active Development</h3>
+
+<ul>
+  <li>XFEM method for modelling wells (1D-3D coupling)</li>
+  <li>Methods for coupling of equations (Darcy flow) on non-compatible 2D-3D and 1D-2D meshes modeling preferential paths. <a href="http://www.iam.fmph.uniba.sk/algoritmy2012/zbornik/21Brezina.pdf">Paper</a>
+  
+  <li><a href="./wip/">Read more ...</a></li>
+</ul>

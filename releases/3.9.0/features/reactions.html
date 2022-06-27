@@ -1,0 +1,54 @@
+---
+title: Flow123d - Reaction Term
+layout: page
+---
+
+<h1>
+  Mechanics in Fractured  Media
+</h1>
+
+<p>
+  We use mixed-hybrid finite element method for solving Darcy flow problems with 3D-2D 
+  and 2D-1D coupling between meshes of different dimensions. For compatible meshes, the 
+  pressure can be different on both sides of a fracture (or on arbitrary number of 2D 
+  manifolds connected to a 1D channel). The advantage of the mixed-hybrid formulation is 
+  better approximation of the velocity field. According to theoretical results and practical 
+  tests this method provides second order convergence of the L2-error for both the 
+  pressure and the velocity field. More over the velocity field is perfectly mass conservative.
+</p>
+
+<p>
+  Hybridization leads to linear systems, where two successive Schur complements can be explicitly
+  formed in efficient way, thus the resulting system is positive definite and well conditioned. 
+</p>
+
+<p>
+  Flow123d includes one model for a saturated medium and one model for variably saturated medium (Richards equation).
+  The first one use MH formulation, discretizing the source term and the time term as piecewise constant on elements. 
+  While this approach is simpler and natural the discrete maximum principle is violated for short time steps possibly leading to
+  instability and oscillations. The second model instead use lumped MH method, where source and time terms are discretized 
+  on edges. This guarantees stability even for short time steps that may be necessary for the non-linear Richards equation. 
+  Simple Pickard iterations and adaptive time stepping are used.  
+  
+</p>
+
+<div class="picture">
+  <img src="/pictures/fracture_cube.png" alt="Flow field" title="Flow field"/>
+  <br/>
+  <i>Figure: Flow field and the pressure distribution on cube with two fractures </i>
+</div>
+
+<h2>Scalable BDDC Solver</h2>
+
+<p>
+   In cooperation with Jakub Sistek, we have adopted multi-level balancing domain decomposition by constrains,
+   namely its package <a href="http://www.math.cas.cz/~sistek/software/bddcml.html">BDDCML</a>. 
+   We have demonstrated strong scaling on real Darcy flow problems up to 1000 processors, 
+   see <a href="http://bacula.nti.tul.cz/~jan.brezina/flow123d_publications/bddc_hybrid.pdf">the preprint</a>.
+</p>
+
+<div class="picture">
+  <img src="/pictures/melachov_strong_scaling.png" alt="Melechov" title="Melechov">
+  <br/>
+  <i>Figure</i>
+</div>
