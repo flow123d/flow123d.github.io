@@ -1,26 +1,33 @@
-# Flow123d &middot; [![Jenkins release](http://ciflow.nti.tul.cz/status/release/Flow123d-ci2runner-release-multijob/4)](http://ciflow.nti.tul.cz:8080/job/Flow123d-gnu-release-multijob/) [![Jenkins debug](http://ciflow.nti.tul.cz:8080/status/debug/Flow123d-gnu-debug-multijob/4)](http://ciflow.nti.tul.cz:8080/job/Flow123d-gnu-debug-multijob/) [![Coveralls master](https://img.shields.io/coveralls/github/flow123d/flow123d.svg?style=flat-square&label=coverage)](https://coveralls.io/github/flow123d/flow123d) [![Docker hub](https://img.shields.io/badge/docker-hub-blue.svg?colorA=2271b8&colorB=dc750d&logo=docker&style=flat-square&logoColor=FFF)](https://hub.docker.com/u/flow123d/) [![CI-HPC](https://img.shields.io/badge/ci--hpc-performace-green.svg?style=flat-square)](http://hybs.nti.tul.cz/ci-hpc/)
+---
+title: ReadMe
+layout: page
+---
+
+# Flow123d
+
+[![Jenkins release](http://ciflow.nti.tul.cz/status/release/Flow123d-ci2runner-release-multijob/4)](http://ciflow.nti.tul.cz:8080/job/Flow123d-gnu-release-multijob/) [![Jenkins debug](http://ciflow.nti.tul.cz:8080/status/debug/Flow123d-gnu-debug-multijob/4)](http://ciflow.nti.tul.cz:8080/job/Flow123d-gnu-debug-multijob/) [![Coveralls master](https://img.shields.io/coveralls/github/flow123d/flow123d.svg?style=flat-square&label=coverage)](https://coveralls.io/github/flow123d/flow123d) [![Docker hub](https://img.shields.io/badge/docker-hub-blue.svg?colorA=2271b8&colorB=dc750d&logo=docker&style=flat-square&logoColor=FFF)](https://hub.docker.com/u/flow123d/) [![CI-HPC](https://img.shields.io/badge/ci--hpc-performace-green.svg?style=flat-square)](http://hybs.nti.tul.cz/ci-hpc/)
 
 *Processes in Fractured Media*
 
 Flow123d is a simulator of underground water flow, transport, and mechanical processes in fractured
 porous media. Novelty of this software is support of computations on complex
-meshes consisting of simplicial elements of different dimensions. Therefore
-we can combine continuum models and discrete fracture network models.
+meshes consisting of simplicial elements of different dimensions. Therefore,
+continuum models and discrete fracture network models can be combined.
 For more information see the project pages:
 [flow123d.github.io](http://flow123d.github.io). 
 
 
 ## Getting started
 Please refer to a **User Guide and Input Reference manual** available
-at our [official website](http://flow123d.github.io/) where there is a entire section dedicated
-to this topic. You can find step-by-step tutorial explaining geometries, `yaml` input files
+at our [official website](http://flow123d.github.io/) where there is an entire section dedicated
+to this topic. You can find a step-by-step tutorial explaining geometries, `yaml` input files
 and more. Below you can see a result from the tutorial problem.
 ![](/doc/graphics/figure.png)
 
 
 ## Installation
-You have several options when it comes to installation. You can use
-our prebuilt Docker images or build Flow123d from the source (requires a moderate experience with Linux OS).
+You have several options when it comes to the installation. You can use
+our prebuilt Docker images or you can build Flow123d from the source (requires a moderate experience with Linux OS).
 
 For detailed instructions, see the [installation guide](doc/INSTALL.md).
 
@@ -30,12 +37,12 @@ For detailed instructions, see the [installation guide](doc/INSTALL.md).
 ## Build
 Two step build:
 ```
-     host> bin/fterm     # start the docker developing container
+     host> bin/fterm     # start the Docker developing container
 container> make all      # produce "build_tree/bin/flow123d"
-container> bin/flow123d  # lunch the simulator using a simple wrapper script
+container> bin/flow123d  # launch the simulator using a simple wrapper script
 ```
 
-That would start the debug docker image and build the debug version of the simulator.
+That would start the debug Docker image and build the debug version of the simulator.
 For the release (optimized) version run:
 ```
 bin/fterm rel
@@ -56,29 +63,23 @@ For details see [installation guide](doc/INSTALL.md) or the manual.
   in a correct folder.**
 
   * The build tools may fail if the root path contains folders with spaces.
-  
-  * During an installation under Windows, some scenarios can cause problems. Please refer to
-  [an installation guide](https://docs.docker.com/toolbox/toolbox_install_windows/) for a
-  Docker Toolbox. You can also check out
-  [Troubleshooting page](https://docs.docker.com/toolbox/faqs/troubleshoot/) where the most
-  common error are described and solved.
 
 
 ### Building the reference manual
 
-The reference manual can be built by while in docker container
+The reference manual can be built while staying inside the Docker container
 ```sh
 make ref-doc
 ```
-To copy out reference manual from docker use command
+To copy out reference manual from Docker use command
 [`docker cp`](https://docs.docker.com/engine/reference/commandline/cp/).
 
 
 ## Singularity
 
-[Singularity](https://singularity.hpcng.org/) is a container system targeting HPC applications. Singularity containers can be created from the docker images and in contrast to the docker one is not allowed to modify system of running containers. 
+[Singularity](https://singularity.hpcng.org/) is a container system targeting HPC applications. Singularity containers can be created from the Docker images and in contrast to Docker they are not allowed to modify system of running containers. 
 
-For large images may be necessary set temp directory.
+It might be necessary to set a temp directory for large images.
 ```sh
 export SINGULARITY_TMPDIR="/some_absolute_path/tmp"
 ```
@@ -100,15 +101,15 @@ mpiexec -host host1,host2 -np 4 singularity exec docker://flow123d/3.1.0 flow123
      host> singularity shell -B flow123d/:/flow123d docker://flow123d/flow-dev-gnu-rel:3.1.0 # starts developing container
 container> cd /flow123d
 container> make all # produce "build_tree/bin/flow123d"
-container> bin/flow123d  # lunch the simulator
+container> bin/flow123d  # launch the simulator
 ```
 
 ### Docker images
-Hosted on `dockerhub` under organisation [`flow123d`](https://hub.docker.com/orgs/flow123d/repositories).
+Hosted on `dockerhub` under organization [`flow123d`](https://hub.docker.com/orgs/flow123d/repositories).
 
 **production images** 
 
-tagged by the release version (e.g. 3.1.0)
+tagged by the release version (e.g. 3.9.0)
 
 - [`flow123-gnu`](https://hub.docker.com/repository/docker/flow123d/flow123d-gnu) 
   : based on gnu libraries and tools

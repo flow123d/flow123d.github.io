@@ -19,7 +19,7 @@ For more information see the project pages:
 
 ## Getting started
 Please refer to a **User Guide and Input Reference manual** available
-at our [official website](http://flow123d.github.io/) where there is a entire section dedicated
+at our [official website](http://flow123d.github.io/) where there is an entire section dedicated
 to this topic. You can find step-by-step tutorial explaining geometries, `yaml` input files
 and more. Below you can see a result from the tutorial problem.
 ![](/doc/graphics/figure.png)
