@@ -45,7 +45,7 @@ packageRoot:     http://flow.nti.tul.cz/packages
 releaseList:
   - version:  3.9.0
     display:  release 3.9.0
-    name:     3.9.0_release
+    name:     3.9.0
     tags:     [stable, exe-installer]
     links:    [download, features, changes, manual, source, readme, htmldoc]
 
