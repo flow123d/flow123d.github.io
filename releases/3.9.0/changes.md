@@ -6,48 +6,62 @@ List of all changes in user interface and major internal changes.
 Alpha version of 4.x major release, with mostly backward compatible input.
 
 ## User interface
-* FieldFormula use BParser with some conversion rules to keep FParser syntax, but 
+* FieldFormula uses BParser with some conversion rules to keep FParser syntax, but
   minor incompatibilities may happen.
-* VTK output does not prevent numbering of elements and nodes of the input mesh
-* Repporting of HM solver non-convergence
+* VTK output does not prevent numbering of elements and nodes of the input mesh.
+* Reporting of HM solver non-convergence.
 
 ## New features
-* Implementation of Native VTK output
-* Implementation of GMSH and VTK readers, compatible writers and readers allowing passing outputs as initiali conditions.
-* Support for "native" output of presure edge DOFs
+* Implementation of Native VTK output.
+* Implementation of GMSH and VTK readers, compatible writers and readers allowing passing output as initial conditions.
+* Supporting "native" output of pressure edge DOFs.
 * Poroelasticity model with conductivity dependent on the stress tensor.
-* Allowed output of a field in several "interpolations", e.g. CellData together with NodeData and NativeData
-* FieldFormula can depend on other field within the equation FieldSet
-* user fields (test 02/16) 
+* Allowed output of a field in several "interpolations", e.g. CellData together with NodeData and NativeData.
+* FieldFormula can depend on other field within the equation FieldSet.
+* User fields (test 02/16).
 * Contact non-penetration condition for fractures in the mechanics module.
 
 ## Bug fixes
 * Poroelasticity bug fixes, extended test suite.
 * Year time unit changed to 365.2425 days to be closer to astronomical year.
-* velocity reconstruction in zero time step
-* partialy fixed sequantial coupling that must work for both steady and unsteady Darcy flow, 
-  while the time interpolation of the resulting velocity should be different
-* fixed check of the mash compatibility for the boundary FieldFE
+* Velocity reconstruction in zero time step.
+* Partially fixed sequential coupling that must work for both steady and unsteady Darcy flow,
+  while the time interpolation of the resulting velocity should be different.
+* Fixed check of the mesh compatibility for the boundary FieldFE.
 
 ## Internals
 * BParser used in FieldFormula. Requires SSE2 instructions.
-* New assembly algorithm used consistently through the code (without performance regrassion)
+* New assembly algorithm used consistently through the code (without performance regression).
 * FieldModel introduced.
-* FieldModel used in DarcyFlow (pressure head to piezometric head conversion), DG transport Concentration and Heat parameter models, darcy flow to velocity.
-* Removed explicit face permutations, replaced by element-nodes premutations with guaranteed face matching
+* FieldModel used in DarcyFlow (pressure head to piezometric head conversion), DG transport Concentration and Heat parameter models, Darcy flow to velocity.
+* Removed explicit face permutations, replaced by element-nodes permutations with guaranteed face matching.
 * Optimization of the elements and nodes order for the memory locality.
-* removed xprintf
-* Boundary Mesh - allow setup of a limited DOF Handler on the boundary
-* old asserts completely replaced
-* new scheme for building docker images, own build of MPICH with Intel Omnipath support
-* Intel and GNU based images, consistent image naming scheme
-* VecMPI improved and used in FV transport
+* Removed xprintf.
+* Boundary Mesh - allow setup of a limited DOF Handler on the boundary.
+* Old asserts completely replaced.
+* New scheme for building docker images, own build of MPICH with Intel Omnipath support.
+* Intel and GNU based images, consistent image naming scheme.
+* VecMPI improved and used in FV transport.
 * Fixed memory deallocation error in the profiler.
-* Use version 4.0.0 of the development images (PETSC 3.17, PERMON 3.17, Armadillo 10.5.2, BDDCML 2.6)
+* Use version 4.0.0 of the development images (PETSC 3.17, PERMON 3.17, Armadillo 10.5.2, BDDCML 2.6).
 * Fixed default IDs for MSH output format starting now from 1.
 
 
 
+***********************************************
+# Flow123d version 3.0.5
+(2022-05-09)
+
+### Bug fixes
+* output mesh interpolation -- keep continuous mesh and original GMSH ids
+  when discontinuous fields are not present in output field set (except P0)
+
+### Install
+* update fterm and adjust to newer CI install package routines
+* newer docker container naming and tagging convention
+
+### Internals
+* update several library dependencies (Petsc, Armadillo, BDDCML, yamlcpp)
 
 
 ***********************************************
