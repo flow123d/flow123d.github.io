@@ -9,49 +9,50 @@ layout: page
 
 <p>
   Flow123d is a simulator of mechanical and transport processes in fractured porous media.
-  The simulator consistently use the continuum-fracture approach combining classical continuum equations with 
-  similar equations on the discrete fractures represented as 2d manifolds. The physically based equations on the fractures
-  and coupling with the continuum are derived by the integration accross 
-  the fracture apperture and suitable semi-approximation. The resulting method allows continuous transition between continuum and Discrete Fracture Network
+  The simulator consistently uses the continuum-fracture approach combining classical continuum equations with
+  similar equations on the discrete fractures represented as lower dimensional manifolds. The physically based equations on the fractures
+  and coupling with the continuum are derived by the integration across 
+  the fracture aperture and suitable semi-approximation. The resulting method allows continuous transition between continuum and Discrete Fracture Network
   description of the fractured rock.  
 </p>
 
 <h3>Support for complex geometries</h3>
 
 <ul>
-  <li>Convenient for modeling 2d fractures and 1d channels in 3d ambient media</li>
-  <li>The <a href="https://github.com/GeoMop/bgem">BGEM</a> tool is suited for prepartion of the
-      meshes including the stochastic fracture networks. It essentialy use <a href="http://www.geuz.org/gmsh">GMSH</a> 
-      meshing software.</li>
+  <li>Convenient for modeling 2D fractures and 1D channels in 3D ambient media.</li>
+  <li>The <a href="https://github.com/GeoMop/bgem">BGEM</a> tool is well-suited for preparation of computational
+      meshes including stochastic fracture networks. It essentially uses <a href="http://www.geuz.org/gmsh">GMSH</a>
+      meshing software and its API.</li>
   <li><a href="./geometries/">Read more ...</a></li>
 </ul>
 
 <h3>Darcian Flow in Fractured Media</h3>
 
 <ul>
-  <li>Saturated and variably saturated (Richards) model.
-  <li>Coupling on interfaces between adjacent dimensions</li>
-  <li>Mixed-hybrid formulation providing accurate velocity approximation</li>
-  <li>Efficient implementation using Schur complement</li>
+  <li>Saturated and variably saturated model (Richard's equation). </li>
+  <li>Coupling on interfaces between adjacent dimensions. </li>
+  <li>Mixed-hybrid formulation providing accurate velocity approximation. </li>
+  <li>Efficient implementation using Schur complement. </li>
   <li><a href="./flow/">Read more ...</a></li>
 </ul>
 
 <h3>Advection-Diffusion Equation for Solute Transport</h3>
 
 <ul>
-  <li>Finite Volumes model for pure advection. Explicit scheme. </li>
-  <li>Robust Discontinuous Galerkin + implicit scheme for transport with hydrodynamic diffusion </li>
-  <li>Support for arbitrary number of substances </li>
+  <li>Finite Volumes model for convection-driven problems. Explicit time scheme. </li>
+  <li>Robust Discontinuous Galerkin + implicit time scheme for transport including hydrodynamic diffusion. </li>
+  <li>Support for arbitrary number of substances. </li>
+  <li>Efficient implementation of linear sorption model. </li>
   <li><a href="./transport/">Read more ...</a></li>
 </ul>
 
 <h3>Reaction term</h3>
 
 <ul>
-  <li> Reaction term includes: dual porosity model, sorptions, and linear reactions (decays)
-  <li> Coupled with transport models using the operator splitting method </li>
-  <li> Support for general combination of several reaction processes.
-  <li> Efficient computation of non-linear sorption via. interpolation </li>
+  <li> Reaction term includes: dual porosity model, sorption, and first-order kinetic reactions (decays). </li>
+  <li> Coupled with transport models using the operator splitting method. </li>
+  <li> Support for general combination of several reaction processes. </li>
+  <li> Efficient computation of non-linear sorption via interpolation tables. </li>
     <li><a href="./reactions/">Read more ...</a></li>
 </ul>
 
@@ -59,32 +60,36 @@ layout: page
 
 <ul>
   <li>Equilibrium heat transfer model including conduction in rock and conduction and convection in liquid phase. </li>
-  <li>Robust Discontinuous Galerkin + implicit scheme.</li>
+  <li>Robust Discontinuous Galerkin + implicit time scheme. </li>
 </ul>
 
 <h3>Mechanics</h3>
 
 <ul>
-  <li>Linear elasticity. 
-  <li>Coupled with Darcy flow. Biot Poroelasticity. 
-  <li>Contacts on fractures, non-linear dependency of permeability.
+  <li>Linear elasticity. </li>
+  <li>Coupled with Darcy flow leading to Biot's poroelasticity model (iterative coupling scheme). </li>
+  <li>Contacts on fractures, non-linear dependency of permeability. </li>
 <li><a href="./mechanics/">Read more ...</a></li>
   </ul>
 
 <h3>Software specific</h3>
 
 <ul>
-  <li>C++, MPI, PETSc, PERMON, Python
+  <li>Languages: C++, MPI, Python, Shell </li>
+  <li> Libraries: <a href="https://petsc.org">PETSc</a>, <a href="http://permon.vsb.cz/">PERMON</a>,
+       <a href="http://arma.sourceforge.net">Armadillo</a>, <a href="https://yaml-cpp.docsforge.com/">YamlCpp</a>. </li>
+  <li> <a href="http://www.math.cas.cz/~sistek/software/bddcml.html">BDDC solver</a>, <a href="http://bacula.nti.tul.cz/~jan.brezina/flow123d_publications/bddc_hybrid.pdf">publication</a>.</li> 
   <li>Parallel assembly, solvers, serial computational mesh.</li>
-  <li> <a href="http://www.math.cas.cz/~sistek/software/bddcml.html">BDDC solver</a>, <a href="http://bacula.nti.tul.cz/~jan.brezina/flow123d_publications/bddc_hybrid.pdf">paper</a>.</li> 
-  <li>Structured input using YAML file format</li>
-  <li>All parameters can be arbitrary space-time field</li>
-  <li>Output to VTK and GMSH format, detailed output of in observation points and for conserved quantities.</li>
+  <li>Structured input using YAML file format.</li>
+  <li>All parameters can be arbitrary space-time field.</li>
+  <li>Output to GMSH and VTK format, including binary and compressed variations.</li>
+  <li>Output of quantities at observation points.</li>
+  <li>Output of quantities balance over domains and boundaries.</li>
   <li><a href="./io/">Read more ...</a></li>
 </ul>
 
 
-
+<!--
 <h3>Active Development</h3>
 
 <ul>
@@ -93,3 +98,4 @@ layout: page
   
   <li><a href="./wip/">Read more ...</a></li>
 </ul>
+-->
