@@ -20,7 +20,8 @@ Current version supports following equations:
 * steady and unsteady Darcy's flow
 * Richard's equation for unsaturated flow
 * advection-diffusion problems
-    * solute transport of several substances (including first order reactions, sorption, dual porosity models)
+    * solute transport of several substances
+    <br>(including first order reactions, sorption, dual porosity models)
     * heat transfer model
 * mechanics including contact problems
 * Biot's poroelasticity problem
