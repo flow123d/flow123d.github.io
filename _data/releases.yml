@@ -48,7 +48,7 @@ releaseList:
     name:     3.9.0
     tags:     [stable, exe-installer]
     links:    [download, features, changes, manual, source, readme, htmldoc]
-    docker_image: "flow123d-gnu"
+    docker_image: "flow123d-gnu/tags"
 
   - version:  3.0.5
     display:  dev 3.0.5
