@@ -34,6 +34,11 @@ var updateScope = function ($scope) {
     $scope.versionRoot = window.flow123d.packageRoot + '/' + $scope.item.name;
     $scope.tags = $scope.item.tags ? $scope.item.tags.join(' ') : '';
     $scope.windows = $scope.item.tags && $scope.item.tags.includes('exe-installer') ? 'exe' : 'zip';
+    if ($scope.item.docker_image) {        
+        $scope.docker_image = $scope.item.docker_image
+    } else {
+        $scope.docker_image = $scope.item.version
+    }
     setTimeout(function () {
         if ($scope.item.visible.download) {
             $('.json-datetime').each(function (index, item) {
