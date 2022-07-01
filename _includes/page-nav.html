@@ -6,24 +6,29 @@
     </select>
 
     <ul class="version-menu ng--change">
+      <li ng-show="item.visible.readme">
+        <a href="/releases/{$ version $}/readme" title="Main ReadMe Page">
+            ReadMe
+        </a>
+      </li>
       <li ng-show="item.visible.legacyDownload">
-        <a href="/releases/{$ version $}/download" title="Features overview">
+        <a href="/releases/{$ version $}/download" title="Download Page for Legacy Version">
           Download
         </a>
       </li>
       <li ng-show="item.visible.features">
-        <a href="/releases/{$ version $}/features" title="Features overview">
+        <a href="/releases/{$ version $}/features" title="Features Overview">
           Features
         </a>
       </li>
       <li ng-show="item.visible.changes">
-        <a href="/releases/{$ version $}/changes" title="Change log">
+        <a href="/releases/{$ version $}/changes" title="Change Log">
           Changes
         </a>
       </li>
-      <li ng-show="item.visible.readme">
-        <a href="/releases/{$ version $}/readme" title="User manual in PDF format">
-          ReadMe
+      <li ng-show="item.visible.install">
+        <a href="/releases/{$ version $}/install" title="Installation Instructions">
+          Installation
         </a>
       </li>
       <li ng-show="item.visible.source">
@@ -33,13 +38,13 @@
         </a>
       </li>
       <li ng-show="item.visible.manual">
-        <a href="{$ versionRoot $}/flow123d_{$ version $}_doc.pdf" target="_blank" title="User manual in PDF format">
+        <a href="{$ versionRoot $}/flow123d_{$ version $}_doc.pdf" target="_blank" title="User Manual in PDF Format">
           User manual PDF
           <i class="fas fa-file-pdf" alt="PDF format" aria-hidden="true"></i>
         </a>
       </li>
       <li ng-show="item.visible.htmldoc">
-        <a href="{$ versionRoot $}/htmldoc" target="_blank" title="User manual in HTML format">
+        <a href="{$ versionRoot $}/htmldoc" target="_blank" title="User Manual in HTML Format">
           User manual HTML
           <i class="fab fa-html5" aria-hidden="true"></i>
         </a>

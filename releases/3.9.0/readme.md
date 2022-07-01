@@ -11,23 +11,19 @@ Flow123d is a simulator of underground water flow, transport, and mechanical pro
 porous media. Novelty of this software is support of computations on complex
 meshes consisting of simplicial elements of different dimensions. Therefore,
 continuum models and discrete fracture network models can be combined.
-For more information see the project pages:
-[flow123d.github.io](http://flow123d.github.io). 
-
-
-## Getting started
-Please refer to a **User Guide and Input Reference manual** available
-at our [official website](http://flow123d.github.io/) where there is an entire section dedicated
-to this topic. You can find a step-by-step tutorial explaining geometries, `yaml` input files
-and more. Below you can see a result from the tutorial problem.
-![](/gallery/pictures/tutorial_test_21_03.png)
 
 
 ## Installation
 You have several options when it comes to the installation. You can use
 our prebuilt Docker images or you can build Flow123d from the source (requires a moderate experience with Linux OS).
 
-For detailed instructions, see the [installation guide](doc/INSTALL.md).
+For detailed instructions, see the [installation guide](install.md).
+
+
+## Getting started
+Please refer to the [User Guide and Input Reference](https://flow.nti.tul.cz/packages/3.9.0/flow123d_3.9.0_doc.pdf) manual where there is an entire section dedicated to this topic. You can find a step-by-step tutorial explaining geometries, `yaml` input files
+and more. Below you can see a result from the tutorial problem.
+![](/gallery/pictures/tutorial_test_21_03.png)
 
 
 ## Developers
@@ -47,7 +43,7 @@ bin/fterm rel
 make all
 ```
 
-For details see [installation guide](doc/INSTALL.md) or the manual.
+For details see [installation guide](install.md) or the manual.
 
 
 #### Troubleshooting
