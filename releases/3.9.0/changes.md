@@ -10,6 +10,8 @@ Alpha version of 4.x major release, with mostly backward compatible input.
   minor incompatibilities may happen.
 * VTK output does not prevent numbering of elements and nodes of the input mesh.
 * Reporting of HM solver non-convergence.
+* Pressure output field `pressure_p1` removed and replaced by general
+  interpolation selection (use type `P1_average` instead).
 
 ## New features
 * Implementation of Native VTK output.
