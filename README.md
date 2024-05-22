@@ -19,6 +19,7 @@ bundle exec jekyll server --watch
 ```
 
 ### Notes on wesite structure
+- Main structure in _includes/page-nav.html.
 
 - To add a new release version, edit `javascript` file
   [`_data/releases.yml`](/assets/javascripts/releases.js)
